@@ -1,8 +1,20 @@
 set nocompatible
-execute pathogen#infect()
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'bling/vim-airline'
+Plugin 'kien/ctrlp.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-fugitive'
+
+call vundle#end()
+
 filetype on
-filetype indent on
-filetype plugin on
+filetype plugin indent on
 let c_space_errors=1
 let mapleader=','
 
