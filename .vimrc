@@ -5,11 +5,14 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'bling/vim-airline'
+Plugin 'ervandew/supertab'
+Plugin 'jlanzarotta/bufexplorer'
 Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
+
 
 call vundle#end()
 
@@ -167,7 +170,7 @@ endif
 
 ""{{{ Open URL in browser
 
-command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis | wincmd p
+command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis | wincmd p
 
 function! Browser ()
   let line = getline (".")
@@ -175,7 +178,7 @@ function! Browser ()
   exec "!firefox ".line
 endfunction
 
-
+let g:ctrlp_map='<c-p>'
 let g:syntastic_python_checkers=['pylint']
 
 highlight LineNr gui=NONE guibg=ivory4
