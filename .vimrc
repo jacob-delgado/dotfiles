@@ -59,7 +59,8 @@ set noerrorbells
 set nohidden
 set nospell
 set novb
-set relativenumber
+set number
+"set relativenumber
 set report=0
 set ruler
 set scrolloff=5
@@ -159,12 +160,8 @@ augroup vimrcEx
     \ endif
 augroup END
 
-au FocusLost * :wa
-
-if has("gui_running")
-  set guifont=Courier\ New
-  colorscheme desert
-endif
+set guifont=Monospace\ 12
+colorscheme wombat
 
 "{{{ Functions
 
@@ -181,13 +178,15 @@ endfunction
 let g:ctrlp_map='<c-p>'
 let g:syntastic_python_checkers=['pylint']
 
-highlight LineNr gui=NONE guibg=ivory4
-highlight MatchParen ctermbg=2
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
+highlight CursorLine guibg=gray
+"highlight CursorLineNr guifg=#050505
+highlight ExtraWhitespace ctermbg=red guibg=red
+highlight LineNr gui=NONE guibg=ivory4 guifg=pink ctermbg=red
+highlight MatchParen ctermbg=2
 highlight NonText ctermbg=red guibg=red
 highlight SpecialKey ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
