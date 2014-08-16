@@ -65,4 +65,4 @@ URxvt*scrollBar: true
 URxvt*scrollBar_right: true
 
 # scrollbar style - rxvt (default), plain, next, or xterm
-URxvt*scrollstyle: xterm
+URxvt*scrollstyle: rxvt

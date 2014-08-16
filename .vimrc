@@ -13,7 +13,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 
-
 call vundle#end()
 
 filetype on
