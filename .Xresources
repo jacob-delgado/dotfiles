@@ -1,67 +1,100 @@
-! --- ~/.Xresources ------------------------------------------------------------
-! ------------------------------------------------------------------------------
-! --- generated with 4bit Terminal Color Scheme Designer -----------------------
-! ------------------------------------------------------------------------------
-! --- http://ciembor.github.com/4bit -------------------------------------------
-! ------------------------------------------------------------------------------
-
-! --- special colors ---
-
-*background: #0d1926
-*foreground: #d9e6f2
-
-! --- standard colors ---
-
-! black
-*color0: #000000
-
-! bright_black
-*color8: #363636
-
-! red
-*color1: #ed4e45
-
-! bright_red
-*color9: #f6a6a2
-
-! green
-*color2: #45ed4e
-
-! bright_green
-*color10: #a2f6a6
-
-! yellow
-*color3: #e4ed45
-
-! bright_yellow
-*color11: #f2f6a2
-
-! blue
-*color4: #4e45ed
-
-! bright_blue
-*color12: #a6a2f6
-
-! magenta
-*color5: #ed45e4
-
-! bright_magenta
-*color13: #f6a2f2
-
-! cyan
-*color6: #45e4ed
-
-! bright_cyan
-*color14: #a2f2f6
-
-! white
-*color7: #ffffff
-
-! bright_white
-*color15: #ffffff
-
-
-! ------------------------------------------------------------------------------
-! --- end of terminal colors section -------------------------------------------
-! ------------------------------------------------------------------------------
-
+! Wombat Colors
+*foreground: rgb:ff/ff/ff
+*background: rgb:16/16/16
+!black
+*color0:   rgb:16/16/16
+*color8:   rgb:85/7B/6F
+!red
+*color1:   rgb:e5/78/6d
+*color9:   rgb:9d/2a/3a
+!green
+*color2:   rgb:ca/e6/82
+*color10:    rgb:8b/be/34
+!brown/yellow
+*color3:   rgb:ff/e1/61
+*color11:    rgb:ff/c4/42
+!blue
+*color4:   rgb:52/83/d7
+*color12:    rgb:3b/5d/9a
+!magenta
+*color5:   rgb:b6/98/d9
+*color13:    rgb:a5/7a/c4
+!cyan
+*color6:   rgb:a8/c6/f2
+*color14:    rgb:5d/a7/e1
+!white
+*color7:   rgb:f6/f3/e8
+*color15:    rgb:d3/d7/cf
+#URxvt.background: #232323
+#URxvt.foreground: #A0A0A0
+#
+#URxvt.colorBD:    #CFCFCF
+#URxvt.colorUL:    #A0A0A0
+#URxvt.colorIT:    #686868
+#
+#!BLK
+#URxvt.color0:     #303030
+#URxvt.color8:     #686868
+#
+#!RED
+#URxvt.color9:     #FFA7DA
+#URxvt.color1:     #D370A3
+#
+#!GRN
+#URxvt.color10:    #A3D572
+#URxvt.color2:     #6D9E3F
+#
+#!BLU
+#URxvt.color12:    #98CBFE
+#URxvt.color4:     #6095C5
+#
+#!YEL
+#URxvt.color11:    #EFBD8B
+#URxvt.color3:     #B58858
+#
+#!CYN
+#URxvt.color14:    #75DAA9
+#URxvt.color6:     #3BA275
+#
+#!MAG
+#URxvt.color13:    #E5B0FF
+#URxvt.color5:     #AC7BDE
+#
+#!WHT
+#URxvt.color7:     #CFCFCF
+#URxvt.color15:    #FFFFFF
+##! vim: set filetype=xdefaults :
+##*foreground: #D7D0C7
+##*background: #151515
+##
+##!black
+##! *color0:     #AF875F
+##! *color8:     #AF875F
+##*color0:     #101010
+##*color8:     #404040
+##!red
+##*color1:     #E84F4F
+##*color9:     #D23D3D
+##!green
+##*color2:     #B8D68C
+##*color10:    #A0CF5D
+##!yellow
+##*color3:     #E1AA5D
+##*color11:    #F39D21
+##!blue
+##*color4:     #7DC1CF
+##*color12:    #4E9FB1
+##!magenta
+##*color5:     #9B64FB
+##*color13:    #8542FF
+##!cyan
+##*color6:     #6D878D
+##*color14:    #42717B
+##!white
+##*color7:     #dddddd
+##*color15:    #dddddd
+##
+##URxvt*borderColor:        #151515
+##URxvt*colorBD:            #ffffff
+##URxvt*cursorColor:        #ff8939
+##URxvt*cursorColor2:       #151515
