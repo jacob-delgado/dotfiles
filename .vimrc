@@ -13,6 +13,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 
+
 call vundle#end()
 
 filetype on
@@ -24,6 +25,7 @@ set autochdir
 set autoindent
 set autoread
 set autowrite
+set background=dark
 set backspace=indent,eol,start
 set backup
 set backupdir=~/.vim/backup
@@ -160,8 +162,8 @@ augroup vimrcEx
     \ endif
 augroup END
 
-set guifont=Monospace\ 12
-colorscheme wombat
+set guifont=Inconsolata\ 12
+colorscheme wombat256
 
 "{{{ Functions
 
@@ -182,10 +184,10 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-highlight CursorLine guibg=gray
+"highlight CursorLine guibg=gray
 "highlight CursorLineNr guifg=#050505
 highlight ExtraWhitespace ctermbg=red guibg=red
-highlight LineNr gui=NONE guibg=ivory4 guifg=pink ctermbg=red
+highlight LineNr gui=NONE guibg=ivory4 guifg=pink ctermbg=gray ctermfg=red
 highlight MatchParen ctermbg=2
 highlight NonText ctermbg=red guibg=red
 highlight SpecialKey ctermbg=red guibg=red
