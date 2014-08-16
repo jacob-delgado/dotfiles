@@ -83,6 +83,7 @@ set tags=tags;/
 set textwidth=80
 set title
 set ttyfast
+set undodir=~/.vim/undo
 set undofile
 set undolevels=500
 set visualbell
