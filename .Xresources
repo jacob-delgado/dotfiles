@@ -25,76 +25,26 @@
 !white
 *color7:   rgb:f6/f3/e8
 *color15:    rgb:d3/d7/cf
-#URxvt.background: #232323
-#URxvt.foreground: #A0A0A0
-#
-#URxvt.colorBD:    #CFCFCF
-#URxvt.colorUL:    #A0A0A0
-#URxvt.colorIT:    #686868
-#
-#!BLK
-#URxvt.color0:     #303030
-#URxvt.color8:     #686868
-#
-#!RED
-#URxvt.color9:     #FFA7DA
-#URxvt.color1:     #D370A3
-#
-#!GRN
-#URxvt.color10:    #A3D572
-#URxvt.color2:     #6D9E3F
-#
-#!BLU
-#URxvt.color12:    #98CBFE
-#URxvt.color4:     #6095C5
-#
-#!YEL
-#URxvt.color11:    #EFBD8B
-#URxvt.color3:     #B58858
-#
-#!CYN
-#URxvt.color14:    #75DAA9
-#URxvt.color6:     #3BA275
-#
-#!MAG
-#URxvt.color13:    #E5B0FF
-#URxvt.color5:     #AC7BDE
-#
-#!WHT
-#URxvt.color7:     #CFCFCF
-#URxvt.color15:    #FFFFFF
-##! vim: set filetype=xdefaults :
-##*foreground: #D7D0C7
-##*background: #151515
-##
-##!black
-##! *color0:     #AF875F
-##! *color8:     #AF875F
-##*color0:     #101010
-##*color8:     #404040
-##!red
-##*color1:     #E84F4F
-##*color9:     #D23D3D
-##!green
-##*color2:     #B8D68C
-##*color10:    #A0CF5D
-##!yellow
-##*color3:     #E1AA5D
-##*color11:    #F39D21
-##!blue
-##*color4:     #7DC1CF
-##*color12:    #4E9FB1
-##!magenta
-##*color5:     #9B64FB
-##*color13:    #8542FF
-##!cyan
-##*color6:     #6D878D
-##*color14:    #42717B
-##!white
-##*color7:     #dddddd
-##*color15:    #dddddd
-##
-##URxvt*borderColor:        #151515
-##URxvt*colorBD:            #ffffff
-##URxvt*cursorColor:        #ff8939
-##URxvt*cursorColor2:       #151515
+
+!URxvt settings
+!#URxvt*background: Black
+URxvt*boldFont: xft:Inconsolata:bold:pixelsize=17:antialias=true:hinting=true
+URxvt*buffered: true
+!URxvt*color12: RoyalBlue
+!#URxvt*color4: RoyalBlue
+URxvt*cursorBlink: true
+URxvt*depth: 32
+URxvt*font: xft:Inconsolata:pixelsize=17:antialias=true:hinting=true
+!#URxvt*foreground: White
+URxvt*loginShell: true
+URxvt.matcher.button: 1
+URxvt*perl-ext-common: default,matcher
+URxvt*saveLines: 65535
+URxvt*scrollBar_right: true
+URxvt*scrollBar: true
+URxvt*scrollstyle: rxvt
+URxvt*secondaryScroll: true
+URxvt*shading: 10
+!#URxvt*tintColor: Black
+URxvt*transparent: true
+URxvt*url-launcher: firefox
