@@ -54,7 +54,7 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl"
 
-export PATH=$PATH:/opt/java/jre/bin:/opt/sublime-text:/opt/Webstorm/bin
+export PATH=$PATH:/opt/java/jre/bin:/opt/sublime-text:/opt/WebStorm/bin
 
 
 export MANPATH="/usr/local/man:$MANPATH"
