@@ -9,10 +9,11 @@ Plugin 'ervandew/supertab'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
+Plugin 'mileszs/ack.vim'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
-
 
 call vundle#end()
 
@@ -162,7 +163,7 @@ augroup vimrcEx
     \ endif
 augroup END
 
-set guifont=Inconsolata\ 12
+set guifont=Consolas\ 12
 colorscheme wombat256
 
 "{{{ Functions
