@@ -27,11 +27,11 @@
 *color15:    rgb:d3/d7/cf
 
 !URxvt settings
-URxvt*boldFont: xft:Inconsolata:bold:size=14:antialias=true:hinting=true
+URxvt*boldFont: xft:Consolas:bold:size=14:antialias=true:hinting=true
 URxvt*buffered: true
 URxvt*cursorBlink: true
 URxvt*depth: 32
-URxvt*font: xft:Inconsolata:size=14:antialias=true:hinting=true
+URxvt*font: xft:Consolas:size=14:antialias=true:hinting=true
 URxvt*loginShell: true
 URxvt.matcher.button: 1
 URxvt*perl-ext-common: default,matcher
@@ -48,7 +48,7 @@ URxvt*url-launcher: firefox
 xterm*boldMode: false
 xterm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
 xterm*eightBitInput: false
-xterm*faceName : Inconsolata:style=Regular:size=14
+xterm*faceName : Consolas:style=Regular:size=14
 xterm*loginShell: true
 xterm*saveLines: 65535
 
