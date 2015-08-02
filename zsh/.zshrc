@@ -52,13 +52,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl"
-
-export PATH=$PATH:/opt/java/jre/bin:/opt/sublime-text:/opt/WebStorm/bin:/opt/clion/bin
-export PATH=`ruby -rubygems -e "puts Gem.user_dir"`/bin:$PATH
-
 export GEM_HOME=$(ruby -e 'puts Gem.user_dir')
-
 export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment

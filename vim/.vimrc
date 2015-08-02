@@ -164,7 +164,7 @@ augroup vimrcEx
 augroup END
 
 set guifont=Consolas\ 12
-colorscheme wombat256
+colorscheme wombat256mod
 
 "{{{ Functions
 
