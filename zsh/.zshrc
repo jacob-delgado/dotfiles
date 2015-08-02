@@ -46,7 +46,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(python git tmux colorize archlinux sublime cp tmuxinator)
+plugins=(colored-man python git tmux colorize ubuntu cp)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -54,6 +54,7 @@ source $ZSH/oh-my-zsh.sh
 
 export GEM_HOME=$(ruby -e 'puts Gem.user_dir')
 export MANPATH="/usr/local/man:$MANPATH"
+export PATH=$PATH:$HOME/idea/bin
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
