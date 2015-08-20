@@ -128,7 +128,7 @@ bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
 # multimedia keys
 bindsym XF86AudioPrev exec --no-startup-id mpc prev
 bindsym XF86AudioNext exec --no-startup-id mpc next
-bindsym XF86AudioPlay exec --no-startup-id mpc_toggle
+bindsym XF86AudioPlay exec --no-startup-id mpc toggle
 
 # screen brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
@@ -180,6 +180,6 @@ bar {
 
 exec --no-startup-id start-pulseaudio-x11
 exec --no-startup-id syndaemon -t -k -i 2 -d
-exec --no-startup-id feh --bg-scale '/home/jdelgad/wallpapers/linux_arch_gnu_linux_1366x768_13661.jpg'
+exec --no-startup-id feh --bg-scale '/home/jacob/wallpapers/arch1080.jpg'
 exec --no-startup-id unclutter -root -visible
 exec --no-startup-id dunst

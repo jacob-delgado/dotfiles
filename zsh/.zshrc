@@ -46,7 +46,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(colored-man python git tmux colorize ubuntu cp)
+plugins=(archlinux colored-man cp git pip python taskwarrior tmux tmuxinator vagrant)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -81,3 +81,4 @@ export SSH_KEY_PATH="~/.ssh/id_rsa"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export EDITOR=vim
+export ALSA_CARD=PCH
