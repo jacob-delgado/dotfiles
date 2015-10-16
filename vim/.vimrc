@@ -4,12 +4,16 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
 Plugin 'ervandew/supertab'
+Plugin 'fatih/vim-go'
+Plugin 'gregsexton/gitv'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'mileszs/ack.vim'
+Plugin 'rust-lang/rust.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
@@ -193,3 +197,10 @@ highlight MatchParen ctermbg=2
 highlight NonText ctermbg=red guibg=red
 highlight SpecialKey ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
+
+
+" go specific bindings
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)

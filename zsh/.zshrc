@@ -55,6 +55,10 @@ source $ZSH/oh-my-zsh.sh
 export GEM_HOME=$(ruby -e 'puts Gem.user_dir')
 export MANPATH="/usr/local/man:$MANPATH"
 export PATH=$PATH:$HOME/idea/bin
+export PATH=$PATH:$HOME/bin
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOBIN
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8

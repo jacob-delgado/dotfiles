@@ -1,6 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/home/jdelgad/.config/i3'
-let g:netrw_dirhist_2='/home/jdelgad/.config'
-let g:netrw_dirhist_3='/home/jdelgad'
-let g:netrw_dirhist_4='/home/jdelgad/.i3'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/home/jacob/exercism/go/leap'
