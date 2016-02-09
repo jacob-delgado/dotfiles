@@ -1,54 +1,64 @@
-! Wombat Colors
-*foreground: rgb:ff/ff/ff
-*background: rgb:16/16/16
+!Wombat                 Colors
+*foreground:            rgb:ff/ff/ff
+*background:            rgb:16/16/16
 !black
-*color0:   rgb:16/16/16
-*color8:   rgb:85/7B/6F
+*color0:                rgb:16/16/16
+*color8:                rgb:85/7B/6F
 !red
-*color1:   rgb:e5/78/6d
-*color9:   rgb:9d/2a/3a
+*color1:                rgb:e5/78/6d
+*color9:                rgb:9d/2a/3a
 !green
-*color2:   rgb:ca/e6/82
-*color10:    rgb:8b/be/34
+*color2:                rgb:ca/e6/82
+*color10:               rgb:8b/be/34
 !brown/yellow
-*color3:   rgb:ff/e1/61
-*color11:    rgb:ff/c4/42
+*color3:                rgb:ff/e1/61
+*color11:               rgb:ff/c4/42
 !blue
-*color4:   rgb:52/83/d7
-*color12:    rgb:3b/5d/9a
+*color4:                rgb:52/83/d7
+*color12:               rgb:3b/5d/9a
 !magenta
-*color5:   rgb:b6/98/d9
-*color13:    rgb:a5/7a/c4
+*color5:                rgb:b6/98/d9
+*color13:               rgb:a5/7a/c4
 !cyan
-*color6:   rgb:a8/c6/f2
-*color14:    rgb:5d/a7/e1
+*color6:                rgb:a8/c6/f2
+*color14:               rgb:5d/a7/e1
 !white
-*color7:   rgb:f6/f3/e8
-*color15:    rgb:d3/d7/cf
+*color7:                rgb:f6/f3/e8
+*color15:               rgb:d3/d7/cf
 
-!URxvt settings
-URxvt*boldFont: xft:Consolas:bold:size=14:antialias=true:hinting=true
-URxvt*buffered: true
-URxvt*cursorBlink: true
-URxvt*depth: 32
-URxvt*font: xft:Consolas:size=14:antialias=true:hinting=true
-URxvt*loginShell: true
-URxvt.matcher.button: 1
-URxvt*perl-ext-common: default,matcher
-URxvt*saveLines: 65535
-URxvt*scrollBar_right: true
-URxvt*scrollBar: false
-URxvt*scrollstyle: rxvt
-URxvt*secondaryScroll: true
-URxvt*shading: 10
-URxvt*transparent: true
-URxvt*url-launcher: firefox
+!URxvt                   settings
+URxvt*boldFont:          xft:Consolas:bold:size=12:antialias=true:hinting=true
+URxvt*buffered:          true
+URxvt*cursorBlink:       true
+URxvt*depth:             32
+URxvt*font:              xft:Consolas:size=12:antialias=true:hinting=true
+URxvt*inheritPixmap:     true
+URxvt*loginShell:        true
+URxvt*saveLines:         65535
+URxvt*scrollBar:         false
+URxvt*scrollBar_right:   true
+URxvt*scrollstyle:       rxvt
+URxvt*scrollTtyKeypress: true
+URxvt*scrollTtyOutput:   false
+URxvt*scrollWithBuffer:  true
+URxvt*secondaryScreen:   true
+URxvt*secondaryScroll:   false
+URxvt*shading:           10
+URxvt*transparent:       true
 
-!# xterm settings
-xterm*boldMode: false
-xterm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
-xterm*eightBitInput: false
-xterm*faceName : Consolas:style=Regular:size=14
-xterm*loginShell: true
-xterm*saveLines: 65535
+!xterm                  settings
+xterm*boldMode:         false
+xterm*charClass:        33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
+xterm*eightBitInput:    false
+xterm*faceName:         Consolas:style=Regular:size=12
+xterm*loginShell:       true
+xterm*saveLines:        65535
 
+!Xft                    settings
+Xft.antialias:          true
+Xft.autohint:           false
+Xft.dpi:                165
+Xft.hinting:            true
+Xft.hintstyle:          hintslight
+Xft.lcdfilter:          lcddefault
+Xft.rgba:               rgb

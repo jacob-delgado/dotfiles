@@ -231,7 +231,7 @@ highlight CursorLineNr guibg=blue ctermbg=4
 highlight LineNr gui=NONE guibg=#4e4e4e guifg=pink ctermbg=gray ctermfg=red
 highlight MatchParen ctermbg=2 guibg=#008000
 highlight NonText ctermbg=235 guibg=#262626
-highlight SpecialKey ctermbg=1 guibg=powderblue
+"highlight SpecialKey ctermbg=1 guibg=powderblue
 
 " omnicompletion settings
 set completeopt-=preview
