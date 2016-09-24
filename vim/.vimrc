@@ -5,12 +5,13 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'airblade/vim-gitgutter'
+Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'bling/vim-airline'
 Plugin 'ervandew/supertab'
+Plugin 'fatih/molokai'
 Plugin 'fatih/vim-go'
 Plugin 'garyburd/go-explorer'
 Plugin 'gregsexton/gitv'
-Plugin 'guns/vim-clojure-static'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'kien/ctrlp.vim'
@@ -21,11 +22,10 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'Shougo/neocomplete.vim'
+Plugin 'SirVer/ultisnips'
 Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-fireplace'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-projectionist'
-Plugin 'tpope/vim-salve'
 
 call vundle#end()
 
@@ -173,7 +173,11 @@ augroup vimrcEx
 augroup END
 
 set guifont=Consolas\ 12
+
 colorscheme wombat256mod
+au FileType go let g:rehash256=1
+au FileType go let g:molokai_original=1
+au FileType go colorscheme molokai
 
 "{{{ Functions
 
@@ -194,7 +198,7 @@ highlight GitGutterDeleteLine guibg=#900000 ctermbg=88
 highlight GitGutterAddLine guibg=#005000 ctermbg=22
 
 " supertab settings
-let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabDefaultCompletionType = "<c-space>"
 
 " tagbar settings
 nnoremap <leader>tt :TagbarToggle<CR>
@@ -207,14 +211,16 @@ nnoremap <leader>nt :NERDTreeToggle<CR>
 let g:ctrlp_map='<c-p>'
 
 " syntastic settings
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" not needed since I run vim-airline
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=0
 let g:syntastic_python_checkers=['pylint']
+" set passive mode for go due to vim-go plugin
 let g:syntastic_mode_map = {
     \ "mode": "active",
     \ "passive_filetypes": ["go"] }
@@ -242,26 +248,53 @@ highlight NonText ctermbg=235 guibg=#262626
 set completeopt-=preview
 
 " vim-go specific bindings
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-au FileType go nmap <leader>e <Plug>(go-rename)
-au FileType go nmap <leader>i <Plug>(go-info)
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>s <Plug>(go-implements)
-au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage-toggle)
 au FileType go nmap <leader>ds <Plug>(go-def-split)
 au FileType go nmap <leader>dt <Plug>(go-def-tab)
 au FileType go nmap <leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <leader>e <Plug>(go-rename)
+au FileType go nmap <leader>ga :GoAlternate<CR>
 au FileType go nmap <leader>gb <Plug>(go-doc-browser)
 au FileType go nmap <leader>gd <Plug>(go-doc)
 au FileType go nmap <leader>gl <Plug>(go-metalinter)
 au FileType go nmap <leader>gv <Plug>(go-doc-vertical)
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_fmt_command = "goimports"
+au FileType go nmap <leader>i <Plug>(go-info)
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>s <Plug>(go-implements)
+au FileType go nmap <leader>t <Plug>(go-test)
+
+" quickfix list mappings
+nnoremap <c-n> :cnext<CR>
+nnoremap <c-m> :cprevious<CR>
+nnoremap <leader>q :cclose<CR>
+
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#cmd#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+
+let g:go_auto_sameids = 1
+let g:go_auto_type_info = 1
+let g:go_fmt_command="goimports"
+let g:go_highlight_build_constraints=1
+let g:go_highlight_fields=1
+let g:go_highlight_functions=1
+let g:go_highlight_methods=1
+let g:go_highlight_operators=1
+let g:go_highlight_structs=1
+let g:go_highlight_types=1
+" compatibility with syntastic recommends all windows be quickfix lists
+let g:go_list_type="quickfix"
+let g:go_metalinter_autosave=1
+
+
 
 " neocomplete settings
-let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_at_startup=1
