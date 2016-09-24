@@ -55,6 +55,8 @@ source $ZSH/oh-my-zsh.sh
 export GEM_HOME=$(ruby -e 'puts Gem.user_dir')
 export MANPATH="/usr/local/man:$MANPATH"
 export PATH=$PATH:$HOME/idea/bin
+export PATH=$PATH:$HOME/pycharm/bin
+export PATH=$PATH:/home/jacob/.gem/ruby/2.3.0/bin
 export PATH=$PATH:$HOME/bin
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
