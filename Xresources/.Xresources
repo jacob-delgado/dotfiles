@@ -57,7 +57,7 @@ xterm*saveLines:        65535
 !Xft                    settings
 Xft.antialias:          true
 Xft.autohint:           false
-Xft.dpi:                165
+Xft.dpi:                92
 Xft.hinting:            true
 Xft.hintstyle:          hintslight
 Xft.lcdfilter:          lcddefault
