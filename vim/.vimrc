@@ -7,7 +7,6 @@ call vundle#begin()
 Plugin 'airblade/vim-gitgutter'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'bling/vim-airline'
-Plugin 'ervandew/supertab'
 Plugin 'fatih/molokai'
 Plugin 'fatih/vim-go'
 Plugin 'garyburd/go-explorer'
@@ -197,14 +196,11 @@ highlight SignColumn guibg=black ctermbg=black
 highlight GitGutterDeleteLine guibg=#900000 ctermbg=88
 highlight GitGutterAddLine guibg=#005000 ctermbg=22
 
-" supertab settings
-let g:SuperTabDefaultCompletionType = "<c-space>"
-
 " tagbar settings
 nnoremap <leader>tt :TagbarToggle<CR>
 
 " nerdtree settings
-nnoremap <leader>nf :NERDTrneFind<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
 nnoremap <leader>nt :NERDTreeToggle<CR>
 
 " ctrlp settings
@@ -294,7 +290,23 @@ let g:go_highlight_types=1
 let g:go_list_type="quickfix"
 let g:go_metalinter_autosave=1
 
-
-
 " neocomplete settings
+" Disable AutoComplPop.
+let g:acp_enableAtStartup=0
+" Use neocomplete.
 let g:neocomplete#enable_at_startup=1
+" Use smartcase.
+let g:neocomplete#enable_smart_case=1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length=3
+let g:neocomplete#lock_buffer_name_pattern='\*ku\*'
+"
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  " For no inserting <CR> key.
+  return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
