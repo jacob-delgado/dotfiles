@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/home/jacob/dotfiles'
 let g:netrw_dirhist_2='/home/jacob'
 let g:netrw_dirhist_3='/home/jacob/go'
@@ -7,3 +7,4 @@ let g:netrw_dirhist_4='/home/jacob/go/src'
 let g:netrw_dirhist_5='/home/jacob/go/src/github.com'
 let g:netrw_dirhist_6='/home/jacob/go/src/github.com/jdelgad'
 let g:netrw_dirhist_7='/home/jacob/go/src/github.com/jdelgad/gossfi'
+let g:netrw_dirhist_8='/home/jacob.delgado/vim/src'
