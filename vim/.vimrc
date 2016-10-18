@@ -4,7 +4,13 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+" nnoremap [c   (Jump between hunks)
+" nnoremap ]c 
+" nnoremap <leader>hp (Preview hunks)
+" nnoremap <leader>hs (Stage hunks)
+" nnoremap <leader>hs (Undo hunks)
 Plugin 'airblade/vim-gitgutter'
+
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'bling/vim-airline'
 Plugin 'fatih/molokai'
@@ -12,12 +18,29 @@ Plugin 'fatih/vim-go'
 Plugin 'garyburd/go-explorer'
 Plugin 'gregsexton/gitv'
 Plugin 'jiangmiao/auto-pairs'
+
+" nnoremap <leader>be :BufExplorer
+" nnoremap <leader>bt :BufExplorerToggle
+" nnoremap <leader>bs :BufExplorerHorizontalSplit
+" nnoremap <leader>bv :BufExplorerVerticalSplit
 Plugin 'jlanzarotta/bufexplorer'
+
+" let g:ctrlp_map = '<c-p>'
 Plugin 'kien/ctrlp.vim'
+
+" nnoremap <leader>tt :TagbarToggle<CR>
 Plugin 'majutsushi/tagbar'
+
+" Open Ack and prompt the user
+map <leader>a :Ack<space>
 Plugin 'mileszs/ack.vim'
+
 Plugin 'rust-lang/rust.vim'
 Plugin 'scrooloose/nerdcommenter'
+
+" nerdtree settings
+" nnoremap <leader>nf :NERDTreeFind<CR>
+" nnoremap <leader>nt :NERDTreeToggle<CR>
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'Shougo/neocomplete.vim'
@@ -62,6 +85,7 @@ set ignorecase
 set incsearch
 set laststatus=2
 set lazyredraw
+set lbr
 set magic
 set modelines=0
 set mouse=a
@@ -71,6 +95,7 @@ set noerrorbells
 set nohidden
 set nospell
 set novb
+set nowrap
 set number
 "set relativenumber
 set report=0
@@ -92,17 +117,33 @@ set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
 set t_vb=
 set tabstop=4
 set tags=tags;/
-set textwidth=80
+set textwidth=200
 set title
 set ttyfast
 set undodir=~/.vim/undo
 set undofile
 set undolevels=500
-set updatetime=1000
+set updatetime=250
+set viminfo='20,\"50,:20,/20,%,n~/.viminfo
+
+" Remember info about open buffers on close
+set viminfo^=%
+
 set visualbell
+set whichwrap+=<,>,h,l
+set wildignore=*.o,*~,*.pyc,*.pyo,*.exe,.git\*,.idea\*
 set wildmenu
 set wildmode=list:longest,full
-set wrap
+
+" :W sudo saves the file
+" (useful for handling the permission-denied error)
+command! W w !sudo tee % > /dev/null
+
+" Close the current buffer (w/o closing the current window)
+nnoremap <leader>bd :Bclose<cr>
+
+" Close all the buffers
+map <leader>bda :%bd!<cr>
 
 inoremap <silent> <Down> <C-o>gj
 inoremap <silent> <Down> <Esc>gja
@@ -137,9 +178,8 @@ nnoremap <leader>nw :set invwrap<CR>
 nnoremap <leader>rn :set invrelativenumber<CR>
 nnoremap <leader>sc :set invspell<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
-nnoremap <silent> <C-Left> :tabprevious<CR>
-nnoremap <silent> <C-Right> :tabnext<CR>
-nnoremap <silent> <C-t> :tabnew<CR>
+nnoremap <leader>tn :tabnew<CR>
+nnoremap <leader>tc :tabclose<CR>
 nnoremap <silent> j gj
 nnoremap <silent> k gk
 nnoremap <tab> %
@@ -202,6 +242,7 @@ nnoremap <leader>tt :TagbarToggle<CR>
 " nerdtree settings
 nnoremap <leader>nf :NERDTreeFind<CR>
 nnoremap <leader>nt :NERDTreeToggle<CR>
+let NERDTreeIgnore=['\.o$', '\.pyc$', '\.exe\~$']
 
 " ctrlp settings
 let g:ctrlp_map='<c-p>'
@@ -241,7 +282,7 @@ highlight NonText ctermbg=235 guibg=#262626
 "highlight SpecialKey ctermbg=1 guibg=powderblue
 
 " omnicompletion settings
-set completeopt-=preview
+" set completeopt-=preview
 
 " vim-go specific bindings
 au FileType go nmap <leader>c <Plug>(go-coverage-toggle)
@@ -300,7 +341,10 @@ let g:neocomplete#enable_smart_case=1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length=3
 let g:neocomplete#lock_buffer_name_pattern='\*ku\*'
-"
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
@@ -310,3 +354,22 @@ function! s:my_cr_function()
 endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" <BS>: close popup and delete backward char
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+
+" Delete trailing white space on save
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
+autocmd BufWrite *.go :call DeleteTrailingWS()
+autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.sh :call DeleteTrailingWS()
+
+" Open Ack and prompt the user
+map <leader>a :Ack<space>
+
+" Switch between the last two files
+nnoremap <leader><leader> <C-^>
