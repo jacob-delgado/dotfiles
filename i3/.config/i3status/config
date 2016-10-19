@@ -11,23 +11,22 @@ general {
         interval = 5
 }
 
-order += "disk /"
-order += "disk /home"
+#order += "ipv6"
+#order += "disk /"
+#order += "disk /home"
+#order += "run_watch DHCP"
+#order += "run_watch VPNC"
+#order += "path_exists VPN"
+order += "wireless wlp1s0"
+order += "battery 0"
 order += "load"
 order += "cpu_usage"
 order += "volume master"
 order += "tztime local"
 
-tztime local {
-        format = "%I:%M%p %b %d %Y"
-}
-
-cpu_usage {
-        format = "CPU: %usage"
-}
-
-load {
-        format = "LOAD: %1min"
+wireless wlp1s0 {
+        format_up = "W: (%quality@%essid) %ip"
+        format_down = "W: down"
 }
 
 disk "/" {
@@ -38,8 +37,46 @@ disk "/home" {
         format = "/home %avail"
 }
 
+battery 0 {
+  #format = "%status %percentage R:%remaining E:%emptytime"
+  format = "%status %percentage"
+  format_down = "No battery"
+  status_chr = "⚇"
+  status_bat = "⚡"
+  status_full = "☻"
+  path = "/sys/class/power_supply/BAT%d/uevent"
+  low_threshold = 10
+}
+
+run_watch DHCP {
+        pidfile = "/var/run/dhclient*.pid"
+}
+
+run_watch VPNC {
+        # file containing the PID of a vpnc process
+        pidfile = "/var/run/vpnc/pid"
+}
+
+path_exists VPN {
+        # path exists when a VPN tunnel launched by nmcli/nm-applet is active
+        path = "/proc/sys/net/ipv4/conf/tun0"
+}
+
+tztime local {
+        format = "%I:%M%p %b %d %Y"
+}
+
+cpu_usage {
+        format = "C: %usage"
+}
+
+load {
+        format = "L: %1min"
+}
+
 volume master {
         format = "♪: %volume"
+        format_muted = "♪: muted (%volume)"
         device = "default"
         mixer = "Master"
         mixer_idx = 0
