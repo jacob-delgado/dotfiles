@@ -1,55 +1,53 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
 " nnoremap [c   (Jump between hunks)
 " nnoremap ]c 
 " nnoremap <leader>hp (Preview hunks)
 " nnoremap <leader>hs (Stage hunks)
 " nnoremap <leader>hs (Undo hunks)
-Plugin 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'bling/vim-airline'
-Plugin 'fatih/molokai'
-Plugin 'fatih/vim-go'
-Plugin 'garyburd/go-explorer'
-Plugin 'gregsexton/gitv'
-Plugin 'jiangmiao/auto-pairs'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'bling/vim-airline'
+Plug 'fatih/molokai'
+Plug 'fatih/vim-go'
+Plug 'gregsexton/gitv'
+Plug 'jiangmiao/auto-pairs'
 
 " nnoremap <leader>be :BufExplorer
 " nnoremap <leader>bt :BufExplorerToggle
 " nnoremap <leader>bs :BufExplorerHorizontalSplit
 " nnoremap <leader>bv :BufExplorerVerticalSplit
-Plugin 'jlanzarotta/bufexplorer'
+Plug 'jlanzarotta/bufexplorer'
 
 " let g:ctrlp_map = '<c-p>'
-Plugin 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'
 
 " nnoremap <leader>tt :TagbarToggle<CR>
-Plugin 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 
 " Open Ack and prompt the user
 map <leader>a :Ack<space>
-Plugin 'mileszs/ack.vim'
+Plug 'mileszs/ack.vim'
 
-Plugin 'rust-lang/rust.vim'
-Plugin 'scrooloose/nerdcommenter'
+Plug 'rust-lang/rust.vim'
+Plug 'scrooloose/nerdcommenter'
 
 " nerdtree settings
 " nnoremap <leader>nf :NERDTreeFind<CR>
 " nnoremap <leader>nt :NERDTreeToggle<CR>
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'Shougo/neocomplete.vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-projectionist'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'Shougo/neocomplete.vim'
+Plug 'SirVer/ultisnips'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-projectionist'
 
-call vundle#end()
+call plug#end()
 
 filetype on
 filetype plugin indent on
@@ -342,7 +340,7 @@ let g:neocomplete#enable_smart_case=1
 let g:neocomplete#sources#syntax#min_keyword_length=3
 let g:neocomplete#lock_buffer_name_pattern='\*ku\*'
 
-" Plugin key-mappings.
+" Plug key-mappings.
 inoremap <expr><C-g>     neocomplete#undo_completion()
 
 " Recommended key-mappings.
