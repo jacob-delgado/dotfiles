@@ -16,6 +16,7 @@ Plug 'fatih/molokai'
 Plug 'fatih/vim-go'
 Plug 'gregsexton/gitv'
 Plug 'jiangmiao/auto-pairs'
+Plug 'dracula/vim', { 'as': 'dracula' }
 
 " nnoremap <leader>be :BufExplorer
 " nnoremap <leader>bt :BufExplorerToggle
@@ -41,11 +42,20 @@ Plug 'scrooloose/nerdcommenter'
 " nnoremap <leader>nt :NERDTreeToggle<CR>
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
-Plug 'Shougo/neocomplete.vim'
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-projectionist'
+
+
+"if has('nvim')
+"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"else
+"  Plug 'Shougo/deoplete.nvim'
+"  Plug 'roxma/nvim-yarp'
+"  Plug 'roxma/vim-hug-neovim-rpc'
+"endif
+"let g:deoplete#enable_at_startup = 1
 
 call plug#end()
 
@@ -211,7 +221,7 @@ augroup END
 
 set guifont=Consolas\ 12
 
-colorscheme wombat256mod
+colorscheme dracula
 au FileType go let g:rehash256=1
 au FileType go let g:molokai_original=1
 au FileType go colorscheme molokai
