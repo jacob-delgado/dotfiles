@@ -84,8 +84,11 @@ plugins=(aliases colored-man-pages cp docker direnv fzf git helm kubectl kind ku
 [[ -d "${ZSH_CUSTOM:-$ZSH/custom}/plugins/fzf-tab" ]]             && plugins+=(fzf-tab)
 
 # Pick up Homebrew-installed zsh completions before OMZ runs compinit.
+# Homebrew's share/ is group-writable by 'admin' (the only group member is you),
+# which OMZ's compaudit would otherwise reject — accept it via compfix opt-out.
 if command -v brew >/dev/null; then
   FPATH="$(brew --prefix)/share/zsh-completions:$(brew --prefix)/share/zsh/site-functions:$FPATH"
+  ZSH_DISABLE_COMPFIX=true
 fi
 
 source $ZSH/oh-my-zsh.sh
