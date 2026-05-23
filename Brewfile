@@ -154,6 +154,8 @@ brew "yamllint"
 brew "yq"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
+# Additional completion definitions for zsh
+brew "zsh-completions"
 # The best way of working with Protocol Buffers.
 brew "bufbuild/buf/buf"
 # A toolchain for composing, customizing, and deploying Kubernetes packages at scale

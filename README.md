@@ -214,3 +214,25 @@ cd ~/dotfiles
 brew bundle                    # installs everything in Brewfile
 stow zsh vim tmux fzf          # symlink whichever packages you want
 ```
+
+### Oh My Zsh custom plugins
+
+The `.zshrc` conditionally loads these third-party plugins if their
+directories exist under `${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/`.
+Install with:
+
+```sh
+ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions      "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+git clone --depth=1 https://github.com/Aloxaf/fzf-tab                     "$ZSH_CUSTOM/plugins/fzf-tab"
+git clone --depth=1 https://github.com/MichaelAquilina/zsh-you-should-use "$ZSH_CUSTOM/plugins/you-should-use"
+```
+
+What they do:
+
+- **zsh-autosuggestions** — suggests the rest of a command in grey as you
+  type, based on history. Right-arrow accepts.
+- **fzf-tab** — replaces zsh's default completion menu with an fzf picker
+  with preview. Tab → interactive list.
+- **you-should-use** — reminds you when you typed the long form of a
+  command you've aliased.

@@ -77,24 +77,28 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aliases archlinux colored-man-pages colorize cp docker direnv fzf git helm kubectl kind kube-ps1 pip python skaffold taskwarrior tig tmux tmuxinator vagrant)
+plugins=(aliases colored-man-pages cp docker direnv fzf git helm kubectl kind kube-ps1 skaffold taskwarrior tig tmux)
+[[ -d "${ZSH_CUSTOM:-$ZSH/custom}/plugins/you-should-use" ]]      && plugins+=(you-should-use)
 [[ -d "${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-autosuggestions" ]] && plugins+=(zsh-autosuggestions)
+# fzf-tab must come after every plugin that registers completions.
+[[ -d "${ZSH_CUSTOM:-$ZSH/custom}/plugins/fzf-tab" ]]             && plugins+=(fzf-tab)
+
+# Pick up Homebrew-installed zsh completions before OMZ runs compinit.
+if command -v brew >/dev/null; then
+  FPATH="$(brew --prefix)/share/zsh-completions:$(brew --prefix)/share/zsh/site-functions:$FPATH"
+fi
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
 # path config
-export GEM_HOME=$(ruby -e 'puts Gem.user_dir')
-export MANPATH="/usr/local/man:$MANPATH"
-export PATH=$PATH:$HOME/idea/bin
-export PATH=$PATH:$HOME/pycharm/bin
-export PATH=$PATH:/home/jacob/.gem/ruby/2.3.0/bin
 export PATH=$PATH:$HOME/bin
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN
 export PATH=$PATH:/usr/local/go/bin
+command -v ruby >/dev/null && export GEM_HOME=$(ruby -e 'puts Gem.user_dir')
 
 # Prefer GNU tools over the BSD versions on macOS (installed via Homebrew).
 if [[ "$OSTYPE" == darwin* ]]; then
@@ -106,11 +110,10 @@ if [[ "$OSTYPE" == darwin* ]]; then
   unset gnu_tool gnu_bin
 fi
 
-# Strips duplicates from history
+# History
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=500000
 export SAVEHIST=500000
-export HISTTIMEFORMAT="[%F %T] "
 
 setopt SHARE_HISTORY
 setopt HIST_REDUCE_BLANKS
@@ -121,12 +124,10 @@ setopt HIST_NO_STORE
 setopt PUSHD_IGNORE_DUPS
 setopt EXTENDED_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
-setopt HIST_BEEP
 setopt INC_APPEND_HISTORY
 setopt AUTO_CD
 HISTORY_IGNORE="(ls|cd|pwd|exit)"
@@ -141,12 +142,6 @@ HISTORY_IGNORE="(ls|cd|pwd|exit)"
 #   export EDITOR='nvim'
 # fi
 export EDITOR=vim
-
-# Compilation flags
-export ARCHFLAGS="-arch x86_64"
-
-# ssh
-export SSH_KEY_PATH="~/.ssh/id_rsa"
 
 # Set personal aliases, overriding those provided by Oh My Zsh libs,
 # plugins, and themes. Aliases can be placed here, though Oh My Zsh
