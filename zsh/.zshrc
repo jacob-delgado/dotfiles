@@ -95,6 +95,16 @@ export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN
 export PATH=$PATH:/usr/local/go/bin
 
+# Prefer GNU tools over the BSD versions on macOS (installed via Homebrew).
+if [[ "$OSTYPE" == darwin* ]]; then
+  for gnu_tool in binutils coreutils findutils gnu-sed gnu-tar gnu-which grep; do
+    gnu_bin="/opt/homebrew/opt/$gnu_tool/libexec/gnubin"
+    [[ "$gnu_tool" == "binutils" ]] && gnu_bin="/opt/homebrew/opt/$gnu_tool/bin"
+    [[ -d "$gnu_bin" ]] && export PATH="$gnu_bin:$PATH"
+  done
+  unset gnu_tool gnu_bin
+fi
+
 # fzf config
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_TMUX=1
