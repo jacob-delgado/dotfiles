@@ -159,6 +159,18 @@ export SSH_KEY_PATH="~/.ssh/id_rsa"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+# Modern CLI tools — initialize after oh-my-zsh so they can override keybindings.
+command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
+command -v atuin  >/dev/null && eval "$(atuin init zsh)"
+
+# eza (modern ls) aliases — only override if eza is installed.
+if command -v eza >/dev/null; then
+  alias ls='eza'
+  alias ll='eza -l --git --group-directories-first'
+  alias la='eza -la --git --group-directories-first'
+  alias lt='eza --tree --level=2 --git-ignore'
+fi
+
 for zsh_syntax_highlighting in \
   /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
   /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \

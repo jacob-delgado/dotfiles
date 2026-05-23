@@ -1,11 +1,15 @@
 tap "bufbuild/buf"
 tap "googlecontainertools/kpt", "https://github.com/GoogleContainerTools/kpt.git"
+# Improved shell history for zsh, bash, fish and nushell
+brew "atuin"
 # Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # GNU binary tools for native development
 brew "binutils"
+# Resource monitor. C++ version and continuation of bashtop and bpytop
+brew "btop"
 # CLI tool for analyzing Claude Code usage from local JSONL files
 brew "ccusage"
 # Statistics utility to count lines of code
@@ -16,6 +20,10 @@ brew "coreutils"
 brew "crane"
 # Load/unload environment variables based on $PWD
 brew "direnv"
+# More intuitive version of du in rust
+brew "dust"
+# Modern, maintained replacement for ls
+brew "eza"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
 # Collection of GNU find, xargs, and locate
@@ -28,6 +36,8 @@ brew "gawk"
 brew "gh"
 # Distributed revision control system
 brew "git"
+# Syntax-highlighting pager for git and diff output
+brew "git-delta"
 # Command-line option parsing utility
 brew "gnu-getopt"
 # C code prettifier
@@ -54,6 +64,8 @@ brew "grpcurl"
 brew "hadolint"
 # Open-source video transcoder available for Linux, Mac, and Windows
 brew "handbrake"
+# Command-line benchmarking tool
+brew "hyperfine"
 # C/C++ and Java libraries for Unicode and globalization
 brew "icu4c@76"
 # Generic library support script
@@ -70,6 +82,10 @@ brew "kind"
 brew "kubernetes-cli"
 # Kubernetes prompt info for bash and zsh
 brew "kube-ps1"
+# Tool that can switch between kubectl contexts easily and create aliases
+brew "kubectx"
+# Simple terminal UI for git commands
+brew "lazygit"
 # Fast and powerful Git hooks manager for any type of projects
 brew "lefthook"
 # Utility for directing compilation
@@ -112,8 +128,12 @@ brew "shellcheck"
 brew "shfmt"
 # Easy and Repeatable Kubernetes Development
 brew "skaffold"
+# Tail multiple Kubernetes pods & their containers
+brew "stern"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
+# Very fast implementation of tldr in Rust
+brew "tealdeer"
 # OCR (Optical Character Recognition) engine
 brew "tesseract"
 # Text interface for Git repositories
@@ -126,8 +146,14 @@ brew "trivy"
 brew "unar"
 # Vi 'workalike' with many additional features
 brew "vim"
+# Execute commands when watched files change
+brew "watchexec"
 # Linter for YAML files
 brew "yamllint"
+# Process YAML, JSON, XML, CSV and properties documents from the CLI
+brew "yq"
+# Shell extension to navigate your filesystem faster
+brew "zoxide"
 # The best way of working with Protocol Buffers.
 brew "bufbuild/buf/buf"
 # A toolchain for composing, customizing, and deploying Kubernetes packages at scale
