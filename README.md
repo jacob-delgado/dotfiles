@@ -208,6 +208,19 @@ tldr git rebase
 
 ## Installing on a new machine
 
+### Debian / Ubuntu
+
+```sh
+git clone <this-repo> ~/dotfiles
+cd ~/dotfiles
+./bootstrap-debian.sh          # apt + Linuxbrew + OMZ + plugins + stow
+```
+
+Idempotent — safe to re-run. Skips i3/Xresources by default; stow them
+manually if you want them.
+
+### macOS / manual
+
 ```sh
 git clone <this-repo> ~/dotfiles
 cd ~/dotfiles
