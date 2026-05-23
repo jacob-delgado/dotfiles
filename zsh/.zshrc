@@ -77,7 +77,8 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aliases archlinux colored-man-pages colorize cp docker direnv fzf git helm kubectl kind kube-ps1 pip python skaffold taskwarrior tig tmux tmuxinator vagrant zsh-autosuggestions)
+plugins=(aliases archlinux colored-man-pages colorize cp docker direnv fzf git helm kubectl kind kube-ps1 pip python skaffold taskwarrior tig tmux tmuxinator vagrant)
+[[ -d "${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-autosuggestions" ]] && plugins+=(zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -104,10 +105,6 @@ if [[ "$OSTYPE" == darwin* ]]; then
   done
   unset gnu_tool gnu_bin
 fi
-
-# fzf config
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-export FZF_TMUX=1
 
 # Strips duplicates from history
 export HISTFILE="$HOME/.zsh_history"
