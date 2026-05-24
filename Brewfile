@@ -36,6 +36,10 @@ brew "gawk"
 brew "gh"
 # Distributed revision control system
 brew "git"
+# Automatic git commit --fixup
+brew "git-absorb"
+# High-velocity, monorepo-scale workflow for Git
+brew "git-branchless"
 # Syntax-highlighting pager for git and diff output
 brew "git-delta"
 # Command-line option parsing utility

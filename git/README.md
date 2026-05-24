@@ -7,8 +7,11 @@ Stow package for `~/.gitconfig`.
 - [Layout](#layout)
 - [Local / private overrides](#local--private-overrides)
 - [Delta integration](#delta-integration)
+- [Behavior tuning](#behavior-tuning)
+- [Aliases](#aliases)
 - [Dracula color scheme](#dracula-color-scheme)
 - [URL aliases](#url-aliases)
+- [Companion tools](#companion-tools)
 - [Fresh-machine setup](#fresh-machine-setup)
 
 ## Layout
@@ -50,6 +53,40 @@ for `git diff`, `show`, `log`, `blame`:
 
 `brew install git-delta` provides the binary (already in the Brewfile).
 
+## Behavior tuning
+
+```ini
+[init]    defaultBranch = main
+[pull]    rebase = true; ff = only             # rebase on pull, error on divergence
+[push]    default = current; autoSetupRemote = true; followTags = true
+[fetch]   prune = true                          # drop refs to deleted remote branches
+[rebase]  autosquash = true; autoStash = true   # fixup! commits flow; uncommitted work stashes
+[diff]    algorithm = histogram; colorMoved = default; renames = copies
+[rerere]  enabled = true                        # remember conflict resolutions
+```
+
+These set sane defaults for git's nagging warnings (divergent branches,
+missing upstream) and unlock features that aren't on by default but
+should be (`rerere`, histogram diff, move-block detection).
+
+## Aliases
+
+| Alias | Expands to | Use |
+|---|---|---|
+| `git st` | `status -sb` | short status with branch line |
+| `git co` | `checkout` | |
+| `git br` | `branch` | |
+| `git cm` | `commit` | |
+| `git ca` | `commit --amend` | |
+| `git cane` | `commit --amend --no-edit` | amend without re-editing the message |
+| `git lg` | pretty-graph log | one-line graph with colors and `ago`-style dates |
+| `git last` | `log -1 HEAD --stat` | what did the last commit touch? |
+| `git staged` | `diff --cached` | review what's about to be committed |
+| `git unstage` | `reset HEAD --` | undo `git add` |
+| `git undo` | `reset --soft HEAD^` | un-commit (keeping changes) |
+| `git wip` | `add -A && commit -m 'WIP'` | snapshot to step away |
+| `git prune-branches` | delete every merged branch (except current / main / master) | safe local cleanup |
+
 ## Dracula color scheme
 
 The `[color "*"]` sections set a Dracula-inspired palette for branches,
@@ -65,6 +102,16 @@ empty values mean "use the default."
 
 Lets you `git clone dracula://vim` instead of typing the full URL.
 
+## Companion tools
+
+Installed via Brewfile, no extra config required:
+
+| Tool | Use |
+|---|---|
+| `git-delta` | pager (wired in above) |
+| `git-absorb` | `git absorb` — auto-creates `fixup!` commits targeting the right earlier commit based on what lines your unstaged changes touch. Pair with `git rebase -i --autosquash` (which `[rebase] autosquash = true` runs by default). |
+| `git-branchless` | adds porcelain inspired by Mercurial/Sapling: `git smartlog`, `git move`, `git restack`, `git undo` (cross-operation undo). Power-user; read `git help branchless` first. |
+
 ## Fresh-machine setup
 
 ```sh
@@ -72,4 +119,5 @@ stow git
 ```
 
 Create `~/.gitconfig.local` for any per-machine bits (work email, signing
-keys, etc.) that shouldn't live in the repo.
+keys, etc.) that shouldn't live in the repo. `git-delta`, `git-absorb`,
+and `git-branchless` come in via the Brewfile.

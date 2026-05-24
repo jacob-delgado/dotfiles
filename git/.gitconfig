@@ -64,3 +64,43 @@
   line-numbers = true
 [merge]
   conflictstyle = zdiff3 # better 3-way conflict markers; needs git ≥ 2.35
+
+# BEHAVIOR
+# --------
+[init]
+  defaultBranch = main
+[pull]
+  rebase = true        # rebase on pull rather than merge
+  ff = only            # error on diverged history; force explicit rebase/merge
+[push]
+  default = current
+  autoSetupRemote = true   # `git push` on a new branch sets upstream (git ≥ 2.37)
+  followTags = true
+[fetch]
+  prune = true         # remove local refs whose remote branch is gone
+[rebase]
+  autosquash = true    # auto-apply `fixup!` commits
+  autoStash = true     # stash uncommitted work during rebase, restore after
+[diff]
+  algorithm = histogram   # better refactor diffs
+  colorMoved = default    # highlight moved blocks
+  renames = copies        # detect copies too, not just renames
+[rerere]
+  enabled = true       # remember conflict resolutions, replay on re-rebase
+
+# ALIASES
+# -------
+[alias]
+  st = status -sb
+  co = checkout
+  br = branch
+  cm = commit
+  ca = commit --amend
+  cane = commit --amend --no-edit
+  lg = log --graph --pretty=format:'%C(yellow)%h%Creset %C(cyan)%an%Creset %s %C(green)(%ar)%Creset%C(red)%d%Creset' --abbrev-commit
+  last = log -1 HEAD --stat
+  staged = diff --cached
+  unstage = reset HEAD --
+  undo = reset --soft HEAD^
+  wip = !git add -A && git commit -m 'WIP'
+  prune-branches = !git branch --merged | grep -v '\\*\\|main\\|master' | xargs -n1 git branch -d
