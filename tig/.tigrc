@@ -1,18 +1,50 @@
+# Use named ANSI colors so the Dracula mapping in the terminal's palette
+# applies automatically (pink → magenta slot, comment-purple → blue, etc.)
+# instead of hardcoding hex that some terminals can't render.
+
 set git-colors = no
 
-# Override the default terminal colors to white on black.
-# color default         white   black
-color   cursor          black   green
-color   search-result   black   yellow
-# color author          green   black
-# color status          green   black
-color   line-number     red     black
-color   title-focus     black   yellow
-color   title-blur      black   magenta
-# Diff colors
-color diff-header       yellow  default
-color diff-index        blue    default
-color diff-chunk        magenta default
-color "Reported-by:"    green   default
-# View-specific color
-color tree.date         black   cyan    bold
+# --- Display / view options ------------------------------------------------
+set diff-options  = -m --first-parent  # render merges as patches; follow first parent
+set show-changes  = yes                # show staged/unstaged in main view as faux commits
+set blame-options = -C -C -C           # follow copies across files in `tig blame`
+set wrap-lines    = yes                # wrap long lines instead of clipping
+
+# --- Colors (Dracula-ish, using ANSI slots) --------------------------------
+# Selection / search
+color cursor              default magenta bold     # selected line: pink-ish highlight
+color search-result       black   yellow
+
+# Gutter / pane titles
+color line-number         blue    default          # comment-purple, subtle
+color title-focus         black   magenta bold     # active pane bar
+color title-blur          black   blue             # inactive pane bar
+
+# Diff view
+color diff-header         yellow  default bold
+color diff-index          cyan    default
+color diff-chunk          magenta default
+color diff-add            green   default
+color diff-del            red     default
+color diff-add-highlight  black   green
+color diff-del-highlight  black   red
+
+# Main (log) view
+color main-author         cyan    default
+color main-date           blue    default          # comment-purple
+color main-head           magenta default bold     # current HEAD marker
+color main-tag            yellow  default bold
+color main-local-tag      yellow  default
+color main-remote         green   default
+color main-tracked        cyan    default bold
+
+# Tree view
+color tree.date           blue    default
+
+# Trailer lines in commit messages
+color "Reported-by:"      green   default
+color "Signed-off-by:"    green   default
+
+# --- Bindings --------------------------------------------------------------
+# Y: copy the selected commit SHA to the system clipboard (mac/linux/wayland).
+bind generic Y @sh -c "echo -n %(commit) | pbcopy 2>/dev/null || echo -n %(commit) | xclip -sel clip 2>/dev/null || echo -n %(commit) | wl-copy"
