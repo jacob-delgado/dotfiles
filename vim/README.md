@@ -14,6 +14,7 @@ the plugin set.
   - [Languages](#languages)
   - [Colors](#colors)
 - [Leader-key cheat sheet](#leader-key-cheat-sheet)
+- [Other mappings](#other-mappings)
 - [Non-default settings](#non-default-settings)
 - [Window/pane navigation across vim and tmux](#windowpane-navigation-across-vim-and-tmux)
 - [Ripgrep integration](#ripgrep-integration)
@@ -113,7 +114,28 @@ with `:PlugInstall` / `:PlugUpdate`. Clean orphans with `:PlugClean!`.
 | `,q` | close quickfix |
 | `<C-n>` / `<C-m>` | `:cnext` / `:cprevious` |
 
-Insert-mode: `jj` → `<Esc>`.
+## Other mappings
+
+Non-leader bindings worth knowing:
+
+| Keys | Action |
+|---|---|
+| `jj` (insert) | `<Esc>` — escape without leaving home row |
+| `<Down>` / `<Up>` (insert) | move by visual line (`gj`/`gk`), so wrapped lines work intuitively |
+| `j` / `k` (normal) | move by visual line (`gj`/`gk`) |
+| `<M-j>` / `<M-k>` (normal + visual) | move the current line / selection down / up |
+| `<` / `>` (visual) | indent left / right and keep the selection (`gv` re-select) |
+| `<tab>` (normal + visual) | jump to matching bracket (rebinds `%`) |
+| `n` / `N` / `*` / `#` | re-center the screen on the match (`Nzz`) |
+| `/` | starts a "very magic" search (`/\v` — most punctuation is regex metachar) |
+| `Q` | `gq` — reformat with motion (the default `Q` ex mode is rarely useful) |
+
+Custom Ex commands:
+
+| Command | Action |
+|---|---|
+| `:W` | sudo-save the current buffer (`w !sudo tee % > /dev/null`) |
+| `:DiffOrig` | vertical diff between the buffer and the on-disk file (`,do` triggers it) |
 
 ## Non-default settings
 
@@ -133,14 +155,10 @@ Insert-mode: `jj` → `<Esc>`.
 | `ignorecase` + `smartcase` | case-insensitive unless query has uppercase |
 | `tags=tags;/` | walk up looking for ctags `tags` file |
 
-Visual ergonomics:
-
-- `j`/`k` move by visual line (`gj`/`gk`) — handles wrapped lines naturally.
-- `n`/`N`/`*`/`#` re-center the screen on the match (`Nzz`).
-- `<tab>` is bound to `%` for bracket matching (normal + visual).
-
 Trailing whitespace is highlighted in red and stripped on save for
-`*.go`/`*.py`/`*.sh`.
+`*.go`/`*.py`/`*.sh`. The motion/search rebindings that pair with
+these settings (visual-line `j`/`k`, recentering `n`/`*`, `<tab>` for
+bracket matching) are listed under [Other mappings](#other-mappings).
 
 ## Window/pane navigation across vim and tmux
 
