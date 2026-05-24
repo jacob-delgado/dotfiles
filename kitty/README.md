@@ -47,7 +47,6 @@ grab from nerdfonts.com).
 | Setting | Why |
 |---|---|
 | `macos_option_as_alt left` | Left-Option behaves as Alt so ⌥←/⌥→ word-jump works in shells |
-| `hide_window_decorations titlebar-only` | Tighter chrome — no traffic lights, keep the drag region |
 | `macos_titlebar_color background` | Title bar adopts the bg color (no white strip) |
 | `macos_quit_when_last_window_closed yes` | Quitting the last window quits the app |
 
