@@ -15,3 +15,15 @@ export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-ran
 
 # CTRL+R: wrap long commands in a wider preview pane.
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:wrap"
+
+# Live ripgrep through fzf — type to refine, enter to open at line in $EDITOR.
+frg() {
+  local rg_prefix='rg --column --line-number --no-heading --color=always --smart-case'
+  fzf --ansi --disabled --query "${*:-}" \
+      --bind "start:reload:$rg_prefix {q} || true" \
+      --bind "change:reload:sleep 0.1; $rg_prefix {q} || true" \
+      --delimiter : \
+      --preview 'bat --color=always --style=numbers --highlight-line {2} -- {1}' \
+      --preview-window 'right,60%,border-left,+{2}+3/3,~3' \
+      --bind "enter:become(${EDITOR:-vim} +{2} {1})"
+}

@@ -249,6 +249,15 @@ nnoremap <leader>f :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>a :Rg<space>
 nnoremap <leader>h :History<CR>
+" Search the word under the cursor with fzf+rg
+nnoremap <leader>* :Rg <C-r><C-w><CR>
+
+" --- Ripgrep as :grep backend -------------------------------------------
+" :Rg is interactive (fzf picker). :grep is batch (populates quickfix).
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
+  set grepformat=%f:%l:%c:%m
+endif
 
 " --- Plugin: ALE (replaces syntastic) -----------------------------------
 " Vim-go owns Go diagnostics, so disable ALE there.
