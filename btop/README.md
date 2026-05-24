@@ -19,15 +19,17 @@ memory / network monitor.
 ## Settings
 
 ```
-color_theme = "TTY"     # low-contrast, terminal-palette-friendly
-vim_keys = True         # hjkl navigation
-truecolor = True        # use 24-bit color when the terminal supports it
-update_ms = 2000        # refresh every 2 seconds
-proc_tree = False       # flat process list by default
+color_theme      = "dracula"   # matches git/, lazygit/, overall palette
+theme_background = False        # transparent — inherit terminal bg
+truecolor        = True         # 24-bit color (enabled by tmux too)
+graph_symbol     = "braille"    # denser/prettier than block glyphs
+vim_keys         = True         # hjkl navigation
 ```
 
 Cycle themes inside btop with `p` (uppercase `P` reverses). Press `?`
-for full keybindings.
+for full keybindings. Other built-in themes worth trying:
+`gruvbox_dark`, `gruvbox_dark_v2`, `gruvbox_material_dark`, `nord`,
+`tokyo-night`, `tokyo-storm`.
 
 ## Churn warning
 
