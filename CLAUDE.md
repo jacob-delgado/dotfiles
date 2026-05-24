@@ -26,13 +26,21 @@ Current packages:
 
 | Subdir | Symlinks |
 |---|---|
-| `zsh/` | `~/.zshrc` |
+| `atuin/` | `~/.config/atuin/config.toml` |
+| `bat/` | `~/.config/bat/` |
+| `btop/` | `~/.config/btop/` |
 | `fzf/` | `~/.fzf.zsh` |
+| `gh/` | `~/.config/gh/config.yml` (hosts.yml stays untracked) |
+| `git/` | `~/.gitconfig` |
+| `i3/` | `~/.config/i3/`, `~/.config/i3status/` |
+| `lazygit/` | `~/.config/lazygit/` |
 | `p10k/` | `~/.p10k.zsh` |
+| `ripgrep/` | `~/.config/ripgrep/` |
+| `tig/` | `~/.tigrc` |
 | `tmux/` | `~/.tmux.conf` |
 | `vim/` | `~/.vimrc`, `~/.vim/` |
-| `i3/` | `~/.config/i3/`, `~/.config/i3status/` |
 | `Xresources/` | `~/.Xresources` |
+| `zsh/` | `~/.zshrc` |
 
 Non-stow files at the root:
 

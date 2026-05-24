@@ -22,13 +22,21 @@ Each is a stow package; see its README for what's non-default.
 
 | Package | Stows to | README |
 |---|---|---|
-| `zsh/` | `~/.zshrc` | [zsh/README.md](zsh/README.md) |
+| `atuin/` | `~/.config/atuin/config.toml` | [atuin/README.md](atuin/README.md) |
+| `bat/` | `~/.config/bat/` | [bat/README.md](bat/README.md) |
+| `btop/` | `~/.config/btop/` | [btop/README.md](btop/README.md) |
 | `fzf/` | `~/.fzf.zsh` | [fzf/README.md](fzf/README.md) |
+| `gh/` | `~/.config/gh/config.yml` | [gh/README.md](gh/README.md) |
+| `git/` | `~/.gitconfig` | [git/README.md](git/README.md) |
+| `i3/` | `~/.config/i3/`, `~/.config/i3status/` | [i3/README.md](i3/README.md) |
+| `lazygit/` | `~/.config/lazygit/` | [lazygit/README.md](lazygit/README.md) |
 | `p10k/` | `~/.p10k.zsh` | [p10k/README.md](p10k/README.md) |
+| `ripgrep/` | `~/.config/ripgrep/` | [ripgrep/README.md](ripgrep/README.md) |
+| `tig/` | `~/.tigrc` | [tig/README.md](tig/README.md) |
 | `tmux/` | `~/.tmux.conf` | [tmux/README.md](tmux/README.md) |
 | `vim/` | `~/.vimrc`, `~/.vim/` | [vim/README.md](vim/README.md) |
-| `i3/` | `~/.config/i3/`, `~/.config/i3status/` | [i3/README.md](i3/README.md) |
 | `Xresources/` | `~/.Xresources` | [Xresources/README.md](Xresources/README.md) |
+| `zsh/` | `~/.zshrc` | [zsh/README.md](zsh/README.md) |
 
 Conventions for the whole repo: [CLAUDE.md](CLAUDE.md).
 

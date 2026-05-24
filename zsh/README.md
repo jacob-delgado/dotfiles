@@ -154,12 +154,13 @@ ALWAYS_TO_END        # cursor goes to end after completion
 ## Environment
 
 ```
-EDITOR    = vim
-LANG      = en_US.UTF-8
-LESS      = -RFX                                  # raw colors, quit-if-one-screen, no alt-screen
-LESSHISTFILE = -                                  # don't write ~/.lesshst
-MANPAGER  = sh -c 'col -bx | bat -l man -p'       # syntax-highlighted man pages
-BAT_THEME = ansi                                  # bat respects terminal palette
+EDITOR              = vim
+LANG                = en_US.UTF-8
+LESS                = -RFX                                  # raw colors, quit-if-one-screen, no alt-screen
+LESSHISTFILE        = -                                     # don't write ~/.lesshst
+MANPAGER            = sh -c 'col -bx | bat -l man -p'       # syntax-highlighted man pages
+BAT_THEME           = ansi                                  # bat respects terminal palette
+RIPGREP_CONFIG_PATH = $HOME/.config/ripgrep/config          # rg won't read its config without this
 ```
 
 Try `man ssh` after a fresh shell — colorized.
