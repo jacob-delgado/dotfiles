@@ -5,8 +5,17 @@
 # Dracula). Run `bat --list-themes` for alternatives.
 --theme="ansi"
 
-# Show line numbers, git change markers, and the file header.
---style="numbers,changes,header"
+# Denser info: line numbers, git change markers, file header (name + size),
+# grid separator between gutter and content.
+--style="numbers,changes,header,grid,header-filesize"
 
-# Pager: less with raw colors and quit-if-one-screen.
---pager="less -RF"
+# Pager: less with raw colors, quit-if-one-screen, no alt-screen.
+# Matches the LESS env in zsh/.zshrc.
+--pager="less -RFX"
+
+# Teach bat about filenames it doesn't recognize by default.
+--map-syntax="Dockerfile.*:Dockerfile"
+--map-syntax="*.jenkinsfile:Groovy"
+--map-syntax="*.tfvars:HCL"
+--map-syntax=".envrc:Bash"
+--map-syntax=".ignore:Git Ignore"

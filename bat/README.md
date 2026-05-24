@@ -20,9 +20,9 @@ markers.
 ## Settings
 
 ```
---theme="ansi"                              # use the terminal palette (themed by p10k)
---style="numbers,changes,header"            # line numbers, git markers, file header
---pager="less -RF"                          # raw colors, quit-if-one-screen
+--theme="ansi"                                          # terminal palette (themed by p10k)
+--style="numbers,changes,header,grid,header-filesize"   # line nums, git markers, file header + size, gutter grid
+--pager="less -RFX"                                     # raw colors, quit-if-one-screen, no alt-screen
 ```
 
 `--theme="ansi"` is intentional — it picks up whatever color scheme the
@@ -31,6 +31,24 @@ terminal/Dracula gives us instead of locking to a fixed bat theme. Run
 
 `BAT_THEME=ansi` is also set in `zsh/.zshrc` as a belt-and-suspenders
 default for tools that invoke bat via env (e.g., `MANPAGER`).
+
+`--pager="less -RFX"` matches `LESS='-RFX'` in `zsh/.zshrc` so the pager
+behaves identically whether bat invokes it or `LESS` is exported.
+
+## Syntax mappings
+
+`bat` recognizes most filenames by extension/shebang, but a few common
+files need help:
+
+```
+--map-syntax="Dockerfile.*:Dockerfile"   # e.g. Dockerfile.dev
+--map-syntax="*.jenkinsfile:Groovy"
+--map-syntax="*.tfvars:HCL"              # Terraform variable files
+--map-syntax=".envrc:Bash"               # direnv files
+--map-syntax=".ignore:Git Ignore"        # ripgrep / fd ignore files
+```
+
+Add more as new conventions show up.
 
 ## Regenerating the default template
 
