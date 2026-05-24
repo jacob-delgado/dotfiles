@@ -1,0 +1,66 @@
+[user]
+	name = Jacob Delgado
+	email = jacob.delgado@gmail.com
+
+# INCLUDES
+# --------
+# Local/Private config goes in the include
+[include]
+  path = ~/.gitconfig.local
+# URL ALIASES
+# -----------
+# Alias for Dracula Org repositories
+[url "https://github.com/dracula/"]
+  insteadOf = dracula://
+# COLORS
+# ------
+# Dracula Dark Theme
+[color]
+  ui = auto
+[color "branch"]
+  current = cyan bold reverse
+  local = white
+  plain =
+  remote = cyan
+[color "diff"]
+  commit =
+  func = cyan
+  plain =
+  whitespace = magenta reverse
+  meta = white
+  frag = cyan bold reverse
+  old = red
+  new = green
+[color "grep"]
+  context =
+  filename =
+  function =
+  linenumber = white
+  match =
+  selected =
+  separator =
+[color "interactive"]
+  error =
+  header =
+  help =
+  prompt =
+[color "status"]
+  added = green
+  changed = yellow
+  header =
+  localBranch =
+  nobranch =
+  remoteBranch = cyan bold
+  unmerged = magenta bold reverse
+  untracked = red
+  updated = green bold
+[core]
+  pager = delta
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = true        # use n / N to jump between hunks
+  side-by-side = true    # split view; drop this for a single-column unified diff
+  line-numbers = true
+[merge]
+  conflictstyle = zdiff3 # better 3-way conflict markers; needs git ≥ 2.35
