@@ -2,3 +2,5 @@
 vim/.vim/.netrwhist
 # Never commit gh's hosts file — it carries OAuth tokens.
 gh/.config/gh/hosts.yml
+# Per-machine Claude Code permission state — not config.
+.claude/
