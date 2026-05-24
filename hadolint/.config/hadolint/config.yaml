@@ -1,0 +1,18 @@
+# hadolint global config — Dockerfile linter.
+# Reference: https://github.com/hadolint/hadolint#configure
+
+ignored:
+  - DL3008   # apt-get without version pin — sometimes intentional in dev images
+  - DL3018   # apk add --no-cache without version pin
+  - DL3015   # apt-get install without --no-install-recommends (style preference)
+
+trustedRegistries:
+  - docker.io
+  - gcr.io
+  - quay.io
+  - ghcr.io
+  - registry.k8s.io
+  - public.ecr.aws
+
+# Treat warnings as warnings (default is error → useful for CI strictness).
+failure-threshold: warning

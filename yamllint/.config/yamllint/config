@@ -1,0 +1,30 @@
+# yamllint global config — per-repo .yamllint wins when present.
+# Schema: https://yamllint.readthedocs.io/en/stable/configuration.html
+
+extends: default
+
+rules:
+  line-length:
+    max: 120
+    level: warning           # warn, don't fail, on long lines
+
+  document-start: disable    # don't require leading `---`
+
+  truthy:
+    check-keys: false        # allow `on:` in GitHub Actions workflows
+    allowed-values: ["true", "false"]
+
+  comments:
+    min-spaces-from-content: 1   # default is 2; one space is plenty
+
+  comments-indentation: disable  # too noisy in real-world YAML
+
+  indentation:
+    spaces: 2
+    indent-sequences: consistent  # don't require sequences indented under their key
+
+  braces:
+    max-spaces-inside: 1     # allow `{ key: value }` style
+
+  brackets:
+    max-spaces-inside: 1

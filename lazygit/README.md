@@ -52,6 +52,19 @@ The `delta` pager means lazygit's diff pane renders with the same
 side-by-side, syntax-highlighted view you see from `git diff`. Both
 read settings from `git/.gitconfig`'s `[delta]` block.
 
+## gh integration (custom commands)
+
+| Key | Context | Action |
+|---|---|---|
+| `O` | global | `gh pr view --web` — open this branch's PR in browser |
+| `C` | global | `gh pr create --fill --web` — create PR for current branch |
+| `V` | commits | `gh pr view --web {SHA}` — open PR for selected commit |
+| `L` | global | `gh pr list --author "@me"` — list my PRs (terminal output) |
+| `X` | global | `gh poi` — prune branches whose PRs are merged (terminal output) |
+
+`{{.SelectedLocalCommit.Sha}}` is lazygit's template syntax for the
+selected entry in the commits panel.
+
 ## Schema reference
 
 Full options: <https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md>

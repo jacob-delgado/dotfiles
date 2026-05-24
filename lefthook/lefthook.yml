@@ -1,0 +1,60 @@
+# Go-developer baseline for lefthook.
+#
+# Lefthook is per-project — there is no global config. Use this file
+# one of two ways:
+#
+#   1. Copy it into a new repo's root and `lefthook install` to wire up
+#      the .git/hooks symlinks.
+#   2. Extend it from the repo's lefthook.yml:
+#        extends: ~/dotfiles/lefthook/lefthook.yml
+#      then add project-specific hooks below.
+#
+# Skip individual hooks per-commit with LEFTHOOK_EXCLUDE=hookname.
+
+pre-commit:
+  parallel: true
+  commands:
+    gofmt:
+      glob: "*.go"
+      run: gofmt -l -e {staged_files} | (! grep .)
+    goimports:
+      glob: "*.go"
+      run: goimports -l -e {staged_files} | (! grep .)
+    golangci-lint:
+      glob: "*.go"
+      # Run on the whole module rather than per-file so it can see imports.
+      run: golangci-lint run --new-from-rev=HEAD
+    govet:
+      glob: "*.go"
+      run: go vet ./...
+    shellcheck:
+      glob: "*.{sh,bash}"
+      run: shellcheck {staged_files}
+    shfmt:
+      glob: "*.{sh,bash}"
+      run: shfmt -d -i 2 -ci {staged_files}
+    yamllint:
+      glob: "*.{yml,yaml}"
+      run: yamllint {staged_files}
+    hadolint:
+      glob: "Dockerfile*"
+      run: hadolint {staged_files}
+
+commit-msg:
+  commands:
+    # Reject empty / placeholder messages. Customize per repo for stricter
+    # conventional-commits enforcement.
+    not-empty:
+      run: |
+        line=$(head -1 "$1" | tr -d '[:space:]')
+        if [ -z "$line" ]; then echo "Empty commit subject"; exit 1; fi
+
+pre-push:
+  parallel: true
+  commands:
+    go-test:
+      glob: "*.go"
+      run: go test ./...
+    go-build:
+      glob: "*.go"
+      run: go build ./...

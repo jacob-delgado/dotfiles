@@ -29,17 +29,24 @@ Current packages:
 | `atuin/` | `~/.config/atuin/config.toml` |
 | `bat/` | `~/.config/bat/` |
 | `btop/` | `~/.config/btop/` |
+| `direnv/` | `~/.config/direnv/` |
+| `editorconfig/` | `~/.editorconfig` |
 | `fzf/` | `~/.fzf.zsh` |
 | `gh/` | `~/.config/gh/config.yml` (hosts.yml stays untracked) |
 | `git/` | `~/.gitconfig` |
+| `gitignore_global/` | `~/.gitignore_global` |
+| `hadolint/` | `~/.config/hadolint/` |
 | `i3/` | `~/.config/i3/`, `~/.config/i3status/` |
 | `lazygit/` | `~/.config/lazygit/` |
+| `lefthook/` | (not stowed; template only) |
 | `p10k/` | `~/.p10k.zsh` |
 | `ripgrep/` | `~/.config/ripgrep/` |
+| `shellcheck/` | `~/.shellcheckrc` |
 | `tig/` | `~/.tigrc` |
 | `tmux/` | `~/.tmux.conf` |
 | `vim/` | `~/.vimrc`, `~/.vim/` |
 | `Xresources/` | `~/.Xresources` |
+| `yamllint/` | `~/.config/yamllint/` |
 | `zsh/` | `~/.zshrc` |
 
 Non-stow files at the root:

@@ -1,0 +1,98 @@
+# Global direnv helpers — loaded once per direnv invocation.
+# Define new `layout_*` and `use_*` functions here; .envrc files in
+# projects call them.
+
+# --- layout_python_venv ---------------------------------------------------
+# Create / activate a .venv next to the .envrc. More predictable than
+# direnv's stdlib `layout python` which puts the env in ~/.direnv.
+#
+# Usage in .envrc:    layout python_venv [python3.12]
+layout_python_venv() {
+  local python=${1:-python3}
+  local venv="${PWD}/.venv"
+  if [[ ! -d "$venv" ]]; then
+    "$python" -m venv "$venv"
+  fi
+  PATH_add "$venv/bin"
+  export VIRTUAL_ENV="$venv"
+}
+
+# --- layout_uv ------------------------------------------------------------
+# For projects using uv: trust `uv venv` to create .venv, then activate.
+#
+# Usage in .envrc:    layout uv
+layout_uv() {
+  if ! command -v uv >/dev/null; then
+    log_status "uv is not installed; skipping layout_uv"
+    return 1
+  fi
+  if [[ ! -d .venv ]]; then
+    uv venv
+  fi
+  PATH_add .venv/bin
+  export VIRTUAL_ENV="$PWD/.venv"
+}
+
+# --- use_go ---------------------------------------------------------------
+# Pin a Go version installed via Homebrew (`brew install go@1.21`).
+#
+# Usage in .envrc:    use go 1.21
+use_go() {
+  local version=$1
+  local goroot
+  if command -v brew >/dev/null; then
+    goroot=$(brew --prefix "go@${version}" 2>/dev/null)
+  fi
+  if [[ -n "$goroot" && -d "$goroot" ]]; then
+    export GOROOT="$goroot/libexec"
+    PATH_add "$goroot/bin"
+  else
+    log_error "go@${version} not installed (try: brew install go@${version})"
+    return 1
+  fi
+}
+
+# --- use_node -------------------------------------------------------------
+# Pin a Node version (works with Homebrew node@<version> or nvm).
+#
+# Usage in .envrc:    use node 20
+use_node() {
+  local version=$1
+  if command -v brew >/dev/null; then
+    local prefix
+    prefix=$(brew --prefix "node@${version}" 2>/dev/null)
+    if [[ -n "$prefix" && -d "$prefix" ]]; then
+      PATH_add "$prefix/bin"
+      return 0
+    fi
+  fi
+  log_error "node@${version} not installed (brew install node@${version})"
+  return 1
+}
+
+# --- nix-direnv -----------------------------------------------------------
+# If nix-direnv is installed via brew (Mac) or apt/nix (Linux), source it
+# so .envrc files can call `use_flake` / `use_nix`.
+for candidate in \
+    /opt/homebrew/share/nix-direnv/direnvrc \
+    /usr/share/nix-direnv/direnvrc \
+    "$HOME/.nix-profile/share/nix-direnv/direnvrc"; do
+  if [[ -f "$candidate" ]]; then
+    source "$candidate"
+    break
+  fi
+done
+
+# --- op_env ---------------------------------------------------------------
+# Pull env vars from a 1Password item into the environment. Requires the
+# 1Password CLI (op) signed in.
+#
+# Usage in .envrc:    op_env "my secrets item"
+op_env() {
+  local item=$1
+  if ! command -v op >/dev/null; then
+    log_error "op (1Password CLI) not installed"
+    return 1
+  fi
+  eval "$(op item get "$item" --format env 2>/dev/null)"
+}

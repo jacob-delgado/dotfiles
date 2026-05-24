@@ -1,0 +1,62 @@
+# Global gitignore — wired in by [core] excludesfile in git/.gitconfig.
+# Keep this file scoped to OS / editor / tool noise that doesn't belong in
+# any project's local .gitignore. Project-specific patterns (node_modules,
+# __pycache__, build dirs) live in the project's own .gitignore.
+
+# --- macOS ---
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+.DocumentRevisions-V100
+.TemporaryItems
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# --- Linux ---
+.directory
+.Trash-*
+.nfs*
+
+# --- Windows (rare, but cheap to cover) ---
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# --- Vim ---
+*.swp
+*.swo
+*.swn
+*~
+.netrwhist
+
+# --- Other editors / IDEs ---
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+.history/
+.ionide/
+
+# --- ctags / language servers ---
+tags
+.tags
+TAGS
+.cache/
+.ccls-cache/
+
+# --- direnv ---
+.direnv/
+
+# --- pre-commit / lefthook caches ---
+.pre-commit/
+.lefthook-local.yml
+
+# --- Generic patterns ---
+*.bak
+*.orig
+*.rej

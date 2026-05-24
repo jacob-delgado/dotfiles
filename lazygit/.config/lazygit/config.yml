@@ -27,3 +27,33 @@ git:
 
 os:
   editPreset: "vim"                   # `e` opens files in vim
+
+# Custom commands — invoke gh from inside lazygit.
+# Contexts: 'global', 'commits', 'files', 'branches', 'remoteBranches', etc.
+customCommands:
+  - key: 'O'
+    context: 'global'
+    description: 'Open this branch''s PR in the browser'
+    command: 'gh pr view --web'
+
+  - key: 'C'
+    context: 'global'
+    description: 'Create a PR for the current branch (browser)'
+    command: 'gh pr create --fill --web'
+
+  - key: 'V'
+    context: 'commits'
+    description: 'Open the PR containing the selected commit in the browser'
+    command: 'gh pr view --web {{.SelectedLocalCommit.Sha}}'
+
+  - key: 'L'
+    context: 'global'
+    description: 'List my open PRs in this repo'
+    command: 'gh pr list --author "@me"'
+    output: terminal
+
+  - key: 'X'
+    context: 'global'
+    description: 'Prune local branches whose PRs are merged (gh-poi)'
+    command: 'gh poi'
+    output: terminal

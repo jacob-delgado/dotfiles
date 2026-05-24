@@ -1,0 +1,16 @@
+# Global shellcheck config — per-project .shellcheckrc wins.
+# Reference: https://github.com/koalaman/shellcheck/wiki
+
+# Enable optional checks not on by default (literal numeric comparison, etc.).
+enable=all
+
+# Disable a few overly-noisy checks.
+disable=SC2034   # variable appears unused (common false positive in sourced files)
+disable=SC1090   # can't follow non-constant source (dynamic paths are intentional)
+disable=SC1091   # can't find source file (shellcheck often lacks sibling-file access)
+
+# Treat unknown shebangs as bash — better signal than warnings for missing shebang.
+shell=bash
+
+# Allow `[ "$x" = "$y" ]` (POSIX) and `[[ ... ]]` (bash) without bickering.
+external-sources=true
