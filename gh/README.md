@@ -21,16 +21,53 @@ OAuth tokens.
 
 ## Active customization
 
-One alias on top of the default config:
-
 ```yaml
+prefer_editor_prompt: enabled   # drop into $EDITOR for long fields (PR body, etc.)
+pager: delta                    # syntax-highlight `gh pr diff` and similar
 aliases:
     co: pr checkout
+    prs: pr list --author "@me"
+    prv: pr view --web
+    prc: pr create --fill --web
+    issues: issue list --assignee "@me"
+    watch: run watch
+    compare: '!gh repo view --web --branch "$(git branch --show-current)"'
 ```
 
-`gh co <pr-number>` → `gh pr checkout <pr-number>`.
+Alias quick-ref:
 
-Everything else is `gh`'s default with explanatory comments preserved.
+| Alias | Expands to | Use |
+|---|---|---|
+| `gh co <#>` | `gh pr checkout <#>` | check out a PR locally |
+| `gh prs` | `gh pr list --author "@me"` | list my open PRs in this repo |
+| `gh prv` | `gh pr view --web` | open this branch's PR in browser |
+| `gh prc` | `gh pr create --fill --web` | new PR from commits, open in browser |
+| `gh issues` | `gh issue list --assignee "@me"` | issues assigned to me |
+| `gh watch <run-id>` | `gh run watch <run-id>` | tail a GH Action run |
+| `gh compare` | shells out — opens the GH compare view for the current branch | |
+
+The leading `!` on `compare` is a shell-out alias; everything after runs
+in a subshell.
+
+## Extensions
+
+Installed via `gh extension install`; they live in
+`~/.local/share/gh/extensions/` (not in this repo). List with
+`gh extension list`, update with `gh extension upgrade --all`.
+
+| Extension | Command | Use |
+|---|---|---|
+| `dlvhdr/gh-dash` | `gh dash` | TUI dashboard of PRs/issues across repos with filters |
+| `seachicken/gh-poi` | `gh poi` | prune local branches whose PRs have been merged |
+| `kyanny/gh-pr-draft` | `gh pr-draft` | toggle the draft state of a PR |
+
+Reinstall on a fresh machine:
+
+```sh
+gh extension install dlvhdr/gh-dash
+gh extension install seachicken/gh-poi
+gh extension install kyanny/gh-pr-draft
+```
 
 ## Why hosts.yml stays out
 
