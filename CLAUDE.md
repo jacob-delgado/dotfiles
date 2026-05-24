@@ -37,6 +37,7 @@ Current packages:
 | `gitignore_global/` | `~/.gitignore_global` |
 | `hadolint/` | `~/.config/hadolint/` |
 | `i3/` | `~/.config/i3/`, `~/.config/i3status/` |
+| `kitty/` | `~/.config/kitty/` |
 | `lazygit/` | `~/.config/lazygit/` |
 | `lefthook/` | (not stowed; template only) |
 | `p10k/` | `~/.p10k.zsh` |
