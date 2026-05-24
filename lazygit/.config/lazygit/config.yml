@@ -1,8 +1,8 @@
 # lazygit config — see https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
-# Minimal Dracula-ish theme to match the git/.gitconfig palette. Keep this
-# file small; lazygit may rewrite parts when you change settings via the UI.
+# Keep this file lean; lazygit may rewrite parts when you change settings via the UI.
 
 gui:
+  # Dracula-ish theme to match git/ and btop/.
   theme:
     activeBorderColor:
       - "#bd93f9"
@@ -15,3 +15,15 @@ gui:
       - "#8be9fd"
   nerdFontsVersion: "3"
   showRandomTip: false
+  showCommandLog: false               # hide the bottom command-log panel
+  showFileTree: true                  # tree view in the files panel (default true; explicit)
+  experimentalShowBranchHeads: true   # show branch heads in the commit log
+
+git:
+  # Render diffs through delta so the diff pane matches `git diff` in the terminal.
+  paging:
+    colorArg: always
+    pager: delta --paging=never
+
+os:
+  editPreset: "vim"                   # `e` opens files in vim

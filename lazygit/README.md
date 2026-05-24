@@ -33,9 +33,24 @@ Dracula-ish palette matching `git/.gitconfig`:
 
 ```yaml
 gui:
-  nerdFontsVersion: "3"   # use NF v3 glyphs (you have font-hack-nerd-font installed)
-  showRandomTip: false    # silence the splash tips
+  nerdFontsVersion: "3"             # use NF v3 glyphs (font-hack-nerd-font in Brewfile)
+  showRandomTip: false              # silence the splash tips
+  showCommandLog: false             # hide the bottom command-log panel
+  showFileTree: true                # tree view in the files panel
+  experimentalShowBranchHeads: true # show branch heads in the commit log
+
+git:
+  paging:
+    colorArg: always
+    pager: delta --paging=never     # diff pane uses delta, matching `git diff` in the terminal
+
+os:
+  editPreset: "vim"                 # `e` opens files in vim
 ```
+
+The `delta` pager means lazygit's diff pane renders with the same
+side-by-side, syntax-highlighted view you see from `git diff`. Both
+read settings from `git/.gitconfig`'s `[delta]` block.
 
 ## Schema reference
 
