@@ -20,18 +20,24 @@ context, and optional E2E-encrypted sync.
 
 ## Active settings
 
-Out of 371 lines, only two are uncommented (the rest is the commented
-default template):
-
 ```toml
-enter_accept = true     # Enter accepts the selected history line and runs it
+enter_accept = true       # Enter runs the selected line immediately
+search_mode  = "fuzzy"    # fuzzy match (explicit; matches modern default)
+filter_mode  = "global"   # Ctrl+R searches across all sessions/hosts
+workspaces   = true       # treat git repos as a scope for filter_mode = "workspace"
+style        = "compact"  # denser TUI layout
 
 [sync]
-records = true          # use the new record-based sync protocol
+records = true            # newer record-based sync protocol
 ```
 
-Everything else (themes, keymaps, filters, search behavior) is whatever
-atuin defaults to.
+The rest of the file is atuin's commented default template, kept around
+as a cheat-sheet of tunable options.
+
+**`enter_accept = true` gotcha:** the default behavior is Enter inserts
+the line for editing, Tab runs it. This config flips them so Enter runs
+the selection immediately — faster but easier to misfire on a dangerous
+command. Flip back if that bites you.
 
 ## Why the file is so long
 
