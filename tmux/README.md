@@ -4,6 +4,17 @@ Stow package for `~/.tmux.conf`. Installs via `stow tmux` from the dotfiles
 root. TPM auto-bootstraps on first run, so a fresh machine just needs tmux
 itself.
 
+## Table of contents
+
+- [Quick reference](#quick-reference)
+  - [Sessions, windows, panes](#sessions-windows-panes)
+  - [Splits and navigation (tmux-pain-control)](#splits-and-navigation-tmux-pain-control)
+  - [Copy / paste (vi mode + tmux-yank)](#copy--paste-vi-mode--tmux-yank)
+  - [Session persistence (tmux-resurrect + tmux-continuum)](#session-persistence-tmux-resurrect--tmux-continuum)
+  - [Misc](#misc)
+- [Plugins](#plugins)
+- [Fresh-machine setup](#fresh-machine-setup)
+
 ## Quick reference
 
 Prefix is **`Ctrl+A`** (not the tmux default `Ctrl+B`). Everything below
@@ -18,6 +29,7 @@ assumes you press the prefix first.
 | `prefix + ,` | Rename window |
 | `prefix + s` | Session picker (built-in) |
 | `prefix + F` | fzf picker for sessions / windows / panes (tmux-fzf) |
+| `prefix + g` | Ripgrep+fzf popup over the current pane's directory (runs `frg`; opens result in `$EDITOR`) |
 | `prefix + d` | Detach session |
 | `prefix + r` | Reload `~/.tmux.conf` |
 

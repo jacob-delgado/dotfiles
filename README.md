@@ -7,6 +7,31 @@ under `$HOME` (e.g. `stow zsh` symlinks `zsh/.zshrc` to `~/.zshrc`).
 A `Brewfile` at the repo root pins the Homebrew packages I rely on; run
 `brew bundle` from this directory to install everything.
 
+## Table of contents
+
+- [Subdirectories](#subdirectories)
+- [Modern CLI tools](#modern-cli-tools) — zoxide, atuin, eza, git-delta, yq, kubectx, stern, lazygit, dust, btop, watchexec, hyperfine, tldr
+- [Installing on a new machine](#installing-on-a-new-machine)
+  - [Debian / Ubuntu](#debian--ubuntu)
+  - [macOS / manual](#macos--manual)
+  - [Oh My Zsh custom plugins](#oh-my-zsh-custom-plugins)
+
+## Subdirectories
+
+Each is a stow package; see its README for what's non-default.
+
+| Package | Stows to | README |
+|---|---|---|
+| `zsh/` | `~/.zshrc` | [zsh/README.md](zsh/README.md) |
+| `fzf/` | `~/.fzf.zsh` | [fzf/README.md](fzf/README.md) |
+| `p10k/` | `~/.p10k.zsh` | [p10k/README.md](p10k/README.md) |
+| `tmux/` | `~/.tmux.conf` | [tmux/README.md](tmux/README.md) |
+| `vim/` | `~/.vimrc`, `~/.vim/` | [vim/README.md](vim/README.md) |
+| `i3/` | `~/.config/i3/`, `~/.config/i3status/` | [i3/README.md](i3/README.md) |
+| `Xresources/` | `~/.Xresources` | [Xresources/README.md](Xresources/README.md) |
+
+Conventions for the whole repo: [CLAUDE.md](CLAUDE.md).
+
 ---
 
 ## Modern CLI tools
