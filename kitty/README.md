@@ -64,7 +64,6 @@ grab from nerdfonts.com).
 | Setting | Why |
 |---|---|
 | `window_padding_width 6` | Subtle gutter between text and window edge |
-| `cursor_trail 3` | Brief comet animation when the cursor jumps — helps the eye track motion across panes/scroll (kitty 0.42+) |
 | `tab_bar_edge top` | Tabs on top, away from prompt output |
 | `tab_bar_style powerline` + `tab_powerline_style slanted` | Curved powerline separators (uses JetBrainsMono Nerd Font glyphs) |
 
