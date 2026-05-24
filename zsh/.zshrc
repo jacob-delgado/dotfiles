@@ -185,6 +185,15 @@ if command -v eza >/dev/null; then
   alias lt='eza --tree --level=2 --git-ignore'
 fi
 
+# kitty remote-control aliases (require allow_remote_control + KITTY_LISTEN_ON;
+# both are set by kitty.conf + shell integration inside a kitty session).
+if command -v kitty >/dev/null; then
+  alias kt='kitty @ set-tab-title'
+  alias kw='kitty @ set-window-title'
+  kgo()   { kitty @ focus-tab --match "title:$1"; }
+  ktabs() { kitty @ ls | jq -r '.[].tabs[] | "[\(.id)] \(.title)  (\(.windows | length) win)"'; }
+fi
+
 for zsh_syntax_highlighting in \
   /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
   /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
