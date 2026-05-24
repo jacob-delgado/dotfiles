@@ -30,13 +30,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
+zstyle ':omz:update' mode reminder      # prompt when an update is available
+zstyle ':omz:update' frequency 14       # check every 2 weeks
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -56,10 +51,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 COMPLETION_WAITING_DOTS="true"
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+# Skip untracked-files check for VCS dirty status; much faster in big repos.
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -77,7 +70,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aliases colored-man-pages cp docker direnv fzf git helm kubectl kind kube-ps1 skaffold taskwarrior tig tmux)
+plugins=(aliases colored-man-pages command-not-found cp dirhistory direnv docker extract fzf gitfast golang helm kind kube-ps1 kubectl skaffold sudo taskwarrior tig tmux)
 [[ -d "${ZSH_CUSTOM:-$ZSH/custom}/plugins/you-should-use" ]]      && plugins+=(you-should-use)
 [[ -d "${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-autosuggestions" ]] && plugins+=(zsh-autosuggestions)
 # fzf-tab must come after every plugin that registers completions.
@@ -118,25 +111,39 @@ export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=500000
 export SAVEHIST=500000
 
-setopt SHARE_HISTORY
-setopt HIST_REDUCE_BLANKS
-setopt HIST_VERIFY
-setopt HIST_LEX_WORDS
-setopt HIST_FCNTL_LOCK
-setopt HIST_NO_STORE
-setopt PUSHD_IGNORE_DUPS
+setopt SHARE_HISTORY            # implies INC_APPEND_HISTORY, no need to set both
 setopt EXTENDED_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FCNTL_LOCK
+setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
-setopt HIST_FIND_NO_DUPS
+setopt HIST_LEX_WORDS
+setopt HIST_NO_FUNCTIONS        # don't store function definitions
+setopt HIST_NO_STORE
+setopt HIST_REDUCE_BLANKS
 setopt HIST_SAVE_NO_DUPS
-setopt INC_APPEND_HISTORY
-setopt AUTO_CD
+setopt HIST_VERIFY
 HISTORY_IGNORE="(ls|cd|pwd|exit)"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+# Shell behavior — globs, navigation, completion ergonomics, quiet terminal.
+setopt EXTENDED_GLOB            # ^pat (negate), ~pat (exclude), **/* (recursive)
+setopt NO_BEEP                  # silence the terminal bell everywhere
+setopt INTERACTIVE_COMMENTS     # allow `# notes` in interactive lines
+setopt AUTO_CD                  # `dirname` alone cd's there
+setopt AUTO_PUSHD               # every cd pushes the old dir onto the stack
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHD_SILENT             # don't print the stack after each cd
+setopt COMPLETE_IN_WORD         # complete from cursor position, not only end
+setopt ALWAYS_TO_END            # move cursor to end of word after completion
+
+# Completion menu polish (compinit is run by oh-my-zsh, above).
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' rehash true
+
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -145,6 +152,12 @@ HISTORY_IGNORE="(ls|cd|pwd|exit)"
 #   export EDITOR='nvim'
 # fi
 export EDITOR=vim
+
+# Pager + man-page rendering
+export LESS='-RFX'                                  # raw colors, quit-if-one-screen, no alt-screen
+export LESSHISTFILE=-                               # don't pollute ~/.lesshst
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"   # syntax-highlighted man pages
+export BAT_THEME='ansi'                             # bat respects the terminal palette
 
 # Set personal aliases, overriding those provided by Oh My Zsh libs,
 # plugins, and themes. Aliases can be placed here, though Oh My Zsh

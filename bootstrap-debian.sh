@@ -11,7 +11,7 @@
 set -euo pipefail
 
 DOTFILES_DIR="${DOTFILES_DIR:-$HOME/dotfiles}"
-STOW_PACKAGES=(zsh fzf tmux vim)
+STOW_PACKAGES=(zsh fzf p10k tmux vim)
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 
 log()  { printf '\033[1;34m==>\033[0m %s\n' "$*"; }
