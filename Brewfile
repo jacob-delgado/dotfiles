@@ -122,6 +122,8 @@ brew "protoc-gen-go-grpc"
 brew "qemu"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# Wrapper around ripgrep that adds multiple rich file types
+brew "ripgrep-all"
 # Safe, concurrent, practical language
 brew "rust"
 # Rust toolchain installer

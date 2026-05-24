@@ -7,8 +7,27 @@
 # Search hidden files (still respects .gitignore unless --no-ignore).
 --hidden
 
+# Cap matched-line width — keeps minified JS / base64 blobs / long single-line
+# JSON from blowing out the terminal. The preview flag shows a truncation
+# message instead of just hiding the line.
+--max-columns=200
+--max-columns-preview
+
 # Always-exclude paths regardless of project's .gitignore.
 --glob=!.git/*
 --glob=!node_modules/*
 --glob=!.venv/*
 --glob=!__pycache__/*
+--glob=!dist/*
+--glob=!build/*
+--glob=!target/*
+--glob=!vendor/*
+--glob=!*.min.js
+--glob=!*.min.css
+--glob=!*.map
+
+# Custom filetype aliases — usage: rg --type tf "module"
+--type-add=tf:*.{tf,tfvars}
+--type-add=k8s:*.{yaml,yml}
+--type-add=helm:*.{yaml,yml,tpl}
+--type-add=proto:*.proto

@@ -33,10 +33,33 @@ Without that variable, `rg` ignores the config file completely.
 ```
 --smart-case               # case-insensitive unless the query has uppercase
 --hidden                   # search dotfiles (still respects .gitignore)
+--max-columns=200          # cap matched-line width
+--max-columns-preview      # show a truncation message on long lines
+```
+
+Glob excludes (additional to whatever `.gitignore` says):
+
+```
 --glob=!.git/*
 --glob=!node_modules/*
 --glob=!.venv/*
 --glob=!__pycache__/*
+--glob=!dist/*
+--glob=!build/*
+--glob=!target/*           # Rust + JVM build dirs
+--glob=!vendor/*           # Go vendored deps
+--glob=!*.min.js
+--glob=!*.min.css
+--glob=!*.map              # source maps
+```
+
+Custom filetype aliases — `rg --type <alias> "pattern"`:
+
+```
+--type-add=tf:*.{tf,tfvars}
+--type-add=k8s:*.{yaml,yml}
+--type-add=helm:*.{yaml,yml,tpl}
+--type-add=proto:*.proto
 ```
 
 `--hidden` makes `rg` walk into `.config/`, `.local/`, etc. — the
@@ -52,10 +75,26 @@ rg foo --debug 2>&1 | head -5
 
 The first line of debug output names the config file path being read.
 
+## Companion: ripgrep-all (rga)
+
+`brew install ripgrep-all` provides `rga`, a wrapper that runs rg
+across non-text files by extracting their content first: PDFs, ebooks
+(EPUB, MOBI), Office docs, archives (zip, tar, 7z), and even SQLite
+databases:
+
+```sh
+rga "encryption" ~/Documents/papers   # grep across PDFs
+rga "TODO" project.zip                # grep inside an archive without extracting
+```
+
+`rga` reads its own config dir (`~/.config/ripgrep-all/`) — it does
+**not** share this `ripgrep/config` file. Run `rga --help` to set up
+adapter-specific options.
+
 ## Fresh-machine setup
 
 ```sh
-brew install ripgrep    # in the Brewfile
+brew install ripgrep ripgrep-all   # both in the Brewfile
 stow ripgrep
 # RIPGREP_CONFIG_PATH is exported by zsh/.zshrc already
 ```
