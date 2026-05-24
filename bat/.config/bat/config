@@ -1,0 +1,12 @@
+# bat config — invoked once per `bat` run.
+# Each line is a flag passed to `bat`, exactly as you'd type it on the CLI.
+
+# Theme: ansi respects the terminal palette (which is themed by p10k /
+# Dracula). Run `bat --list-themes` for alternatives.
+--theme="ansi"
+
+# Show line numbers, git change markers, and the file header.
+--style="numbers,changes,header"
+
+# Pager: less with raw colors and quit-if-one-screen.
+--pager="less -RF"

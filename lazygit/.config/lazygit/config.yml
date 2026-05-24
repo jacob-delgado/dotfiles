@@ -1,0 +1,17 @@
+# lazygit config — see https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
+# Minimal Dracula-ish theme to match the git/.gitconfig palette. Keep this
+# file small; lazygit may rewrite parts when you change settings via the UI.
+
+gui:
+  theme:
+    activeBorderColor:
+      - "#bd93f9"
+      - bold
+    inactiveBorderColor:
+      - "#6272a4"
+    selectedLineBgColor:
+      - "#44475a"
+    optionsTextColor:
+      - "#8be9fd"
+  nerdFontsVersion: "3"
+  showRandomTip: false

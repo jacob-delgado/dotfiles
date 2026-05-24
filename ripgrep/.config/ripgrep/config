@@ -1,0 +1,14 @@
+# ripgrep config — read when RIPGREP_CONFIG_PATH points here.
+# One flag per line; same syntax as the CLI.
+
+# Case-insensitive search unless the query has uppercase letters.
+--smart-case
+
+# Search hidden files (still respects .gitignore unless --no-ignore).
+--hidden
+
+# Always-exclude paths regardless of project's .gitignore.
+--glob=!.git/*
+--glob=!node_modules/*
+--glob=!.venv/*
+--glob=!__pycache__/*

@@ -159,6 +159,9 @@ export LESSHISTFILE=-                               # don't pollute ~/.lesshst
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"   # syntax-highlighted man pages
 export BAT_THEME='ansi'                             # bat respects the terminal palette
 
+# ripgrep config only takes effect when this env var points at it.
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/config"
+
 # Set personal aliases, overriding those provided by Oh My Zsh libs,
 # plugins, and themes. Aliases can be placed here, though Oh My Zsh
 # users are encouraged to define aliases within a top-level file in
