@@ -1,5 +1,9 @@
 tap "bufbuild/buf"
 tap "googlecontainertools/kpt", "https://github.com/GoogleContainerTools/kpt.git"
+# Static analysis and lint tool, for (ba)sh scripts
+brew "shellcheck"
+# Static checker for GitHub Actions workflow files
+brew "actionlint"
 # Improved shell history for zsh, bash, fish and nushell
 brew "atuin"
 # Tool for generating GNU Standards-compliant Makefiles
@@ -18,6 +22,8 @@ brew "cloc"
 brew "coreutils"
 # Tool for interacting with remote images and registries
 brew "crane"
+# Reimplementation of ctags(1)
+brew "ctags"
 # Load/unload environment variables based on $PWD
 brew "direnv"
 # More intuitive version of du in rust
@@ -42,6 +48,8 @@ brew "git-absorb"
 brew "git-branchless"
 # Syntax-highlighting pager for git and diff output
 brew "git-delta"
+# Quickly rewrite git repository history
+brew "git-filter-repo"
 # Command-line option parsing utility
 brew "gnu-getopt"
 # C code prettifier
@@ -60,6 +68,8 @@ brew "go"
 brew "gofumpt"
 # Fast linters runner for Go
 brew "golangci-lint"
+# Golang security checker
+brew "gosec"
 # GNU grep, egrep and fgrep
 brew "grep"
 # Like cURL, but for gRPC
@@ -94,6 +104,8 @@ brew "lazygit"
 brew "lefthook"
 # Utility for directing compilation
 brew "make"
+# Create modern online books from Markdown files
+brew "mdbook"
 # Run a Kubernetes cluster locally
 brew "minikube"
 # Ambitious Vim-fork focused on extensibility and agility
@@ -128,8 +140,6 @@ brew "ripgrep-all"
 brew "rust"
 # Rust toolchain installer
 brew "rustup"
-# Static analysis and lint tool, for (ba)sh scripts
-brew "shellcheck"
 # Autoformat shell script source code
 brew "shfmt"
 # Easy and Repeatable Kubernetes Development
@@ -148,6 +158,8 @@ brew "tig"
 brew "tmux"
 # Vulnerability scanner for container images, file systems, and Git repos
 brew "trivy"
+# Source code spell checker
+brew "typos-cli"
 # Command-line unarchiving tools supporting multiple formats
 brew "unar"
 # Vi 'workalike' with many additional features
@@ -190,8 +202,10 @@ go "golang.org/x/tools/cmd/deadcode"
 go "github.com/go-delve/delve/cmd/dlv"
 go "github.com/kisielk/errcheck"
 go "github.com/davidrjenni/reftools/cmd/fillstruct"
+go "github.com/jstemmer/go-junit-report/v2"
 go "golang.org/dl/go1.20"
 go "golang.org/x/mobile/cmd/gobind"
+go "github.com/boumenot/gocover-cobertura"
 go "github.com/rogpeppe/godef"
 go "mvdan.cc/gofumpt"
 go "golang.org/x/tools/cmd/goimports"
