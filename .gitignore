@@ -6,3 +6,24 @@ gh/.config/gh/hosts.yml
 .claude/
 # mdBook build output — published to GitHub Pages by CI.
 book/
+
+# --- Defense-in-depth: never accidentally commit credentials ---
+# Private include referenced from git/.gitconfig — lives only in $HOME.
+.gitconfig.local
+# direnv project files frequently hold tokens.
+.envrc
+.envrc.local
+# Credential/secret files that should never be stowed.
+**/.netrc
+**/.aws/credentials
+**/.kube/config
+**/.ssh/
+*.key
+*.pem
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+# Editor swap/backup files (can leak in-progress file contents).
+*.swp
+*.swo
