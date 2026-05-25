@@ -1,0 +1,1 @@
+{{#include ../hadolint/README.md}}

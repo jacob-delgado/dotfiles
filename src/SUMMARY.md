@@ -1,0 +1,29 @@
+# Summary
+
+[Introduction](./introduction.md)
+
+# Packages
+
+- [atuin](./atuin.md)
+- [bat](./bat.md)
+- [btop](./btop.md)
+- [direnv](./direnv.md)
+- [editorconfig](./editorconfig.md)
+- [fzf](./fzf.md)
+- [gh](./gh.md)
+- [git](./git.md)
+- [gitignore_global](./gitignore_global.md)
+- [hadolint](./hadolint.md)
+- [i3](./i3.md)
+- [kitty](./kitty.md)
+- [lazygit](./lazygit.md)
+- [lefthook](./lefthook.md)
+- [p10k](./p10k.md)
+- [ripgrep](./ripgrep.md)
+- [shellcheck](./shellcheck.md)
+- [tig](./tig.md)
+- [tmux](./tmux.md)
+- [vim](./vim.md)
+- [Xresources](./Xresources.md)
+- [yamllint](./yamllint.md)
+- [zsh](./zsh.md)

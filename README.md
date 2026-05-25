@@ -7,6 +7,9 @@ under `$HOME` (e.g. `stow zsh` symlinks `zsh/.zshrc` to `~/.zshrc`).
 A `Brewfile` at the repo root pins the Homebrew packages I rely on; run
 `brew bundle` from this directory to install everything.
 
+Browsable docs (one page per package, auto-generated from each subdir's
+README): <https://jacob-delgado.github.io/dotfiles/>.
+
 ## Table of contents
 
 - [Subdirectories](#subdirectories)

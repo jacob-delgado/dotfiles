@@ -1,0 +1,1 @@
+{{#include ../shellcheck/README.md}}

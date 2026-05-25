@@ -1,0 +1,21 @@
+[book]
+title = "dotfiles"
+authors = ["Jacob Delgado"]
+description = "Personal dotfiles — one chapter per stow package."
+src = "src"
+language = "en"
+
+[output.html]
+default-theme = "navy"
+preferred-dark-theme = "navy"
+git-repository-url = "https://github.com/jacob-delgado/dotfiles"
+edit-url-template = "https://github.com/jacob-delgado/dotfiles/edit/main/{path}"
+site-url = "/dotfiles/"
+
+[output.html.search]
+enable = true
+limit-results = 30
+use-boolean-and = true
+
+[output.html.fold]
+enable = false

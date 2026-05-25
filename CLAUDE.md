@@ -12,6 +12,7 @@ subdirectory has its own `CLAUDE.md` overriding the rule.
 - [Brewfile and bootstrap](#brewfile-and-bootstrap)
 - [Plugin managers](#plugin-managers)
 - [Verifying changes](#verifying-changes)
+- [Docs site (mdBook)](#docs-site-mdbook)
 - [Commits](#commits)
 - [Per-subdir docs](#per-subdir-docs)
 
@@ -148,6 +149,24 @@ Before saying a change is complete, parse-check the affected file:
 
 UI/visual changes (prompt, status bar, colors) need a real shell or pane to
 verify — say so explicitly if you can't.
+
+## Docs site (mdBook)
+
+The per-subdir READMEs are also published as a browsable book at
+<https://jacob-delgado.github.io/dotfiles/>, built by
+`.github/workflows/docs.yml` on push to `main`.
+
+- `book.toml` configures mdBook; `src/SUMMARY.md` lists the chapters.
+- Each chapter file in `src/<pkg>.md` is a one-line wrapper that does
+  `{{#include ../<pkg>/README.md}}` — single source of truth, no
+  duplication. **Edit the package README, not the wrapper.**
+- When adding a new stow package, also: (a) add a line to `src/SUMMARY.md`,
+  and (b) create `src/<pkg>.md` with the include directive.
+- Local preview: `mdbook serve --open` (or `mdbook build` for a one-shot
+  render into `book/`, which is gitignored).
+- The CI workflow runs on PRs (build-only, no deploy) and on push to
+  `main` (build + deploy to GitHub Pages). Trigger a manual rebuild via
+  the workflow's `workflow_dispatch`.
 
 ## Commits
 

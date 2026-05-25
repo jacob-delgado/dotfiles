@@ -1,0 +1,1 @@
+{{#include ../direnv/README.md}}

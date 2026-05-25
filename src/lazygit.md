@@ -1,0 +1,1 @@
+{{#include ../lazygit/README.md}}
