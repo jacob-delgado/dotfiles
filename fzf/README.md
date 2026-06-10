@@ -6,6 +6,7 @@ Stow package for `~/.fzf.zsh`. Sourced automatically by the oh-my-zsh
 ## Table of contents
 
 - [Defaults](#defaults)
+- [Colors (Dracula)](#colors-dracula)
 - [fd integration](#fd-integration)
 - [Keybinding-specific options](#keybinding-specific-options)
 - [frg — live ripgrep + fzf](#frg--live-ripgrep--fzf)
@@ -20,6 +21,21 @@ FZF_TMUX=1
 
 `FZF_TMUX=1` makes fzf pop up in a tmux popup pane when invoked inside
 tmux — much nicer than taking over the whole terminal.
+
+## Colors (Dracula)
+
+`FZF_DEFAULT_OPTS` also carries the official [Dracula](https://draculatheme.com/fzf)
+`--color` palette so the picker matches kitty/tmux/vim:
+
+```sh
+--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9
+--color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9
+--color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6
+--color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4
+```
+
+Unlike `bat`/`tig` (which inherit the terminal's ANSI palette), fzf's
+colors are pinned to Dracula hex here.
 
 ## fd integration
 
