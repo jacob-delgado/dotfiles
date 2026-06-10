@@ -7,6 +7,7 @@ Stow package for `~/.p10k.zsh` — the configured
 
 - [Why this is in the repo](#why-this-is-in-the-repo)
 - [How it's loaded](#how-its-loaded)
+- [Colors (Dracula)](#colors-dracula)
 - [Regenerating](#regenerating)
 - [Fresh-machine setup](#fresh-machine-setup)
 
@@ -42,11 +43,27 @@ fi
 The instant-prompt cache file is regenerated automatically as you use the
 shell; it isn't in this repo.
 
+## Colors (Dracula)
+
+This is a `rainbow`-style config with the official
+[Dracula](https://draculatheme.com/powerlevel10k) color values merged in
+(colors only — segments, layout, and options are mine). The Dracula
+theme is itself rainbow-based and mostly uses ANSI slots 0–7, so it
+relies on the **terminal palette** being Dracula (kitty's `dracula.conf`)
+rather than hardcoding hex; only ~11 segment colors are overridden
+(os_icon, dir text, time, status, prompt char, multiline gap).
+
+⚠️ **Re-running `p10k configure` overwrites these.** After regenerating,
+re-merge the Dracula values — pull `files/.p10k.zsh` from
+[`dracula/powerlevel10k`](https://github.com/dracula/powerlevel10k) and
+copy across only the `*_FOREGROUND`/`*_BACKGROUND`/`*_COLOR` values, or
+re-run the merge script used originally.
+
 ## Regenerating
 
 If you change the prompt with `p10k configure`, the wizard writes the new
 config to `~/.p10k.zsh` — which is symlinked here. Commit the resulting
-diff:
+diff (then re-apply the Dracula colors per the section above):
 
 ```sh
 p10k configure          # interactive wizard
