@@ -43,7 +43,6 @@ Plug 'rust-lang/rust.vim'
 
 " Colors
 Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'fatih/molokai'                " used for go filetype only
 
 call plug#end()
 
@@ -213,9 +212,6 @@ augroup END
 
 " --- Colors --------------------------------------------------------------
 colorscheme dracula
-au FileType go let g:rehash256=1
-au FileType go let g:molokai_original=1
-au FileType go colorscheme molokai
 
 " --- Functions and commands ---------------------------------------------
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis | wincmd p

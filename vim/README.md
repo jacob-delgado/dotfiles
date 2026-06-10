@@ -86,8 +86,7 @@ with `:PlugInstall` / `:PlugUpdate`. Clean orphans with `:PlugClean!`.
 
 ### Colors
 
-`dracula` is the default scheme; `molokai` switches in automatically for
-`*.go` files (vim-go convention).
+`dracula` is the scheme for all filetypes, including Go.
 
 ## Leader-key cheat sheet
 
