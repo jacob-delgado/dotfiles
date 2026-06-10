@@ -9,6 +9,7 @@ by default.
 - [Layout](#layout)
 - [Required env var](#required-env-var)
 - [Settings](#settings)
+- [Colors (Dracula)](#colors-dracula)
 - [Verifying it's loaded](#verifying-its-loaded)
 - [Fresh-machine setup](#fresh-machine-setup)
 
@@ -66,6 +67,18 @@ Custom filetype aliases — `rg --type <alias> "pattern"`:
 `--glob` exclusions then prune the noisy ones.
 
 Anything you override on the CLI wins over the config file.
+
+## Colors (Dracula)
+
+The official [Dracula](https://draculatheme.com/ripgrep) palette, so `rg`
+output matches fzf/kitty/etc:
+
+```
+--colors=path:fg:0xbd,0x93,0xf9     # purple paths
+--colors=line:fg:0x50,0xfa,0x7b     # green line numbers
+--colors=column:fg:0x50,0xfa,0x7b   # green column numbers
+--colors=match:fg:0xff,0x55,0x55    # red match highlights
+```
 
 ## Verifying it's loaded
 
