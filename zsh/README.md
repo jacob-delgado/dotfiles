@@ -172,6 +172,7 @@ Try `man ssh` after a fresh shell — colorized.
 | zoxide | `eval "$(zoxide init zsh)"` (guarded on `command -v`) |
 | atuin | `eval "$(atuin init zsh)"` (guarded; replaces `Ctrl+R`) |
 | eza | aliased to `ls`/`ll`/`la`/`lt` if installed |
+| git | curated shell shortcuts: `gst ga gaa gc gca gco gcb gd gds gp gpf glg` (names match the OMZ `git` plugin, which isn't enabled — `gitfast` gives completion only) |
 | kitty | `kt`/`kw` rename + `kgo <title>` jump-by-name + `ktabs` listing (uses `jq`) when installed |
 | fzf | OMZ `fzf` plugin auto-sources `~/.fzf.zsh` (see `fzf/`) |
 | zsh-syntax-highlighting | sourced at the end; tries Linux, Apple Silicon brew, Intel brew paths in order |

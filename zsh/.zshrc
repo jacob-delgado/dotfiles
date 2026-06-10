@@ -194,6 +194,23 @@ if command -v kitty >/dev/null; then
   ktabs() { kitty @ ls | jq -r '.[].tabs[] | "[\(.id)] \(.title)  (\(.windows | length) win)"'; }
 fi
 
+# Git shell shortcuts. The `gitfast` plugin gives completion but no aliases,
+# and the full OMZ `git` plugin pulls in ~150 (incl. the surprising gl=pull),
+# so here's a curated dozen using the same names. Names match the git plugin
+# for muscle-memory portability.
+alias gst='git status -sb'
+alias ga='git add'
+alias gaa='git add -A'
+alias gc='git commit -v'
+alias gca='git commit --amend'
+alias gco='git checkout'
+alias gcb='git checkout -b'
+alias gd='git diff'
+alias gds='git diff --staged'
+alias gp='git push'
+alias gpf='git push --force-with-lease'
+alias glg='git lg'                                  # pretty-graph log (see .gitconfig)
+
 for zsh_syntax_highlighting in \
   /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
   /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
