@@ -30,8 +30,12 @@ The tracked `.gitconfig` ends with:
 ```
 
 Anything machine-specific or sensitive (work email, signing keys, work
-remotes) lives in `~/.gitconfig.local`, which is **not** stowed and not
-in the repo. Create it by hand per machine.
+remotes, credential helpers) lives in `~/.gitconfig.local`, which is
+**not** stowed and not in the repo. Create it by hand per machine.
+
+For example, `gh auth setup-git` writes a `[credential]` helper with a
+host-specific path (`/opt/homebrew/bin/gh` on macOS) — that belongs here,
+not in the tracked `.gitconfig`.
 
 ## Delta integration
 

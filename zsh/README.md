@@ -97,6 +97,7 @@ export PATH=$PATH:$HOME/bin
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN
+export PATH=$HOME/.local/bin:$PATH        # pipx / user-installed binaries
 export PATH=$PATH:/usr/local/go/bin
 ```
 
@@ -171,7 +172,7 @@ Try `man ssh` after a fresh shell — colorized.
 |---|---|
 | zoxide | `eval "$(zoxide init zsh)"` (guarded on `command -v`) |
 | atuin | `eval "$(atuin init zsh)"` (guarded; replaces `Ctrl+R`) |
-| eza | aliased to `ls`/`ll`/`la`/`lt` if installed |
+| eza | when installed: `ls` is a function (falls back to real `ls` for short flag bundles with `t`, e.g. `ls -ltrh`), plus `ll`/`la`/`lt`/`ltrh` aliases |
 | git | curated shell shortcuts: `gst ga gaa gc gca gco gcb gd gds gp gpf glg` (names match the OMZ `git` plugin, which isn't enabled — `gitfast` gives completion only) |
 | kitty | `kt`/`kw` rename + `kgo <title>` jump-by-name + `ktabs` listing (uses `jq`) when installed |
 | fzf | OMZ `fzf` plugin auto-sources `~/.fzf.zsh` (see `fzf/`) |
