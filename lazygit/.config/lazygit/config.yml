@@ -2,17 +2,34 @@
 # Keep this file lean; lazygit may rewrite parts when you change settings via the UI.
 
 gui:
-  # Dracula-ish theme to match git/ and btop/.
+  # Official Dracula theme — https://github.com/dracula/lazygit
   theme:
     activeBorderColor:
-      - "#bd93f9"
+      - "#FF79C6"
       - bold
     inactiveBorderColor:
-      - "#6272a4"
-    selectedLineBgColor:
-      - "#44475a"
+      - "#BD93F9"
+    searchingActiveBorderColor:
+      - "#8BE9FD"
+      - bold
     optionsTextColor:
-      - "#8be9fd"
+      - "#6272A4"
+    selectedLineBgColor:
+      - "#6272A4"
+    inactiveViewSelectedLineBgColor:
+      - bold
+    cherryPickedCommitFgColor:
+      - "#6272A4"
+    cherryPickedCommitBgColor:
+      - "#8BE9FD"
+    markedBaseCommitFgColor:
+      - "#8BE9FD"
+    markedBaseCommitBgColor:
+      - "#F1FA8C"
+    unstagedChangesColor:
+      - "#FF5555"
+    defaultFgColor:
+      - "#F8F8F2"
   nerdFontsVersion: "3"
   showRandomTip: false
   showCommandLog: false               # hide the bottom command-log panel

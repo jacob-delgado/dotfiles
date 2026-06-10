@@ -20,14 +20,21 @@ Find the live config dir on any machine with `lazygit --config-dir`.
 
 ## Theme
 
-Dracula-ish palette matching `git/.gitconfig`:
+The official [Dracula](https://github.com/dracula/lazygit) theme (copied
+verbatim from upstream), matching `git/.gitconfig`:
 
 | Element | Color |
 |---|---|
-| activeBorderColor | `#bd93f9` bold (purple) |
-| inactiveBorderColor | `#6272a4` (muted purple) |
-| selectedLineBgColor | `#44475a` (darker purple) |
-| optionsTextColor | `#8be9fd` (cyan) |
+| activeBorderColor | `#FF79C6` bold (pink) |
+| inactiveBorderColor | `#BD93F9` (purple) |
+| searchingActiveBorderColor | `#8BE9FD` bold (cyan) |
+| selectedLineBgColor | `#6272A4` (comment) |
+| optionsTextColor | `#6272A4` (comment) |
+| unstagedChangesColor | `#FF5555` (red) |
+| defaultFgColor | `#F8F8F2` (foreground) |
+
+Plus cherry-pick / marked-base-commit colors — see the file for the full
+upstream block.
 
 ## Other settings
 
