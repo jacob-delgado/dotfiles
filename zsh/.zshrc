@@ -93,6 +93,7 @@ export PATH=$PATH:$HOME/bin
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN
+export PATH=$HOME/.local/bin:$PATH
 export PATH=$PATH:/usr/local/go/bin
 command -v ruby >/dev/null && export GEM_HOME=$(ruby -e 'puts Gem.user_dir')
 
@@ -178,11 +179,24 @@ command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 command -v atuin  >/dev/null && eval "$(atuin init zsh)"
 
 # eza (modern ls) aliases — only override if eza is installed.
+# `ls` is a function (not an alias) so we can fall back to real ls for short
+# flag bundles containing `t` — eza's `-t` takes a time-field argument
+# (modified/changed/accessed/created), so `ls -ltrh` and friends would error.
 if command -v eza >/dev/null; then
-  alias ls='eza'
+  unalias ls 2>/dev/null
+  function ls {
+    for arg in "$@"; do
+      case "$arg" in
+        --) break ;;
+        -*t*) command ls "$@"; return ;;
+      esac
+    done
+    eza "$@"
+  }
   alias ll='eza -l --git --group-directories-first'
   alias la='eza -la --git --group-directories-first'
   alias lt='eza --tree --level=2 --git-ignore'
+  alias ltrh='eza -lr --sort=modified'
 fi
 
 # kitty remote-control aliases (require allow_remote_control + KITTY_LISTEN_ON;
