@@ -11,6 +11,8 @@ Plug 'tpope/vim-sleuth'             " auto-detect indent settings per file
 Plug 'tpope/vim-fugitive'           " :Git, :Gdiffsplit, :Gblame, etc.
 Plug 'tpope/vim-dispatch'           " async build / test runner
 Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-unimpaired'         " ]q [q ]c [c ]b [b bracket-pair mappings
+Plug 'tpope/vim-eunuch'             " :Rename :Move :Delete :SudoWrite
 
 " UI
 Plug 'vim-airline/vim-airline'      " statusline
@@ -29,7 +31,8 @@ Plug 'christoomey/vim-tmux-navigator'   " <C-h/j/k/l> jumps across vim+tmux
 Plug 'airblade/vim-gitgutter'           " gutter diff markers; ]c [c <leader>h{s,p,u}
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'             " snippet engine
+Plug 'honza/vim-snippets'          " the snippet library ultisnips expands
 
 " Linting / LSP-lite (replaces syntastic)
 Plug 'dense-analysis/ale'
@@ -122,8 +125,8 @@ set wildignore=*.o,*~,*.pyc,*.pyo,*.exe,.git\*,.idea\*
 set wildmenu
 set wildmode=list:longest,full
 
-" :W sudo saves the file
-command! W w !sudo tee % > /dev/null
+" :W sudo saves the file (vim-eunuch provides :SudoWrite; keep :W as an alias)
+command! W SudoWrite
 
 " --- Buffer management ---------------------------------------------------
 nnoremap <leader>bd :Bclose<cr>

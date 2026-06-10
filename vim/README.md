@@ -40,6 +40,8 @@ with `:PlugInstall` / `:PlugUpdate`. Clean orphans with `:PlugClean!`.
 | `vim-fugitive` | `:Git`, `:Gdiffsplit`, `:Gblame`, `:Git log` |
 | `vim-dispatch` | async build/test runner |
 | `vim-projectionist` | project-aware `:A`-style file switching |
+| `vim-unimpaired` | bracket-pair mappings: `]q`/`[q` quickfix, `]b`/`[b` buffers, `]c`/`[c` (shared with gitgutter), `]<Space>` add blank line, etc. |
+| `vim-eunuch` | shell-command Ex wrappers: `:Rename`, `:Move`, `:Delete`, `:SudoWrite`, `:Chmod` |
 
 ### UI
 
@@ -67,6 +69,7 @@ with `:PlugInstall` / `:PlugUpdate`. Clean orphans with `:PlugClean!`.
 | `splitjoin.vim` | `gS`/`gJ` split/join one-liners ↔ blocks |
 | `auto-pairs` | auto-close brackets/quotes |
 | `ultisnips` | snippet engine |
+| `vim-snippets` | the snippet library `ultisnips` expands (engine ships none on its own) |
 
 ### Linting
 
@@ -134,7 +137,7 @@ Custom Ex commands:
 
 | Command | Action |
 |---|---|
-| `:W` | sudo-save the current buffer (`w !sudo tee % > /dev/null`) |
+| `:W` / `:SudoWrite` | sudo-save the current buffer (`:W` is an alias for vim-eunuch's `:SudoWrite`) |
 | `:DiffOrig` | vertical diff between the buffer and the on-disk file (`,do` triggers it) |
 
 ## Non-default settings
