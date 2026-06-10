@@ -22,7 +22,7 @@ OAuth tokens.
 ## Active customization
 
 ```yaml
-prefer_editor_prompt: enabled   # drop into $EDITOR for long fields (PR body, etc.)
+prefer_editor_prompt: disabled  # prompt inline in the terminal, not in $EDITOR
 pager: delta                    # syntax-highlight `gh pr diff` and similar
 aliases:
     co: pr checkout
