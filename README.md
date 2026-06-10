@@ -22,22 +22,20 @@ README): <https://jacob-delgado.github.io/dotfiles/>.
 
 ## Apply pending changes
 
-Manual steps to activate recent edits (config is committed; these are the
-local actions to make each take effect). Tick off and prune as you go.
+Manual steps to activate recent edits on this machine (config is
+committed; these are the local actions to make each take effect). Tick
+off and prune as you go.
 
+- [ ] **Open a new shell** (`exec zsh`) — activates the fzf Dracula
+  colors, the git shell aliases (`gst`/`gco`/…), the eza `ls` function +
+  `ltrh`, the `~/.local/bin` PATH, and the p10k rainbow+Dracula prompt
+  (best viewed in a kitty terminal).
 - [ ] **vim** — install the plugin set (`~/.vim/plugged` may be empty):
   ```sh
   vim +"PlugInstall --sync" +qall
   ```
   Covers `vim-snippets`, `vim-unimpaired`, `vim-eunuch`; molokai was
   dropped, so nothing to clean. Open a `.go` file to confirm dracula.
-- [ ] **fzf** — reload so the Dracula `--color` palette takes effect:
-  ```sh
-  source ~/.fzf.zsh        # or open a new shell
-  ```
-  Then `Ctrl+T` / `fzf` to eyeball it.
-- [ ] **ripgrep** — no action needed (`RIPGREP_CONFIG_PATH` already set);
-  next `rg` shows purple paths / green line numbers / red matches.
 - [ ] **lazygit** — restart `lazygit` and eyeball the official theme.
 - [ ] **i3** *(Linux only)* — validate, then reload:
   ```sh
@@ -45,6 +43,10 @@ local actions to make each take effect). Tick off and prune as you go.
   i3-msg reload && i3-msg restart      # or Mod+Shift+R
   ```
   Ensure `stow i3` is active on that host.
+- **ripgrep / gh** — no action needed; apply on next invocation.
+
+> On a **fresh machine**, also recreate `~/.gitconfig.local` (untracked)
+> with the gh credential helper — see [git/README.md](git/README.md).
 
 ## Subdirectories
 
