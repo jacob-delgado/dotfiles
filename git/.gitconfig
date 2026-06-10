@@ -105,3 +105,18 @@
   undo = reset --soft HEAD^
   wip = !git add -A && git commit -m 'WIP'
   prune-branches = !git branch --merged | grep -v '\\*\\|main\\|master' | xargs -n1 git branch -d
+  cp = cherry-pick
+  sw = switch
+  swc = switch -c
+  cob = checkout -b
+  aa = add -A
+  ap = add -p
+  fa = fetch --all --prune
+  pf = push --force-with-lease
+  rbi = rebase -i --autosquash
+  rbc = rebase --continue
+  rba = rebase --abort
+  fixup = commit --fixup
+  recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format='%(refname:short)'
+  root = rev-parse --show-toplevel
+  aliases = config --get-regexp ^alias\\.
