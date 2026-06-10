@@ -12,12 +12,39 @@ README): <https://jacob-delgado.github.io/dotfiles/>.
 
 ## Table of contents
 
+- [Apply pending changes](#apply-pending-changes)
 - [Subdirectories](#subdirectories)
 - [Modern CLI tools](#modern-cli-tools) — zoxide, atuin, eza, git-delta, yq, kubectx, stern, lazygit, dust, btop, watchexec, hyperfine, tldr
 - [Installing on a new machine](#installing-on-a-new-machine)
   - [Debian / Ubuntu](#debian--ubuntu)
   - [macOS / manual](#macos--manual)
   - [Oh My Zsh custom plugins](#oh-my-zsh-custom-plugins)
+
+## Apply pending changes
+
+Manual steps to activate recent edits (config is committed; these are the
+local actions to make each take effect). Tick off and prune as you go.
+
+- [ ] **vim** — install the plugin set (`~/.vim/plugged` may be empty):
+  ```sh
+  vim +"PlugInstall --sync" +qall
+  ```
+  Covers `vim-snippets`, `vim-unimpaired`, `vim-eunuch`; molokai was
+  dropped, so nothing to clean. Open a `.go` file to confirm dracula.
+- [ ] **fzf** — reload so the Dracula `--color` palette takes effect:
+  ```sh
+  source ~/.fzf.zsh        # or open a new shell
+  ```
+  Then `Ctrl+T` / `fzf` to eyeball it.
+- [ ] **ripgrep** — no action needed (`RIPGREP_CONFIG_PATH` already set);
+  next `rg` shows purple paths / green line numbers / red matches.
+- [ ] **lazygit** — restart `lazygit` and eyeball the official theme.
+- [ ] **i3** *(Linux only)* — validate, then reload:
+  ```sh
+  i3 -C -c ~/.config/i3/config        # config not validated on macOS
+  i3-msg reload && i3-msg restart      # or Mod+Shift+R
+  ```
+  Ensure `stow i3` is active on that host.
 
 ## Subdirectories
 
