@@ -18,6 +18,7 @@ stowed by default on macOS.
   - [Multimedia / system keys](#multimedia--system-keys)
   - [Modes](#modes)
   - [Autostart](#autostart)
+- [Theme (Dracula)](#theme-dracula)
 - [i3status config](#i3status-config)
 - [Fresh-machine setup](#fresh-machine-setup)
 
@@ -113,6 +114,19 @@ bar { status_command i3status }
 ```
 
 `focus_follows_mouse no` — focus only on click, not on hover.
+
+## Theme (Dracula)
+
+The official [Dracula](https://draculatheme.com/i3) palette, matching the
+rest of the dotfiles:
+
+- `client.*` window-border colors (focused `#6272A4`, urgent `#FF5555`,
+  unfocused `#282A36`).
+- `bar { colors { … } }` for the i3bar (background `#282A36`, statusline
+  `#F8F8F2`, urgent `#FF5555`).
+- dmenu launch colors on `Mod+d` (`-nb #282A36 -sb #6272A4 -sf #F8F8F2`).
+- i3status `color_good`/`color_degraded`/`color_bad` =
+  `#50FA7B`/`#F1FA8C`/`#FF5555` (see below).
 
 ## i3status config
 
