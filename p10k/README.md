@@ -43,6 +43,19 @@ fi
 The instant-prompt cache file is regenerated automatically as you use the
 shell; it isn't in this repo.
 
+### Instant-prompt mode
+
+`POWERLEVEL9K_INSTANT_PROMPT` is set to `quiet` rather than the stock
+`verbose`. In a real terminal, init is silent and instant prompt works
+perfectly. But a non-tty shell — like the one Claude Code uses to snapshot
+the environment — can't give p10k's gitstatus job control or let
+`atuin`/`zoxide` bind zle widgets, so those steps print errors. With
+`verbose`, p10k then emits a console-output warning on every such launch.
+`quiet` suppresses that spurious warning and has **no effect on real
+interactive sessions** (which produce no output, so the prompt never
+"jumps"). ⚠️ Like the Dracula colors below, re-running `p10k configure`
+resets this to `verbose` — re-apply it.
+
 ## Colors (Dracula)
 
 This is a `rainbow`-style config with the official
