@@ -1,0 +1,69 @@
+# Dracula theme for Taskwarrior — https://draculatheme.com
+#
+# Uses *named* ANSI colours (red/green/blue/...) and palette indices rather
+# than hex, so colours resolve to whatever the terminal palette provides.
+# kitty is themed with Dracula (kitty/dracula.conf), so these render as true
+# Dracula — and stay correct on any Dracula-themed terminal (incl. Debian).
+# Same trick as bat's `--theme=ansi`.
+#
+# Dracula ANSI map (from kitty/dracula.conf):
+#   color0  #21222c            color8  #6272a4 (comment / muted)
+#   color1  red     #ff5555    color9  #ff6e6e
+#   color2  green   #50fa7b    color10 #69ff94
+#   color3  yellow  #f1fa8c    color11 #ffffa5
+#   color4  blue -> #bd93f9 (Dracula purple)
+#   color5  mag  -> #ff79c6 (Dracula pink)
+#   color6  cyan    #8be9fd
+#   color7  white   #f8f8f2 (foreground)
+
+rule.precedence.color=deleted,completed,active,keyword.,tag.,project.,overdue,scheduled,due.today,due,blocked,blocking,recurring,tagged,uda.
+
+# General decoration
+color.label=
+color.label.sort=
+color.alternate=on color0
+color.header=color4
+color.footnote=color8
+color.warning=bold color3
+color.error=color7 on color1
+color.debug=color4
+
+# Task state
+color.completed=color8
+color.deleted=color8
+color.active=color0 on color2
+color.recurring=color5
+color.scheduled=color6
+color.until=color8
+color.blocked=color8
+color.blocking=bold color7
+
+# Project / priority
+color.project.none=
+color.uda.priority.H=bold color7
+color.uda.priority.M=color7
+color.uda.priority.L=color8
+
+# Tags
+color.tag.next=bold color6
+color.tag.none=
+color.tagged=color6
+
+# Dates
+color.due=color3
+color.due.today=bold color1
+color.overdue=bold color1
+
+# Calendar
+color.calendar.due=color0 on color3
+color.calendar.due.today=color0 on color1
+color.calendar.overdue=color0 on color1
+color.calendar.holiday=color0 on color4
+color.calendar.today=color0 on color5
+color.calendar.weekend=on color0
+color.calendar.weeknumber=color8
+
+# Burndown / history reports
+color.burndown.done=color0 on color2
+color.burndown.pending=color0 on color1
+color.burndown.started=color0 on color3

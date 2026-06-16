@@ -1,0 +1,60 @@
+# Taskwarrior + taskwarrior-tui configuration.
+# Stowed to ~/.config/task/taskrc (XDG). See task/README.md for rationale.
+
+# --- Data -------------------------------------------------------------------
+# TaskChampion DB under the XDG data dir, matching the rest of the repo.
+data.location=~/.local/share/task
+
+# Skip the interactive "task news" prompt on first run.
+news.version=3.4.2
+
+# --- Behaviour --------------------------------------------------------------
+weekstart=monday
+due=4              # flag tasks due within 4 days
+nag=              # silence the "you have more urgent tasks" nag
+confirmation=on   # still confirm bulk / destructive changes
+
+# ISO-8601 dates everywhere
+dateformat=Y-M-D
+dateformat.info=Y-M-D H:N:S
+dateformat.report=Y-M-D
+dateformat.annotation=Y-M-D
+
+# --- Colour theme -----------------------------------------------------------
+# Dracula via named ANSI colours. Resolved relative to this file.
+include dracula.theme
+
+# ===========================================================================
+# taskwarrior-tui  (https://github.com/kdheepak/taskwarrior-tui)
+# The TUI has no config file of its own — it reads everything from here under
+# the uda.taskwarrior-tui.* namespace, and inherits the colours above.
+# ===========================================================================
+
+# Report + filter the TUI opens on.
+uda.taskwarrior-tui.task-report.next.filter=status:pending
+
+# Quality-of-life behaviour
+uda.taskwarrior-tui.task-report.show-info=true
+uda.taskwarrior-tui.task-report.looping=true
+uda.taskwarrior-tui.task-report.jump-on-task-add=true
+uda.taskwarrior-tui.task-report.pre-fill-task-meta-data=true
+uda.taskwarrior-tui.task-report.prompt-on-delete=true
+uda.taskwarrior-tui.task-report.prompt-on-done=false
+
+# Selection cursor + multi-select marks
+uda.taskwarrior-tui.selection.indicator=•
+uda.taskwarrior-tui.selection.bold=yes
+uda.taskwarrior-tui.selection.reverse=no
+uda.taskwarrior-tui.mark.indicator=✔
+uda.taskwarrior-tui.unmark.indicator=
+
+# Press 't' to toggle the +next tag for quick prioritising.
+uda.taskwarrior-tui.quick-tag.name=next
+
+# Dracula-flavoured TUI chrome (same named-ANSI palette as dracula.theme)
+uda.taskwarrior-tui.style.report.selection=color7 on color8
+uda.taskwarrior-tui.style.context.active=color0 on color4
+uda.taskwarrior-tui.style.navbar.active=color0 on color4
+uda.taskwarrior-tui.style.calendar.title=bold color4
+uda.taskwarrior-tui.style.calendar.today=color0 on color3
+uda.taskwarrior-tui.style.command.highlight=color2

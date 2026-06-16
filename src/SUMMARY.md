@@ -22,6 +22,7 @@
 - [p10k](./p10k.md)
 - [ripgrep](./ripgrep.md)
 - [shellcheck](./shellcheck.md)
+- [task](./task.md)
 - [tig](./tig.md)
 - [tmux](./tmux.md)
 - [vim](./vim.md)

@@ -11,7 +11,7 @@
 set -euo pipefail
 
 DOTFILES_DIR="${DOTFILES_DIR:-$HOME/dotfiles}"
-STOW_PACKAGES=(atuin bat btop direnv editorconfig fzf gh git gitignore_global hadolint kitty lazygit nvim p10k ripgrep shellcheck tig tmux vim yamllint zsh)
+STOW_PACKAGES=(atuin bat btop direnv editorconfig fzf gh git gitignore_global hadolint kitty lazygit nvim p10k ripgrep shellcheck task tig tmux vim yamllint zsh)
 # lefthook is a per-project template (lefthook/lefthook.yml), not stowed into $HOME.
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 
