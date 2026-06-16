@@ -29,9 +29,9 @@ map('n', '<leader>bda', '<cmd>%bdelete!<cr>', { desc = 'Delete all buffers' })
 map('n', '<leader>dc', '<cmd>q<cr><cmd>diffoff!<cr>', { desc = 'Close diff' })
 map('n', '<leader>do', '<cmd>DiffOrig<cr>', { desc = 'Diff against on-disk file' })
 
--- Quickfix navigation (matches the .vimrc; note <C-m> shadows <CR> in normal mode)
-map('n', '<C-n>', '<cmd>cnext<cr>', { desc = 'Next quickfix' })
-map('n', '<C-m>', '<cmd>cprevious<cr>', { desc = 'Previous quickfix' })
+-- Quickfix: the built-in ]q / [q navigate; ,q closes. The .vimrc used
+-- <C-n>/<C-m> for next/prev, but <C-m> IS <CR>, so Enter ran :cprevious in
+-- normal mode. Dropped in favour of the built-in bracket maps (0.11+).
 map('n', '<leader>q', '<cmd>cclose<cr>', { desc = 'Close quickfix' })
 
 -- Insert-mode tweaks

@@ -13,6 +13,7 @@ losing the muscle memory baked into the Vim config.
 - [What Neovim made redundant](#what-neovim-made-redundant)
 - [LSP, completion, linting](#lsp-completion-linting)
 - [Leader-key cheat sheet](#leader-key-cheat-sheet)
+- [Text objects (Treesitter)](#text-objects-treesitter)
 - [Go workflow](#go-workflow)
 - [Settings that differ from the .vimrc](#settings-that-differ-from-the-vimrc)
 - [Runtime directories](#runtime-directories)
@@ -125,7 +126,7 @@ Dropped entirely — the capability is now built in:
 | `,gg` | toggle gitsigns line highlight |
 | `,hs` / `,hu` / `,hp` | stage / reset / preview git hunk |
 | `,q` | close quickfix |
-| `<C-n>` / `<C-m>` | `:cnext` / `:cprevious` |
+| `]q` / `[q` | next / prev quickfix (built-in) |
 | `]c` / `[c` | next / prev git hunk |
 
 Non-leader maps carried over verbatim from the `.vimrc`: `jj`→Esc, visual-line
@@ -133,6 +134,20 @@ Non-leader maps carried over verbatim from the `.vimrc`: `jj`→Esc, visual-line
 `<Tab>`→`%`, recentering `n`/`N`/`*`/`#`, very-magic `/`, `Q`→`gq`,
 `<C-h/j/k/l>` window+tmux navigation. See [the vim README](vim.md) for the
 rationale behind each.
+
+## Text objects (Treesitter)
+
+From `nvim-treesitter-textobjects` (no built-in equivalent). Use in operator-
+or visual-pending position, e.g. `daf` deletes a whole function, `vif` selects
+its body, `cia` changes an argument:
+
+| Key | Selects / moves to |
+|---|---|
+| `af` / `if` | a function / inside a function |
+| `ac` / `ic` | a class / inside a class |
+| `aa` / `ia` | a parameter / inside a parameter |
+| `]m` / `[m` | next / prev function start |
+| `]]` / `[[` | next / prev class start |
 
 ## Go workflow
 
