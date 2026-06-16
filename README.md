@@ -36,6 +36,17 @@ off and prune as you go.
   ```
   Covers `vim-snippets`, `vim-unimpaired`, `vim-eunuch`; molokai was
   dropped, so nothing to clean. Open a `.go` file to confirm dracula.
+- [ ] **nvim** *(new package — vim stays the default `$EDITOR`)* — stow,
+  then install plugins headlessly:
+  ```sh
+  stow nvim
+  nvim --headless "+Lazy! sync" +qa
+  ```
+  Treesitter compiles parsers on first run (needs a C compiler). For the
+  optional Go tools, open a `.go` file and run `:GoInstallBinaries` (go.nvim is
+  filetype-loaded, so it isn't available on an empty buffer). Commit the
+  generated `nvim/.config/nvim/lazy-lock.json` to pin plugin versions. See
+  [nvim/README.md](nvim/README.md).
 - [ ] **lazygit** — restart `lazygit` and eyeball the official theme.
 - [ ] **i3** *(Linux only)* — validate, then reload:
   ```sh
@@ -67,6 +78,7 @@ Each is a stow package; see its README for what's non-default.
 | `i3/` | `~/.config/i3/`, `~/.config/i3status/` | [i3/README.md](i3/README.md) |
 | `lazygit/` | `~/.config/lazygit/` | [lazygit/README.md](lazygit/README.md) |
 | `lefthook/` | (template, not stowed) | [lefthook/README.md](lefthook/README.md) |
+| `nvim/` | `~/.config/nvim/` | [nvim/README.md](nvim/README.md) |
 | `p10k/` | `~/.p10k.zsh` | [p10k/README.md](p10k/README.md) |
 | `ripgrep/` | `~/.config/ripgrep/` | [ripgrep/README.md](ripgrep/README.md) |
 | `shellcheck/` | `~/.shellcheckrc` | [shellcheck/README.md](shellcheck/README.md) |

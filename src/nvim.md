@@ -1,0 +1,1 @@
+{{#include ../nvim/README.md}}

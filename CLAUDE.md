@@ -41,6 +41,7 @@ Current packages:
 | `kitty/` | `~/.config/kitty/` |
 | `lazygit/` | `~/.config/lazygit/` |
 | `lefthook/` | (not stowed; template only) |
+| `nvim/` | `~/.config/nvim/` |
 | `p10k/` | `~/.p10k.zsh` |
 | `ripgrep/` | `~/.config/ripgrep/` |
 | `shellcheck/` | `~/.shellcheckrc` |

@@ -18,6 +18,7 @@
 - [kitty](./kitty.md)
 - [lazygit](./lazygit.md)
 - [lefthook](./lefthook.md)
+- [nvim](./nvim.md)
 - [p10k](./p10k.md)
 - [ripgrep](./ripgrep.md)
 - [shellcheck](./shellcheck.md)
