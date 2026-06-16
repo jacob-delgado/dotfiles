@@ -24,6 +24,7 @@ return {
       -- defaults already cover K (hover), grr (references), grn (rename),
       -- gra (code action), gri (implementation); these add the .vimrc-style
       -- ergonomics on top.
+      local fmt_group = vim.api.nvim_create_augroup('lsp-format', { clear = true })
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
         callback = function(ev)
@@ -33,6 +34,22 @@ return {
           map('gd', vim.lsp.buf.definition, 'Go to definition')
           map('<leader>e', vim.lsp.buf.rename, 'Rename symbol')   -- mirrors vim-go ,e
           map('<leader>ca', vim.lsp.buf.code_action, 'Code action')
+
+          -- Format on save for servers that support it (rust_analyzer, lua_ls,
+          -- …). Go is excluded: go.nvim already runs goimports on BufWritePre
+          -- for *.go, and double-formatting would just be wasted work.
+          local client = vim.lsp.get_client_by_id(ev.data.client_id)
+          if client and client.server_capabilities.documentFormattingProvider
+            and vim.bo[ev.buf].filetype ~= 'go' then
+            vim.api.nvim_clear_autocmds({ group = fmt_group, buffer = ev.buf })
+            vim.api.nvim_create_autocmd('BufWritePre', {
+              group = fmt_group,
+              buffer = ev.buf,
+              callback = function()
+                vim.lsp.buf.format({ bufnr = ev.buf, id = client.id, timeout_ms = 2000 })
+              end,
+            })
+          end
         end,
       })
 

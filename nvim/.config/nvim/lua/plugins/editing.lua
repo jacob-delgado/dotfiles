@@ -1,11 +1,12 @@
 -- Editing essentials. The tpope stack still has no better replacement and runs
--- natively under Neovim, so it carries over unchanged. vim-commentary is gone:
--- gc / gcc commenting is built into Neovim 0.10+.
+-- natively under Neovim, so it carries over unchanged. Two tpope plugins are
+-- dropped because Neovim now ships their core: vim-commentary (gc/gcc, 0.10+)
+-- and vim-unimpaired (]q [q ]b [b ]<Space> ]d bracket maps are defaults, 0.11+;
+-- the ]c/[c hunk maps come from gitsigns).
 return {
   'tpope/vim-surround',          -- cs'" / ys{motion}{char} / ds{char}
   'tpope/vim-repeat',            -- makes surround (and friends) '.'-repeatable
   'tpope/vim-sleuth',            -- auto-detect indent settings per file
-  'tpope/vim-unimpaired',        -- ]q [q ]b [b ]<Space> … bracket-pair maps
   'tpope/vim-eunuch',            -- :Rename :Move :Delete :SudoWrite :Chmod
   'tpope/vim-projectionist',     -- project-aware :A file switching
   { 'tpope/vim-dispatch', cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } },

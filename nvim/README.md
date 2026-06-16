@@ -50,7 +50,7 @@ nvim/.config/nvim/
 ## Plugin map (Vim → Neovim)
 
 Kept as-is — these run natively and have no better replacement:
-`vim-surround`, `vim-repeat`, `vim-sleuth`, `vim-unimpaired`, `vim-eunuch`,
+`vim-surround`, `vim-repeat`, `vim-sleuth`, `vim-eunuch`,
 `vim-projectionist`, `vim-dispatch`, `vim-fugitive`, `splitjoin.vim`,
 `vim-tmux-navigator`, `undotree`, `rust.vim`.
 
@@ -76,6 +76,7 @@ Dropped entirely — the capability is now built in:
 | Dropped | Replaced by (built-in) |
 |---|---|
 | `vim-commentary` | `gc` / `gcc` commenting (Neovim 0.10+) |
+| `vim-unimpaired` | `]q [q`, `]b [b`, `]<Space>`, `]d [d` default maps (0.11+); `]c [c` via gitsigns |
 | `editorconfig-vim` | native `.editorconfig` support (Neovim 0.9+) |
 | `syntax on` + `g:go_highlight_*` | Treesitter highlighting |
 | `nocompatible`, `filetype … on`, `backspace`, `incsearch`, `wildmenu`, `hidden`, `autoindent`, `ttyfast` | Neovim defaults |
@@ -91,6 +92,10 @@ Dropped entirely — the capability is now built in:
   `,ca` code action.
 - **Completion**: `blink.cmp` — `<C-y>` accept, `<C-n>`/`<C-p>` select,
   `<C-space>` toggle docs. Snippets come from `friendly-snippets`.
+- **Format on save**: Go uses go.nvim's `goimports`; every other server that
+  advertises formatting (`rust_analyzer`, `lua_ls`) runs `vim.lsp.buf.format()`
+  on `BufWritePre` (built-in, no plugin). Servers that can't format (`pyright`,
+  `bashls`, `yamlls`) are simply skipped.
 - **Linting**: `nvim-lint` runs the same linters ALE did — `pylint` (Python),
   `shellcheck` (sh), `yamllint` (yaml). The CLI tools must be on `PATH`.
 
