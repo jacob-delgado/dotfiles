@@ -148,6 +148,8 @@ brew "skaffold"
 brew "stern"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
+# Terminal user interface for taskwarrior (pulls in task/Taskwarrior)
+brew "taskwarrior-tui"
 # Very fast implementation of tldr in Rust
 brew "tealdeer"
 # OCR (Optical Character Recognition) engine
