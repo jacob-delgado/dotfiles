@@ -21,6 +21,7 @@ installed via the kitty.sh installer, not Homebrew).
 | `kitty/.config/kitty/kitty.conf` | `~/.config/kitty/kitty.conf` |
 | `kitty/.config/kitty/dracula.conf` | `~/.config/kitty/dracula.conf` |
 | `kitty/.config/kitty/diff.conf` | `~/.config/kitty/diff.conf` |
+| `kitty/.config/kitty/ssh.conf` | `~/.config/kitty/ssh.conf` |
 
 Reload after editing: `kitty @ load-config` (needs `allow_remote_control yes`),
 or `Cmd+Ctrl+,` (macOS) / `Ctrl+Shift+F5` (Linux).
@@ -98,16 +99,18 @@ Keys below are macOS (the daily driver). On Linux `cmd` is inert and kitty's
 repurpose the default `⌘D`/`⌘⇧D` (new window) into iTerm-style directional
 splits:
 
-| Key | Action |
-|---|---|
-| `⌘D` | split right (`launch --location=vsplit`) |
-| `⌘⇧D` | split down (`launch --location=hsplit`) |
-| `⌘⌃H` / `⌘⌃J` / `⌘⌃K` / `⌘⌃L` | move focus left / down / up / right |
-| `⌘R` | resize mode → then arrows or `hjkl`, `Enter`/`Esc` to finish |
+| Key | Action | vim / tmux analog |
+|---|---|---|
+| `⌘D` / `⌘⇧D` | split right / down (`launch --location=vsplit`/`hsplit`) | tmux `prefix |` / `-` |
+| `⌘⌃H` `⌘⌃J` `⌘⌃K` `⌘⌃L` | focus split left / down / up / right | vim `ctrl-w hjkl`, tmux `prefix hjkl` |
+| `⌘⌃⇧H` `⌘⌃⇧J` `⌘⌃⇧K` `⌘⌃⇧L` | move / swap split | vim `ctrl-w HJKL` |
+| `⌘⌃Z` | zoom the active split (toggle stack) | tmux `prefix z` |
+| `⌘R` | resize mode → then arrows or `hjkl`, `Enter`/`Esc` | tmux `prefix HJKL` |
 
-These are safe alongside tmux because `cmd` never reaches the shell. The only
-chord that *would* clash — `ctrl+a` (the tmux prefix) — is deliberately never
-mapped in kitty.
+(In `kitty.conf` the focus/move directions are `left/right/top/bottom` —
+kitty does not accept `up`/`down`.) These are safe alongside tmux because `cmd`
+never reaches the shell. The only chord that *would* clash — `ctrl+a` (the tmux
+prefix) — is deliberately never mapped in kitty.
 
 **Layouts** — `enabled_layouts splits,stack,tall,fat,grid`, cycled with
 `ctrl+shift+l`:
@@ -130,23 +133,26 @@ selected dotfiles over. It only works when your *local* terminal is kitty
 
 ```sh
 kitten ssh user@host          # older form: kitty +kitten ssh user@host
+kssh user@host                # the alias in zsh/.zshrc (kitty-guarded)
 ```
 
-To make plain `ssh` use it automatically — only inside kitty — opt in by adding
-to `zsh/.zshrc` (not enabled by default):
+`kssh` is preferred over aliasing `ssh` itself — it's explicit, and `ssh` keeps
+working normally outside kitty (where `kitten ssh` can't run anyway).
 
-```sh
-[[ -n $KITTY_WINDOW_ID ]] && command -v kitty >/dev/null && alias ssh='kitten ssh'
+Per-host behavior lives in `ssh.conf` (tracked in this package, stowed to
+`~/.config/kitty/ssh.conf`). It is **not** `~/.ssh/config` — OpenSSH still owns
+hostnames, ports and keys; this only controls what `kitten ssh` carries over.
+The shipped starter enables remote shell integration and copies a few
+dependency-free configs (`.vimrc`, `.editorconfig`, `.gitconfig`), with a
+commented per-host block for heavier setups (nvim/zsh/tmux):
+
 ```
-
-Per-host behavior lives in `~/.config/kitty/ssh.conf` (add it as a new file in
-this package if you want it tracked):
-
-```
-# ~/.config/kitty/ssh.conf
 hostname *
-copy .zshrc .vimrc .config/nvim     # pushed to the remote $HOME on connect
-env EDITOR=nvim
+shell_integration enabled
+copy .vimrc
+copy .editorconfig
+copy .gitconfig
+env EDITOR=vim
 ```
 
 Caveat: wait for the shell prompt before typing on a fresh connection — early

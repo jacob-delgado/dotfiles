@@ -204,6 +204,7 @@ fi
 if command -v kitty >/dev/null; then
   alias kt='kitty @ set-tab-title'
   alias kw='kitty @ set-window-title'
+  alias kssh='kitten ssh'   # ssh that ships terminfo/shell-integration + ssh.conf copies
   kgo()   { kitty @ focus-tab --match "title:$1"; }
   ktabs() { kitty @ ls | jq -r '.[].tabs[] | "[\(.id)] \(.title)  (\(.windows | length) win)"'; }
 fi
