@@ -82,6 +82,7 @@ Each is a stow package; see its README for what's non-default.
 | `p10k/` | `~/.p10k.zsh` | [p10k/README.md](p10k/README.md) |
 | `ripgrep/` | `~/.config/ripgrep/` | [ripgrep/README.md](ripgrep/README.md) |
 | `shellcheck/` | `~/.shellcheckrc` | [shellcheck/README.md](shellcheck/README.md) |
+| `task/` | `~/.config/task/` | [task/README.md](task/README.md) |
 | `tig/` | `~/.tigrc` | [tig/README.md](tig/README.md) |
 | `tmux/` | `~/.tmux.conf` | [tmux/README.md](tmux/README.md) |
 | `vim/` | `~/.vimrc`, `~/.vim/` | [vim/README.md](vim/README.md) |

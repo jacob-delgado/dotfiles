@@ -45,6 +45,7 @@ Current packages:
 | `p10k/` | `~/.p10k.zsh` |
 | `ripgrep/` | `~/.config/ripgrep/` |
 | `shellcheck/` | `~/.shellcheckrc` |
+| `task/` | `~/.config/task/` |
 | `tig/` | `~/.tigrc` |
 | `tmux/` | `~/.tmux.conf` |
 | `vim/` | `~/.vimrc`, `~/.vim/` |
