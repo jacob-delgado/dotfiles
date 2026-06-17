@@ -225,6 +225,18 @@ alias gp='git push'
 alias gpf='git push --force-with-lease'
 alias glg='git lg'                                  # pretty-graph log (see .gitconfig)
 
+# Taskwarrior shortcuts. The OMZ `taskwarrior` plugin already gives `t`=task
+# plus completion; these add quick capture/triage. Guarded so they stay inert
+# where task / taskwarrior-tui aren't installed.
+if command -v task >/dev/null 2>&1; then
+  alias ta='task add'
+  alias tl='task list'
+  alias tn='task next'
+  alias td='task done'
+  alias tm='task modify'
+  command -v taskwarrior-tui >/dev/null 2>&1 && alias tt='taskwarrior-tui'
+fi
+
 for zsh_syntax_highlighting in \
   /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
   /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \

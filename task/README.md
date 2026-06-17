@@ -23,6 +23,7 @@ has **no config file of its own** — it reads everything from Taskwarrior's
 |---|---|
 | `task/.config/task/taskrc` | `~/.config/task/taskrc` |
 | `task/.config/task/dracula.theme` | `~/.config/task/dracula.theme` |
+| `task/.config/task/shortcuts/*.sh` | `~/.config/task/shortcuts/*.sh` |
 
 Task data (the TaskChampion SQLite DB) lives at `~/.local/share/task` via
 `data.location` — XDG, matching the rest of the repo. It is **not** tracked
@@ -88,6 +89,29 @@ All under the `uda.taskwarrior-tui.*` namespace in `taskrc`:
 taskwarrior-tui's movement keys are already vim-style out of the box
 (`j`/`k`, `g`/`G`, `/` to filter, `:` for a command), so no key remapping is
 needed. Run it with `taskwarrior-tui`, press `?` for the full key list.
+
+### Number-key shortcuts
+
+Press `1`–`3` in the TUI to run a one-key action on the selected (or
+multi-marked) task(s). Each is a small script in `shortcuts/`, invoked with the
+task UUID(s) as arguments (`rc.confirmation=off` etc. so it's a single keypress):
+
+| Key | Script | Action |
+|---|---|---|
+| `1` | `snooze.sh` | `wait:tomorrow` — hide until tomorrow |
+| `2` | `today.sh` | `due:today` — pull into today |
+| `3` | `bump.sh` | `priority:H +next` — escalate |
+
+Add more by dropping an executable in `shortcuts/` and pointing
+`uda.taskwarrior-tui.shortcuts.N` at it (keys `1`–`9`). `~` is expanded; the
+script must be `chmod +x` with a shebang.
+
+### Shell aliases
+
+Quick-capture aliases live in `zsh/.zshrc` (not this package, since they're
+shell config): `tt`=`taskwarrior-tui`, plus `ta`/`tl`/`tn`/`td`/`tm` for
+`task add`/`list`/`next`/`done`/`modify`. The OMZ `taskwarrior` plugin already
+provides `t`=`task` and completion.
 
 ## Things you might add
 
