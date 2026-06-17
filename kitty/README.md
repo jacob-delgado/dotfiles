@@ -8,6 +8,8 @@ installed via the kitty.sh installer, not Homebrew).
 
 - [Layout](#layout)
 - [Main config](#main-config)
+- [Windows, tabs & layouts](#windows-tabs--layouts)
+- [ssh kitten](#ssh-kitten)
 - [Dracula theme](#dracula-theme)
 - [Diff colors](#diff-colors)
 - [Fresh-machine setup](#fresh-machine-setup)
@@ -65,6 +67,90 @@ grab from nerdfonts.com).
 | `window_padding_width 6` | Subtle gutter between text and window edge |
 | `tab_bar_edge top` | Tabs on top, away from prompt output |
 | `tab_bar_style powerline` + `tab_powerline_style slanted` | Curved powerline separators (uses JetBrainsMono Nerd Font glyphs) |
+
+## Windows, tabs & layouts
+
+kitty has its own multiplexing, independent of tmux. Terminology: an **OS
+window** holds **tabs**; each tab arranges **windows** (splits) using a
+**layout**. Every kitty shortcut uses `cmd` (macOS) or `ctrl+shift`
+(`kitty_mod`, e.g. on Linux) — a different namespace from the tmux `C-a`
+prefix, so the two never collide. Inside a tmux session, `cmd+…` drives kitty
+and `C-a …` drives tmux; they stack happily.
+
+Keys below are macOS (the daily driver). On Linux `cmd` is inert and kitty's
+`ctrl+shift` defaults apply — see the [kitty docs](https://sw.kovidgoyal.net/kitty/overview/).
+
+**Built-in defaults**
+
+| Action | Key |
+|---|---|
+| New tab | `⌘T` |
+| Next / prev tab | `⌘]` / `⌘[` (or `⌃Tab` / `⇧⌃Tab`) |
+| Go to tab 1–10 | `⌘1` … `⌘9`, `⌘0` |
+| Close tab | `ctrl+shift+q` |
+| New OS window | `⌘N` |
+| Next / prev split | `ctrl+shift+]` / `ctrl+shift+[` |
+| Close split | `⌘W` |
+| Next layout | `ctrl+shift+l` |
+| Fullscreen toggle | `⌘↩` |
+
+**Custom maps (this config)** — added to `kitty.conf`, macOS only. They
+repurpose the default `⌘D`/`⌘⇧D` (new window) into iTerm-style directional
+splits:
+
+| Key | Action |
+|---|---|
+| `⌘D` | split right (`launch --location=vsplit`) |
+| `⌘⇧D` | split down (`launch --location=hsplit`) |
+| `⌘⌃H` / `⌘⌃J` / `⌘⌃K` / `⌘⌃L` | move focus left / down / up / right |
+| `⌘R` | resize mode → then arrows or `hjkl`, `Enter`/`Esc` to finish |
+
+These are safe alongside tmux because `cmd` never reaches the shell. The only
+chord that *would* clash — `ctrl+a` (the tmux prefix) — is deliberately never
+mapped in kitty.
+
+**Layouts** — `enabled_layouts splits,stack,tall,fat,grid`, cycled with
+`ctrl+shift+l`:
+
+- **splits** — arbitrary horizontal/vertical splits; the default, and the only
+  layout where the `⌘D`/`⌘⇧D` *direction* applies.
+- **stack** — one split maximized (zoom); flip back with `ctrl+shift+l`.
+- **tall / fat / grid** — auto-tiled arrangements for quick even layouts.
+
+In non-`splits` layouts, `--location` is ignored and a new window is just
+auto-placed by that layout.
+
+## ssh kitten
+
+`kitten ssh` is kitty's smarter `ssh`: it ships kitty's terminfo and shell
+integration to the remote, so colors, prompt marking, and the clipboard work
+there **even when kitty isn't installed on the remote** — and it can copy
+selected dotfiles over. It only works when your *local* terminal is kitty
+(`allow_remote_control yes` is already set above).
+
+```sh
+kitten ssh user@host          # older form: kitty +kitten ssh user@host
+```
+
+To make plain `ssh` use it automatically — only inside kitty — opt in by adding
+to `zsh/.zshrc` (not enabled by default):
+
+```sh
+[[ -n $KITTY_WINDOW_ID ]] && command -v kitty >/dev/null && alias ssh='kitten ssh'
+```
+
+Per-host behavior lives in `~/.config/kitty/ssh.conf` (add it as a new file in
+this package if you want it tracked):
+
+```
+# ~/.config/kitty/ssh.conf
+hostname *
+copy .zshrc .vimrc .config/nvim     # pushed to the remote $HOME on connect
+env EDITOR=nvim
+```
+
+Caveat: wait for the shell prompt before typing on a fresh connection — early
+keystrokes during the bootstrap handshake can be dropped.
 
 ## Dracula theme
 
