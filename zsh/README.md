@@ -27,8 +27,15 @@ the top of `.zshrc` and must stay there. Configured prompt lives in
 ```
 aliases colored-man-pages command-not-found cp dirhistory direnv docker
 extract fzf gitfast golang helm kind kube-ps1 kubectl skaffold sudo
-taskwarrior tig tmux
+tig tmux
 ```
+
+> The OMZ `taskwarrior` plugin was deliberately **not** included: its stale
+> 2022 `_task` completion errors on current zsh
+> (`_task_attributes:zregexparse: invalid regex`). Taskwarrior is used only via
+> its TUI (`tt`=`taskwarrior-tui`) — there are no `task`/`t` CLI aliases, and
+> the bare `task` command is go-task, whose completion `.zshrc` loads instead.
+> See [`task/README.md`](../task/README.md).
 
 Highlights of non-obvious ones:
 

@@ -70,7 +70,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aliases colored-man-pages command-not-found cp dirhistory direnv docker extract fzf gitfast golang helm kind kube-ps1 kubectl skaffold sudo taskwarrior tig tmux)
+plugins=(aliases colored-man-pages command-not-found cp dirhistory direnv docker extract fzf gitfast golang helm kind kube-ps1 kubectl skaffold sudo tig tmux)
 [[ -d "${ZSH_CUSTOM:-$ZSH/custom}/plugins/you-should-use" ]]      && plugins+=(you-should-use)
 [[ -d "${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-autosuggestions" ]] && plugins+=(zsh-autosuggestions)
 # fzf-tab must come after every plugin that registers completions.
@@ -226,16 +226,24 @@ alias gp='git push'
 alias gpf='git push --force-with-lease'
 alias glg='git lg'                                  # pretty-graph log (see .gitconfig)
 
-# Taskwarrior shortcuts. The OMZ `taskwarrior` plugin already gives `t`=task
-# plus completion; these add quick capture/triage. Guarded so they stay inert
-# where task / taskwarrior-tui aren't installed.
-if command -v task >/dev/null 2>&1; then
-  alias ta='task add'
-  alias tl='task list'
-  alias tn='task next'
-  alias td='task done'
-  alias tm='task modify'
-  command -v taskwarrior-tui >/dev/null 2>&1 && alias tt='taskwarrior-tui'
+# Taskwarrior is used here *only* through its TUI; `tt` launches it. There are
+# deliberately no `task`/`t` CLI aliases — on this machine the bare `task`
+# command is go-task (the Taskfile runner at $GOBIN/task), not Taskwarrior.
+command -v taskwarrior-tui >/dev/null 2>&1 && alias tt='taskwarrior-tui'
+
+# Complete `task` as go-task. Taskwarrior also ships a `_task` (linked in
+# Homebrew's site-functions) that auto-binds to `task`; load go-task's own
+# completion afterwards so it wins — otherwise `task <TAB>` fires Taskwarrior's
+# helpers (`task _zshids`, …) against go-task and errors. Cached so we don't
+# fork the large go-task binary every shell; regenerated when it's updated.
+if [[ -x "${GOBIN:-$HOME/go/bin}/task" ]]; then
+  _gotask_comp="${XDG_CACHE_HOME:-$HOME/.cache}/gotask-completion.zsh"
+  if [[ ! -s "$_gotask_comp" || "${GOBIN:-$HOME/go/bin}/task" -nt "$_gotask_comp" ]]; then
+    mkdir -p "${_gotask_comp:h}"
+    "${GOBIN:-$HOME/go/bin}/task" --completion zsh >| "$_gotask_comp" 2>/dev/null
+  fi
+  [[ -s "$_gotask_comp" ]] && source "$_gotask_comp"
+  unset _gotask_comp
 fi
 
 for zsh_syntax_highlighting in \

@@ -106,12 +106,33 @@ Add more by dropping an executable in `shortcuts/` and pointing
 `uda.taskwarrior-tui.shortcuts.N` at it (keys `1`–`9`). `~` is expanded; the
 script must be `chmod +x` with a shebang.
 
-### Shell aliases
+### Shell access — TUI only, no CLI aliases
 
-Quick-capture aliases live in `zsh/.zshrc` (not this package, since they're
-shell config): `tt`=`taskwarrior-tui`, plus `ta`/`tl`/`tn`/`td`/`tm` for
-`task add`/`list`/`next`/`done`/`modify`. The OMZ `taskwarrior` plugin already
-provides `t`=`task` and completion.
+Taskwarrior is driven here **only** through its TUI. `zsh/.zshrc` defines a
+single alias, `tt`=`taskwarrior-tui`; there are intentionally **no**
+Taskwarrior `t`/`ta`/`tl`/… CLI aliases.
+
+The reason is a name clash: `task` is an overloaded command on this machine —
+it's both Taskwarrior and [go-task](https://taskfile.dev) (the `Taskfile.yml`
+runner, installed at `$GOBIN/task`). The bare `task` command is reserved for
+**go-task**, so `zsh/.zshrc` also loads go-task's own completion for `task`
+(cached at `$XDG_CACHE_HOME/gotask-completion.zsh`). That deliberately
+overrides Taskwarrior's `_task` (linked in Homebrew's `site-functions`, which
+auto-binds to `task`) — otherwise `task <TAB>` would fire Taskwarrior's helpers
+(`task _zshids`, …) against go-task and error.
+
+The OMZ `taskwarrior` plugin is also dropped from the plugin list: its stale
+2022 `_task` errors on current zsh (`_task_attributes:zregexparse: invalid
+regex : local`, from an uninitialized `word` array), and we don't want
+Taskwarrior CLI completion bound to `task` anyway.
+
+> **Note:** taskwarrior-tui shells out to the `task` binary and has no flag to
+> point at a specific one, so it relies on `task` resolving to Taskwarrior in
+> `$PATH` when launched. By default Taskwarrior wins (`$(brew --prefix)/bin`
+> precedes `$GOBIN`); go-task only wins inside Taskfile projects that prepend
+> `$GOBIN` (e.g. via direnv). Launch `tt` from such a directory and it would
+> talk to go-task instead — start it from elsewhere, or front `tt` with a
+> Taskwarrior-first `$PATH` if that ever bites.
 
 ## Things you might add
 
