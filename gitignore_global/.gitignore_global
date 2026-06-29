@@ -60,3 +60,5 @@ TAGS
 *.bak
 *.orig
 *.rej
+
+**/.claude/settings.local.json
