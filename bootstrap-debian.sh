@@ -126,4 +126,3 @@ echo
 echo "Next steps (run from a fresh zsh):"
 echo "  atuin import auto         # backfill existing shell history into atuin"
 echo "  tldr --update             # populate the tealdeer cheat-sheet cache"
-echo "  stow i3 Xresources        # only if you run i3 on this machine"

@@ -37,7 +37,6 @@ Current packages:
 | `git/` | `~/.gitconfig` |
 | `gitignore_global/` | `~/.gitignore_global` |
 | `hadolint/` | `~/.config/hadolint/` |
-| `i3/` | `~/.config/i3/`, `~/.config/i3status/` |
 | `kitty/` | `~/.config/kitty/` |
 | `lazygit/` | `~/.config/lazygit/` |
 | `lefthook/` | (not stowed; template only) |
@@ -49,7 +48,6 @@ Current packages:
 | `tig/` | `~/.tigrc` |
 | `tmux/` | `~/.tmux.conf` |
 | `vim/` | `~/.vimrc`, `~/.vim/` |
-| `Xresources/` | `~/.Xresources` |
 | `yamllint/` | `~/.config/yamllint/` |
 | `zsh/` | `~/.zshrc` |
 

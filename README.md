@@ -1,5 +1,7 @@
 # dotfiles
 
+[![View on GitHub](https://img.shields.io/badge/GitHub-jacob--delgado%2Fdotfiles-181717?logo=github)](https://github.com/jacob-delgado/dotfiles)
+
 Personal dotfiles, managed with [stow](https://www.gnu.org/software/stow/).
 Each top-level directory is a stow package mirroring the layout it should have
 under `$HOME` (e.g. `stow zsh` symlinks `zsh/.zshrc` to `~/.zshrc`).
@@ -48,12 +50,6 @@ off and prune as you go.
   generated `nvim/.config/nvim/lazy-lock.json` to pin plugin versions. See
   [nvim/README.md](nvim/README.md).
 - [ ] **lazygit** — restart `lazygit` and eyeball the official theme.
-- [ ] **i3** *(Linux only)* — validate, then reload:
-  ```sh
-  i3 -C -c ~/.config/i3/config        # config not validated on macOS
-  i3-msg reload && i3-msg restart      # or Mod+Shift+R
-  ```
-  Ensure `stow i3` is active on that host.
 - **ripgrep / gh** — no action needed; apply on next invocation.
 
 > On a **fresh machine**, also recreate `~/.gitconfig.local` (untracked)
@@ -75,7 +71,6 @@ Each is a stow package; see its README for what's non-default.
 | `git/` | `~/.gitconfig` | [git/README.md](git/README.md) |
 | `gitignore_global/` | `~/.gitignore_global` | [gitignore_global/README.md](gitignore_global/README.md) |
 | `hadolint/` | `~/.config/hadolint/` | [hadolint/README.md](hadolint/README.md) |
-| `i3/` | `~/.config/i3/`, `~/.config/i3status/` | [i3/README.md](i3/README.md) |
 | `lazygit/` | `~/.config/lazygit/` | [lazygit/README.md](lazygit/README.md) |
 | `lefthook/` | (template, not stowed) | [lefthook/README.md](lefthook/README.md) |
 | `nvim/` | `~/.config/nvim/` | [nvim/README.md](nvim/README.md) |
@@ -86,7 +81,6 @@ Each is a stow package; see its README for what's non-default.
 | `tig/` | `~/.tigrc` | [tig/README.md](tig/README.md) |
 | `tmux/` | `~/.tmux.conf` | [tmux/README.md](tmux/README.md) |
 | `vim/` | `~/.vimrc`, `~/.vim/` | [vim/README.md](vim/README.md) |
-| `Xresources/` | `~/.Xresources` | [Xresources/README.md](Xresources/README.md) |
 | `yamllint/` | `~/.config/yamllint/` | [yamllint/README.md](yamllint/README.md) |
 | `zsh/` | `~/.zshrc` | [zsh/README.md](zsh/README.md) |
 
@@ -301,8 +295,7 @@ cd ~/dotfiles
 ./bootstrap-debian.sh          # apt + Linuxbrew + OMZ + plugins + stow
 ```
 
-Idempotent — safe to re-run. Skips i3/Xresources by default; stow them
-manually if you want them.
+Idempotent — safe to re-run.
 
 ### macOS / manual
 
