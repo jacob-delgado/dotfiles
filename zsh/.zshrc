@@ -237,6 +237,8 @@ command -v taskwarrior-tui >/dev/null 2>&1 && alias tt='taskwarrior-tui'
 # taskwarrior-tui (a separate process that does its own $PATH lookup for `task`)
 # still finds Taskwarrior and keeps working. go-task itself walks up parent dirs
 # to the nearest Taskfile, so `task <target>` works anywhere in a project tree.
+# (`mise activate`, below, also pins go-task per-project via a repo's mise.toml,
+# but this alias is expanded before any PATH/mise lookup so it wins everywhere.)
 #
 # Completion: Taskwarrior also ships a `_task` (linked in Homebrew's
 # site-functions) that auto-binds to `task`; load go-task's own completion
