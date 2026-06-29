@@ -227,16 +227,24 @@ alias gpf='git push --force-with-lease'
 alias glg='git lg'                                  # pretty-graph log (see .gitconfig)
 
 # Taskwarrior is used here *only* through its TUI; `tt` launches it. There are
-# deliberately no `task`/`t` CLI aliases — on this machine the bare `task`
-# command is go-task (the Taskfile runner at $GOBIN/task), not Taskwarrior.
+# deliberately no Taskwarrior `t`/`ta`/… CLI aliases — on this machine the bare
+# `task` command is reserved for go-task (the Taskfile runner at $GOBIN/task).
 command -v taskwarrior-tui >/dev/null 2>&1 && alias tt='taskwarrior-tui'
 
-# Complete `task` as go-task. Taskwarrior also ships a `_task` (linked in
-# Homebrew's site-functions) that auto-binds to `task`; load go-task's own
-# completion afterwards so it wins — otherwise `task <TAB>` fires Taskwarrior's
-# helpers (`task _zshids`, …) against go-task and errors. Cached so we don't
-# fork the large go-task binary every shell; regenerated when it's updated.
+# Bind `task` to go-task explicitly. Without this, $(brew --prefix)/bin precedes
+# $GOBIN in $PATH so the bare `task` resolves to Taskwarrior unless a project
+# prepends $GOBIN — fragile. The alias only affects this interactive shell, so
+# taskwarrior-tui (a separate process that does its own $PATH lookup for `task`)
+# still finds Taskwarrior and keeps working. go-task itself walks up parent dirs
+# to the nearest Taskfile, so `task <target>` works anywhere in a project tree.
+#
+# Completion: Taskwarrior also ships a `_task` (linked in Homebrew's
+# site-functions) that auto-binds to `task`; load go-task's own completion
+# afterwards so it wins — otherwise `task <TAB>` fires Taskwarrior's helpers
+# (`task _zshids`, …) against go-task and errors. Cached so we don't fork the
+# large go-task binary every shell; regenerated when it's updated.
 if [[ -x "${GOBIN:-$HOME/go/bin}/task" ]]; then
+  alias task="${GOBIN:-$HOME/go/bin}/task"
   _gotask_comp="${XDG_CACHE_HOME:-$HOME/.cache}/gotask-completion.zsh"
   if [[ ! -s "$_gotask_comp" || "${GOBIN:-$HOME/go/bin}/task" -nt "$_gotask_comp" ]]; then
     mkdir -p "${_gotask_comp:h}"
@@ -245,6 +253,11 @@ if [[ -x "${GOBIN:-$HOME/go/bin}/task" ]]; then
   [[ -s "$_gotask_comp" ]] && source "$_gotask_comp"
   unset _gotask_comp
 fi
+
+# mise: per-directory tool versions (https://mise.jdx.dev). Activating it makes
+# project-pinned tools win on PATH — e.g. inside a repo whose mise.toml pins
+# go-task, the bare `task` command resolves to go-task instead of Taskwarrior.
+command -v mise >/dev/null 2>&1 && eval "$(mise activate zsh)"
 
 for zsh_syntax_highlighting in \
   /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \

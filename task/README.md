@@ -106,19 +106,33 @@ Add more by dropping an executable in `shortcuts/` and pointing
 `uda.taskwarrior-tui.shortcuts.N` at it (keys `1`–`9`). `~` is expanded; the
 script must be `chmod +x` with a shebang.
 
-### Shell access — TUI only, no CLI aliases
+### Shell access — TUI only, no Taskwarrior CLI aliases
 
 Taskwarrior is driven here **only** through its TUI. `zsh/.zshrc` defines a
-single alias, `tt`=`taskwarrior-tui`; there are intentionally **no**
-Taskwarrior `t`/`ta`/`tl`/… CLI aliases.
+single Taskwarrior alias, `tt`=`taskwarrior-tui`; there are intentionally **no**
+Taskwarrior `t`/`ta`/`tl`/… CLI aliases. (The `task` alias below is go-task,
+not Taskwarrior.)
 
 The reason is a name clash: `task` is an overloaded command on this machine —
 it's both Taskwarrior and [go-task](https://taskfile.dev) (the `Taskfile.yml`
-runner, installed at `$GOBIN/task`). The bare `task` command is reserved for
-**go-task**, so `zsh/.zshrc` also loads go-task's own completion for `task`
-(cached at `$XDG_CACHE_HOME/gotask-completion.zsh`). That deliberately
-overrides Taskwarrior's `_task` (linked in Homebrew's `site-functions`, which
-auto-binds to `task`) — otherwise `task <TAB>` would fire Taskwarrior's helpers
+runner, installed at `$GOBIN/task`). The bare `task` command is bound to
+**go-task** with an explicit alias in `zsh/.zshrc`:
+
+```sh
+alias task="${GOBIN:-$HOME/go/bin}/task"
+```
+
+Without it, `$(brew --prefix)/bin` precedes `$GOBIN` in `$PATH`, so `task` would
+resolve to Taskwarrior unless a project prepends `$GOBIN` (e.g. via direnv) —
+fragile and directory-dependent. The alias makes it deterministic. There's no
+per-directory dispatch to set up: go-task itself walks up parent directories to
+the nearest `Taskfile.{yml,yaml}`, so `task <target>` works anywhere inside a
+project tree (and `task -g` runs `$HOME/{T,t}askfile.{yml,yaml}`).
+
+`zsh/.zshrc` also loads go-task's own completion for `task` (cached at
+`$XDG_CACHE_HOME/gotask-completion.zsh`). That deliberately overrides
+Taskwarrior's `_task` (linked in Homebrew's `site-functions`, which auto-binds
+to `task`) — otherwise `task <TAB>` would fire Taskwarrior's helpers
 (`task _zshids`, …) against go-task and error.
 
 The OMZ `taskwarrior` plugin is also dropped from the plugin list: its stale
@@ -126,13 +140,13 @@ The OMZ `taskwarrior` plugin is also dropped from the plugin list: its stale
 regex : local`, from an uninitialized `word` array), and we don't want
 Taskwarrior CLI completion bound to `task` anyway.
 
-> **Note:** taskwarrior-tui shells out to the `task` binary and has no flag to
-> point at a specific one, so it relies on `task` resolving to Taskwarrior in
-> `$PATH` when launched. By default Taskwarrior wins (`$(brew --prefix)/bin`
-> precedes `$GOBIN`); go-task only wins inside Taskfile projects that prepend
-> `$GOBIN` (e.g. via direnv). Launch `tt` from such a directory and it would
-> talk to go-task instead — start it from elsewhere, or front `tt` with a
-> Taskwarrior-first `$PATH` if that ever bites.
+> **Note:** the alias only affects this interactive shell. taskwarrior-tui is a
+> separate process that does its own `$PATH` lookup for `task` (it has no flag
+> to point at a specific binary), so it never sees the alias and keeps talking
+> to Taskwarrior — which wins in `$PATH` by default. The one caveat: launch `tt`
+> from a directory that prepends `$GOBIN` (e.g. a direnv'd Taskfile project) and
+> the TUI would shell out to go-task instead. Start it from elsewhere, or front
+> `tt` with a Taskwarrior-first `$PATH` if that ever bites.
 
 ## Things you might add
 
