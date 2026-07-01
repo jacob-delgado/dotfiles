@@ -32,24 +32,32 @@ off and prune as you go.
   colors, the git shell aliases (`gst`/`gco`/…), the eza `ls` function +
   `ltrh`, the `~/.local/bin` PATH, and the p10k rainbow+Dracula prompt
   (best viewed in a kitty terminal).
+
 - [ ] **vim** — install the plugin set (`~/.vim/plugged` may be empty):
+
   ```sh
   vim +"PlugInstall --sync" +qall
   ```
+
   Covers `vim-snippets`, `vim-unimpaired`, `vim-eunuch`; molokai was
   dropped, so nothing to clean. Open a `.go` file to confirm dracula.
+
 - [ ] **nvim** *(new package — vim stays the default `$EDITOR`)* — stow,
   then install plugins headlessly:
+
   ```sh
   stow nvim
   nvim --headless "+Lazy! sync" +qa
   ```
+
   Treesitter compiles parsers on first run (needs a C compiler). For the
   optional Go tools, open a `.go` file and run `:GoInstallBinaries` (go.nvim is
   filetype-loaded, so it isn't available on an empty buffer). Commit the
   generated `nvim/.config/nvim/lazy-lock.json` to pin plugin versions. See
   [nvim/README.md](nvim/README.md).
+
 - [ ] **lazygit** — restart `lazygit` and eyeball the official theme.
+
 - **ripgrep / gh** — no action needed; apply on next invocation.
 
 > On a **fresh machine**, also recreate `~/.gitconfig.local` (untracked)
@@ -59,35 +67,35 @@ off and prune as you go.
 
 Each is a stow package; see its README for what's non-default.
 
-| Package | Stows to | README |
-|---|---|---|
-| `atuin/` | `~/.config/atuin/config.toml` | [atuin/README.md](atuin/README.md) |
-| `bat/` | `~/.config/bat/` | [bat/README.md](bat/README.md) |
-| `btop/` | `~/.config/btop/` | [btop/README.md](btop/README.md) |
-| `direnv/` | `~/.config/direnv/` | [direnv/README.md](direnv/README.md) |
-| `editorconfig/` | `~/.editorconfig` | [editorconfig/README.md](editorconfig/README.md) |
-| `fzf/` | `~/.fzf.zsh` | [fzf/README.md](fzf/README.md) |
-| `gh/` | `~/.config/gh/config.yml` | [gh/README.md](gh/README.md) |
-| `git/` | `~/.gitconfig` | [git/README.md](git/README.md) |
-| `gitignore_global/` | `~/.gitignore_global` | [gitignore_global/README.md](gitignore_global/README.md) |
-| `hadolint/` | `~/.config/hadolint/` | [hadolint/README.md](hadolint/README.md) |
-| `lazygit/` | `~/.config/lazygit/` | [lazygit/README.md](lazygit/README.md) |
-| `lefthook/` | (template, not stowed) | [lefthook/README.md](lefthook/README.md) |
-| `mise/` | `~/.config/mise/config.toml` | [mise/README.md](mise/README.md) |
-| `nvim/` | `~/.config/nvim/` | [nvim/README.md](nvim/README.md) |
-| `p10k/` | `~/.p10k.zsh` | [p10k/README.md](p10k/README.md) |
-| `ripgrep/` | `~/.config/ripgrep/` | [ripgrep/README.md](ripgrep/README.md) |
-| `shellcheck/` | `~/.shellcheckrc` | [shellcheck/README.md](shellcheck/README.md) |
-| `task/` | `~/.config/task/` | [task/README.md](task/README.md) |
-| `tig/` | `~/.tigrc` | [tig/README.md](tig/README.md) |
-| `tmux/` | `~/.tmux.conf` | [tmux/README.md](tmux/README.md) |
-| `vim/` | `~/.vimrc`, `~/.vim/` | [vim/README.md](vim/README.md) |
-| `yamllint/` | `~/.config/yamllint/` | [yamllint/README.md](yamllint/README.md) |
-| `zsh/` | `~/.zshrc` | [zsh/README.md](zsh/README.md) |
+| Package             | Stows to                      | README                                                   |
+| ------------------- | ----------------------------- | -------------------------------------------------------- |
+| `atuin/`            | `~/.config/atuin/config.toml` | [atuin/README.md](atuin/README.md)                       |
+| `bat/`              | `~/.config/bat/`              | [bat/README.md](bat/README.md)                           |
+| `btop/`             | `~/.config/btop/`             | [btop/README.md](btop/README.md)                         |
+| `direnv/`           | `~/.config/direnv/`           | [direnv/README.md](direnv/README.md)                     |
+| `editorconfig/`     | `~/.editorconfig`             | [editorconfig/README.md](editorconfig/README.md)         |
+| `fzf/`              | `~/.fzf.zsh`                  | [fzf/README.md](fzf/README.md)                           |
+| `gh/`               | `~/.config/gh/config.yml`     | [gh/README.md](gh/README.md)                             |
+| `git/`              | `~/.gitconfig`                | [git/README.md](git/README.md)                           |
+| `gitignore_global/` | `~/.gitignore_global`         | [gitignore_global/README.md](gitignore_global/README.md) |
+| `hadolint/`         | `~/.config/hadolint/`         | [hadolint/README.md](hadolint/README.md)                 |
+| `lazygit/`          | `~/.config/lazygit/`          | [lazygit/README.md](lazygit/README.md)                   |
+| `lefthook/`         | (template, not stowed)        | [lefthook/README.md](lefthook/README.md)                 |
+| `mise/`             | `~/.config/mise/config.toml`  | [mise/README.md](mise/README.md)                         |
+| `nvim/`             | `~/.config/nvim/`             | [nvim/README.md](nvim/README.md)                         |
+| `p10k/`             | `~/.p10k.zsh`                 | [p10k/README.md](p10k/README.md)                         |
+| `ripgrep/`          | `~/.config/ripgrep/`          | [ripgrep/README.md](ripgrep/README.md)                   |
+| `shellcheck/`       | `~/.shellcheckrc`             | [shellcheck/README.md](shellcheck/README.md)             |
+| `task/`             | `~/.config/task/`             | [task/README.md](task/README.md)                         |
+| `tig/`              | `~/.tigrc`                    | [tig/README.md](tig/README.md)                           |
+| `tmux/`             | `~/.tmux.conf`                | [tmux/README.md](tmux/README.md)                         |
+| `vim/`              | `~/.vimrc`, `~/.vim/`         | [vim/README.md](vim/README.md)                           |
+| `yamllint/`         | `~/.config/yamllint/`         | [yamllint/README.md](yamllint/README.md)                 |
+| `zsh/`              | `~/.zshrc`                    | [zsh/README.md](zsh/README.md)                           |
 
 Conventions for the whole repo: [CLAUDE.md](CLAUDE.md).
 
----
+______________________________________________________________________
 
 ## Modern CLI tools
 
@@ -284,7 +292,7 @@ tldr git rebase
 
 **Config:** none.
 
----
+______________________________________________________________________
 
 ## Installing on a new machine
 

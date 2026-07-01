@@ -15,8 +15,8 @@ by default.
 
 ## Layout
 
-| File | Stows to |
-|---|---|
+| File                             | Stows to                   |
+| -------------------------------- | -------------------------- |
 | `ripgrep/.config/ripgrep/config` | `~/.config/ripgrep/config` |
 
 ## Required env var
@@ -31,7 +31,7 @@ Without that variable, `rg` ignores the config file completely.
 
 ## Settings
 
-```
+```text
 --smart-case               # case-insensitive unless the query has uppercase
 --hidden                   # search dotfiles (still respects .gitignore)
 --max-columns=200          # cap matched-line width
@@ -40,7 +40,7 @@ Without that variable, `rg` ignores the config file completely.
 
 Glob excludes (additional to whatever `.gitignore` says):
 
-```
+```text
 --glob=!.git/*
 --glob=!node_modules/*
 --glob=!.venv/*
@@ -56,7 +56,7 @@ Glob excludes (additional to whatever `.gitignore` says):
 
 Custom filetype aliases — `rg --type <alias> "pattern"`:
 
-```
+```text
 --type-add=tf:*.{tf,tfvars}
 --type-add=k8s:*.{yaml,yml}
 --type-add=helm:*.{yaml,yml,tpl}
@@ -73,7 +73,7 @@ Anything you override on the CLI wins over the config file.
 The official [Dracula](https://draculatheme.com/ripgrep) palette, so `rg`
 output matches fzf/kitty/etc:
 
-```
+```text
 --colors=path:fg:0xbd,0x93,0xf9     # purple paths
 --colors=line:fg:0x50,0xfa,0x7b     # green line numbers
 --colors=column:fg:0x50,0xfa,0x7b   # green column numbers

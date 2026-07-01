@@ -12,8 +12,8 @@ Stow package for `~/.gitignore_global`. Wired into git via
 
 ## Layout
 
-| File | Stows to |
-|---|---|
+| File                                 | Stows to              |
+| ------------------------------------ | --------------------- |
 | `gitignore_global/.gitignore_global` | `~/.gitignore_global` |
 
 ## What's in it

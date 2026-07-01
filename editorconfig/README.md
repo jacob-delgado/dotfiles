@@ -13,13 +13,13 @@ support it natively.
 
 ## Layout
 
-| File | Stows to |
-|---|---|
+| File                         | Stows to          |
+| ---------------------------- | ----------------- |
 | `editorconfig/.editorconfig` | `~/.editorconfig` |
 
 ## Defaults
 
-```
+```ini
 [*]
 charset                  = utf-8
 end_of_line              = lf
@@ -32,13 +32,13 @@ max_line_length          = 100
 
 Per-language overrides:
 
-| Pattern | Indent | Notes |
-|---|---|---|
-| `*.go` | tab | Go convention |
-| `Makefile`, `*.mk` | tab | Make requires tabs |
-| `*.py` | 4 spaces | PEP 8 |
-| `*.{rs,c,cpp,h,hpp,java,kt,scala}` | 4 spaces | |
-| `*.md` | — | `trim_trailing_whitespace = false`, no `max_line_length` |
+| Pattern                            | Indent   | Notes                                                    |
+| ---------------------------------- | -------- | -------------------------------------------------------- |
+| `*.go`                             | tab      | Go convention                                            |
+| `Makefile`, `*.mk`                 | tab      | Make requires tabs                                       |
+| `*.py`                             | 4 spaces | PEP 8                                                    |
+| `*.{rs,c,cpp,h,hpp,java,kt,scala}` | 4 spaces |                                                          |
+| `*.md`                             | —        | `trim_trailing_whitespace = false`, no `max_line_length` |
 
 ## Per-project overrides
 

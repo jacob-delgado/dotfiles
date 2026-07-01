@@ -24,7 +24,7 @@ the top of `.zshrc` and must stay there. Configured prompt lives in
 
 ## Plugins
 
-```
+```text
 aliases colored-man-pages command-not-found cp dirhistory direnv docker
 extract fzf gitfast golang helm kind kube-ps1 kubectl skaffold sudo
 tig tmux
@@ -39,25 +39,25 @@ tig tmux
 
 Highlights of non-obvious ones:
 
-| Plugin | Why |
-|---|---|
-| `gitfast` | Replaces `git`'s built-in completion with the official upstream Git completion — faster on big repos. |
-| `command-not-found` | Suggests how to install missing commands (`apt install foo` / `brew install foo`). |
-| `extract` | `x file.{zip,tar.gz,7z,...}` — one command for any archive. |
-| `sudo` | `Esc Esc` prepends `sudo` to the current line (or recalls the previous one with sudo). |
-| `dirhistory` | `Alt+←/→` walks back/forward through cd history. Pairs with `AUTO_PUSHD`. |
-| `golang` | Adds Go aliases (`g`, `gob`, `goc`, `gor`, …) and completion. |
-| `kube-ps1` | Current k8s context/namespace in the prompt. |
+| Plugin              | Why                                                                                                   |
+| ------------------- | ----------------------------------------------------------------------------------------------------- |
+| `gitfast`           | Replaces `git`'s built-in completion with the official upstream Git completion — faster on big repos. |
+| `command-not-found` | Suggests how to install missing commands (`apt install foo` / `brew install foo`).                    |
+| `extract`           | `x file.{zip,tar.gz,7z,...}` — one command for any archive.                                           |
+| `sudo`              | `Esc Esc` prepends `sudo` to the current line (or recalls the previous one with sudo).                |
+| `dirhistory`        | `Alt+←/→` walks back/forward through cd history. Pairs with `AUTO_PUSHD`.                             |
+| `golang`            | Adds Go aliases (`g`, `gob`, `goc`, `gor`, …) and completion.                                         |
+| `kube-ps1`          | Current k8s context/namespace in the prompt.                                                          |
 
 ### Custom plugins (conditionally loaded)
 
 Loaded only if the directory exists under `${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/`.
 
-| Plugin | Effect |
-|---|---|
-| `you-should-use` | Nags when you type the long form of an alias. |
-| `zsh-autosuggestions` | Greyed-out command completion from history; right-arrow to accept. |
-| `fzf-tab` | Replaces zsh's default completion menu with an fzf picker. **Must load last** (after every plugin that registers completions). |
+| Plugin                | Effect                                                                                                                         |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `you-should-use`      | Nags when you type the long form of an alias.                                                                                  |
+| `zsh-autosuggestions` | Greyed-out command completion from history; right-arrow to accept.                                                             |
+| `fzf-tab`             | Replaces zsh's default completion menu with an fzf picker. **Must load last** (after every plugin that registers completions). |
 
 Install on a fresh machine:
 
@@ -125,7 +125,7 @@ fi
 
 ## History
 
-```
+```ini
 HISTFILE  = ~/.zsh_history
 HISTSIZE  = 500000      # in-memory
 SAVEHIST  = 500000      # on disk
@@ -147,7 +147,7 @@ top of this history.
 
 ## Shell behavior
 
-```
+```text
 EXTENDED_GLOB        # ^pat (negate), ~pat (exclude), **/* (recursive)
 NO_BEEP              # silence the bell
 INTERACTIVE_COMMENTS # # comments allowed in interactive lines
@@ -161,7 +161,7 @@ ALWAYS_TO_END        # cursor goes to end after completion
 
 ## Environment
 
-```
+```ini
 EDITOR              = vim
 LANG                = en_US.UTF-8
 LESS                = -RFX                                  # raw colors, quit-if-one-screen, no alt-screen
@@ -175,19 +175,19 @@ Try `man ssh` after a fresh shell — colorized.
 
 ## Tool integrations
 
-| Tool | Wiring |
-|---|---|
-| zoxide | `eval "$(zoxide init zsh)"` (guarded on `command -v`) |
-| atuin | `eval "$(atuin init zsh)"` (guarded; replaces `Ctrl+R`) |
-| eza | when installed: `ls` is a function (falls back to real `ls` for short flag bundles with `t`, e.g. `ls -ltrh`), plus `ll`/`la`/`lt`/`ltrh` aliases |
-| git | curated shell shortcuts: `gst ga gaa gc gca gco gcb gd gds gp gpf glg` (names match the OMZ `git` plugin, which isn't enabled — `gitfast` gives completion only) |
-| kitty | `kt`/`kw` rename + `kgo <title>` jump-by-name + `ktabs` listing (uses `jq`) when installed |
-| fzf | OMZ `fzf` plugin auto-sources `~/.fzf.zsh` (see `fzf/`) |
-| zsh-syntax-highlighting | sourced at the end; tries Linux, Apple Silicon brew, Intel brew paths in order |
+| Tool                    | Wiring                                                                                                                                                           |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| zoxide                  | `eval "$(zoxide init zsh)"` (guarded on `command -v`)                                                                                                            |
+| atuin                   | `eval "$(atuin init zsh)"` (guarded; replaces `Ctrl+R`)                                                                                                          |
+| eza                     | when installed: `ls` is a function (falls back to real `ls` for short flag bundles with `t`, e.g. `ls -ltrh`), plus `ll`/`la`/`lt`/`ltrh` aliases                |
+| git                     | curated shell shortcuts: `gst ga gaa gc gca gco gcb gd gds gp gpf glg` (names match the OMZ `git` plugin, which isn't enabled — `gitfast` gives completion only) |
+| kitty                   | `kt`/`kw` rename + `kgo <title>` jump-by-name + `ktabs` listing (uses `jq`) when installed                                                                       |
+| fzf                     | OMZ `fzf` plugin auto-sources `~/.fzf.zsh` (see `fzf/`)                                                                                                          |
+| zsh-syntax-highlighting | sourced at the end; tries Linux, Apple Silicon brew, Intel brew paths in order                                                                                   |
 
 ## OMZ behavior
 
-```
+```text
 zstyle ':omz:update' mode reminder   # prompt when updates are available
 zstyle ':omz:update' frequency 14    # check every 2 weeks
 DISABLE_UNTRACKED_FILES_DIRTY=true   # faster git status in big repos

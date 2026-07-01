@@ -14,10 +14,10 @@ OAuth tokens.
 
 ## Layout
 
-| File | Stows to | Tracked? |
-|---|---|---|
-| `gh/.config/gh/config.yml` | `~/.config/gh/config.yml` | yes |
-| (`~/.config/gh/hosts.yml`) | — | no (gitignored) |
+| File                       | Stows to                  | Tracked?        |
+| -------------------------- | ------------------------- | --------------- |
+| `gh/.config/gh/config.yml` | `~/.config/gh/config.yml` | yes             |
+| (`~/.config/gh/hosts.yml`) | —                         | no (gitignored) |
 
 ## Active customization
 
@@ -36,15 +36,15 @@ aliases:
 
 Alias quick-ref:
 
-| Alias | Expands to | Use |
-|---|---|---|
-| `gh co <#>` | `gh pr checkout <#>` | check out a PR locally |
-| `gh prs` | `gh pr list --author "@me"` | list my open PRs in this repo |
-| `gh prv` | `gh pr view --web` | open this branch's PR in browser |
-| `gh prc` | `gh pr create --fill --web` | new PR from commits, open in browser |
-| `gh issues` | `gh issue list --assignee "@me"` | issues assigned to me |
-| `gh watch <run-id>` | `gh run watch <run-id>` | tail a GH Action run |
-| `gh compare` | shells out — opens the GH compare view for the current branch | |
+| Alias               | Expands to                                                    | Use                                  |
+| ------------------- | ------------------------------------------------------------- | ------------------------------------ |
+| `gh co <#>`         | `gh pr checkout <#>`                                          | check out a PR locally               |
+| `gh prs`            | `gh pr list --author "@me"`                                   | list my open PRs in this repo        |
+| `gh prv`            | `gh pr view --web`                                            | open this branch's PR in browser     |
+| `gh prc`            | `gh pr create --fill --web`                                   | new PR from commits, open in browser |
+| `gh issues`         | `gh issue list --assignee "@me"`                              | issues assigned to me                |
+| `gh watch <run-id>` | `gh run watch <run-id>`                                       | tail a GH Action run                 |
+| `gh compare`        | shells out — opens the GH compare view for the current branch |                                      |
 
 The leading `!` on `compare` is a shell-out alias; everything after runs
 in a subshell.
@@ -55,11 +55,11 @@ Installed via `gh extension install`; they live in
 `~/.local/share/gh/extensions/` (not in this repo). List with
 `gh extension list`, update with `gh extension upgrade --all`.
 
-| Extension | Command | Use |
-|---|---|---|
-| `dlvhdr/gh-dash` | `gh dash` | TUI dashboard of PRs/issues across repos with filters |
-| `seachicken/gh-poi` | `gh poi` | prune local branches whose PRs have been merged |
-| `kyanny/gh-pr-draft` | `gh pr-draft` | toggle the draft state of a PR |
+| Extension            | Command       | Use                                                   |
+| -------------------- | ------------- | ----------------------------------------------------- |
+| `dlvhdr/gh-dash`     | `gh dash`     | TUI dashboard of PRs/issues across repos with filters |
+| `seachicken/gh-poi`  | `gh poi`      | prune local branches whose PRs have been merged       |
+| `kyanny/gh-pr-draft` | `gh pr-draft` | toggle the draft state of a PR                        |
 
 Reinstall on a fresh machine:
 

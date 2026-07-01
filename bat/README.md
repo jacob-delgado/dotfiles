@@ -13,13 +13,13 @@ markers.
 
 ## Layout
 
-| File | Stows to |
-|---|---|
+| File                     | Stows to               |
+| ------------------------ | ---------------------- |
 | `bat/.config/bat/config` | `~/.config/bat/config` |
 
 ## Settings
 
-```
+```text
 --theme="ansi"                                          # terminal palette (themed by p10k)
 --style="numbers,changes,header,grid,header-filesize"   # line nums, git markers, file header + size, gutter grid
 --pager="less -RFX"                                     # raw colors, quit-if-one-screen, no alt-screen
@@ -40,7 +40,7 @@ behaves identically whether bat invokes it or `LESS` is exported.
 `bat` recognizes most filenames by extension/shebang, but a few common
 files need help:
 
-```
+```text
 --map-syntax="Dockerfile.*:Dockerfile"   # e.g. Dockerfile.dev
 --map-syntax="*.jenkinsfile:Groovy"
 --map-syntax="*.tfvars:HCL"              # Terraform variable files

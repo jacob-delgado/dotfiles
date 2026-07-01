@@ -12,19 +12,19 @@ Dockerfile linter. Used by `lefthook` on pre-commit and by hand.
 
 ## Layout
 
-| File | Stows to |
-|---|---|
+| File                                    | Stows to                         |
+| --------------------------------------- | -------------------------------- |
 | `hadolint/.config/hadolint/config.yaml` | `~/.config/hadolint/config.yaml` |
 
 ## Settings
 
 Ignored rules:
 
-| Code | Rule | Why ignored |
-|---|---|---|
-| `DL3008` | apt-get without version pin | unpinned apt is fine in scratch/dev images |
-| `DL3018` | apk add without version pin | same logic for Alpine |
-| `DL3015` | apt-get without `--no-install-recommends` | stylistic preference |
+| Code     | Rule                                      | Why ignored                                |
+| -------- | ----------------------------------------- | ------------------------------------------ |
+| `DL3008` | apt-get without version pin               | unpinned apt is fine in scratch/dev images |
+| `DL3018` | apk add without version pin               | same logic for Alpine                      |
+| `DL3015` | apt-get without `--no-install-recommends` | stylistic preference                       |
 
 Trusted registries (skip "use a versioned tag" warnings for these):
 `docker.io`, `gcr.io`, `quay.io`, `ghcr.io`, `registry.k8s.io`,

@@ -3,8 +3,8 @@
 [mise](https://mise.jdx.dev) manages language runtimes and CLI tools with
 per-project version pinning. This package stows one file:
 
-| Source | Symlinks to |
-|---|---|
+| Source                          | Symlinks to                                         |
+| ------------------------------- | --------------------------------------------------- |
 | `mise/.config/mise/config.toml` | `~/.config/mise/config.toml` (mise's global config) |
 
 ## What it's for

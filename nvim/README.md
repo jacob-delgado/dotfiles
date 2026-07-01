@@ -24,7 +24,7 @@ loads.
 
 ## Layout
 
-```
+```text
 nvim/.config/nvim/
 ├── init.lua                 entry: leader, then require the config modules
 └── lua/
@@ -57,30 +57,30 @@ Kept as-is — these run natively and have no better replacement:
 
 Replaced with a Lua-native equivalent:
 
-| Vim plugin | Neovim replacement | Notes |
-|---|---|---|
-| `vim-airline` | `lualine.nvim` | theme `auto` follows Dracula |
-| `nerdtree` | `nvim-tree.lua` | `,nt` / `,nf` unchanged |
-| `tagbar` | `aerial.nvim` | `,tt`; LSP/Treesitter-backed, no ctags |
-| `fzf` + `fzf.vim` | `fzf-lua` | same `,f ,b ,a ,* ,h` maps |
-| `vim-gitgutter` | `gitsigns.nvim` | `]c`/`[c` hunks, `,gg` toggle |
-| `auto-pairs` | `nvim-autopairs` | integrates with blink.cmp |
-| `ultisnips` + `vim-snippets` | `blink.cmp` + `friendly-snippets` | snippets via the completion menu |
-| `ale` | `nvim-lint` + LSP diagnostics | pylint / shellcheck / yamllint |
-| `vim-go` | `go.nvim` + `gopls` | commands + maps preserved (see below) |
-| `dracula/vim` | `dracula.nvim` | Treesitter- & LSP-aware |
+| Vim plugin                   | Neovim replacement                | Notes                                  |
+| ---------------------------- | --------------------------------- | -------------------------------------- |
+| `vim-airline`                | `lualine.nvim`                    | theme `auto` follows Dracula           |
+| `nerdtree`                   | `nvim-tree.lua`                   | `,nt` / `,nf` unchanged                |
+| `tagbar`                     | `aerial.nvim`                     | `,tt`; LSP/Treesitter-backed, no ctags |
+| `fzf` + `fzf.vim`            | `fzf-lua`                         | same `,f ,b ,a ,* ,h` maps             |
+| `vim-gitgutter`              | `gitsigns.nvim`                   | `]c`/`[c` hunks, `,gg` toggle          |
+| `auto-pairs`                 | `nvim-autopairs`                  | integrates with blink.cmp              |
+| `ultisnips` + `vim-snippets` | `blink.cmp` + `friendly-snippets` | snippets via the completion menu       |
+| `ale`                        | `nvim-lint` + LSP diagnostics     | pylint / shellcheck / yamllint         |
+| `vim-go`                     | `go.nvim` + `gopls`               | commands + maps preserved (see below)  |
+| `dracula/vim`                | `dracula.nvim`                    | Treesitter- & LSP-aware                |
 
 ## What Neovim made redundant
 
 Dropped entirely — the capability is now built in:
 
-| Dropped | Replaced by (built-in) |
-|---|---|
-| `vim-commentary` | `gc` / `gcc` commenting (Neovim 0.10+) |
-| `vim-unimpaired` | `]q [q`, `]b [b`, `]<Space>`, `]d [d` default maps (0.11+); `]c [c` via gitsigns |
-| `editorconfig-vim` | native `.editorconfig` support (Neovim 0.9+) |
-| `syntax on` + `g:go_highlight_*` | Treesitter highlighting |
-| `nocompatible`, `filetype … on`, `backspace`, `incsearch`, `wildmenu`, `hidden`, `autoindent`, `ttyfast` | Neovim defaults |
+| Dropped                                                                                                  | Replaced by (built-in)                                                           |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `vim-commentary`                                                                                         | `gc` / `gcc` commenting (Neovim 0.10+)                                           |
+| `vim-unimpaired`                                                                                         | `]q [q`, `]b [b`, `]<Space>`, `]d [d` default maps (0.11+); `]c [c` via gitsigns |
+| `editorconfig-vim`                                                                                       | native `.editorconfig` support (Neovim 0.9+)                                     |
+| `syntax on` + `g:go_highlight_*`                                                                         | Treesitter highlighting                                                          |
+| `nocompatible`, `filetype … on`, `backspace`, `incsearch`, `wildmenu`, `hidden`, `autoindent`, `ttyfast` | Neovim defaults                                                                  |
 
 ## LSP, completion, linting
 
@@ -104,30 +104,30 @@ Dropped entirely — the capability is now built in:
 
 (Leader = `,`. Maps shared with the Vim config keep the same keys.)
 
-| Keys | Action |
-|---|---|
-| `,<space>` | clear search highlight |
-| `,,` | switch to last file |
-| `,ev` / `,sv` | edit / source `init.lua` |
-| `,ln` / `,nw` / `,rn` | toggle number / wrap / relativenumber |
-| `,sc` / `,rt` | toggle spell / retab |
-| `,tn` / `,tc` | new / close tab |
-| `,bd` / `,bda` | delete current / all buffers |
-| `,dc` / `,do` | close diff / `:DiffOrig` |
-| `,url` | open URL under cursor (system browser) |
-| `,u` | toggle undotree |
-| `,tt` | toggle aerial symbol outline |
-| `,nt` / `,nf` | toggle / reveal nvim-tree |
-| `,f` / `<C-p>` | fzf-lua files |
-| `,b` / `,be` | fzf-lua buffers |
-| `,a` | fzf-lua live grep |
-| `,*` | fzf-lua grep word under cursor |
-| `,h` | fzf-lua recent files |
-| `,gg` | toggle gitsigns line highlight |
-| `,hs` / `,hu` / `,hp` | stage / reset / preview git hunk |
-| `,q` | close quickfix |
-| `]q` / `[q` | next / prev quickfix (built-in) |
-| `]c` / `[c` | next / prev git hunk |
+| Keys                  | Action                                 |
+| --------------------- | -------------------------------------- |
+| `,<space>`            | clear search highlight                 |
+| `,,`                  | switch to last file                    |
+| `,ev` / `,sv`         | edit / source `init.lua`               |
+| `,ln` / `,nw` / `,rn` | toggle number / wrap / relativenumber  |
+| `,sc` / `,rt`         | toggle spell / retab                   |
+| `,tn` / `,tc`         | new / close tab                        |
+| `,bd` / `,bda`        | delete current / all buffers           |
+| `,dc` / `,do`         | close diff / `:DiffOrig`               |
+| `,url`                | open URL under cursor (system browser) |
+| `,u`                  | toggle undotree                        |
+| `,tt`                 | toggle aerial symbol outline           |
+| `,nt` / `,nf`         | toggle / reveal nvim-tree              |
+| `,f` / `<C-p>`        | fzf-lua files                          |
+| `,b` / `,be`          | fzf-lua buffers                        |
+| `,a`                  | fzf-lua live grep                      |
+| `,*`                  | fzf-lua grep word under cursor         |
+| `,h`                  | fzf-lua recent files                   |
+| `,gg`                 | toggle gitsigns line highlight         |
+| `,hs` / `,hu` / `,hp` | stage / reset / preview git hunk       |
+| `,q`                  | close quickfix                         |
+| `]q` / `[q`           | next / prev quickfix (built-in)        |
+| `]c` / `[c`           | next / prev git hunk                   |
 
 Non-leader maps carried over verbatim from the `.vimrc`: `jj`→Esc, visual-line
 `j`/`k`, `<M-j>`/`<M-k>` move line/selection, `<` / `>` keep selection,
@@ -141,29 +141,29 @@ From `nvim-treesitter-textobjects` (no built-in equivalent). Use in operator-
 or visual-pending position, e.g. `daf` deletes a whole function, `vif` selects
 its body, `cia` changes an argument:
 
-| Key | Selects / moves to |
-|---|---|
-| `af` / `if` | a function / inside a function |
-| `ac` / `ic` | a class / inside a class |
+| Key         | Selects / moves to               |
+| ----------- | -------------------------------- |
+| `af` / `if` | a function / inside a function   |
+| `ac` / `ic` | a class / inside a class         |
 | `aa` / `ia` | a parameter / inside a parameter |
-| `]m` / `[m` | next / prev function start |
-| `]]` / `[[` | next / prev class start |
+| `]m` / `[m` | next / prev function start       |
+| `]]` / `[[` | next / prev class start          |
 
 ## Go workflow
 
 `go.nvim` owns `gopls` and reproduces the vim-go commands. Maps active only in
 `.go` buffers:
 
-| Keys | Action |
-|---|---|
-| `,b` | `:GoBuild` |
-| `,t` / `,r` | test / run |
-| `,c` | `:GoCoverage` toggle |
-| `,ga` | `:GoAlt` (code ↔ test) |
-| `,gl` / `,gd` | lint / doc |
-| `,i` / `,s` | hover (type/doc) / implements |
+| Keys                  | Action                             |
+| --------------------- | ---------------------------------- |
+| `,b`                  | `:GoBuild`                         |
+| `,t` / `,r`           | test / run                         |
+| `,c`                  | `:GoCoverage` toggle               |
+| `,ga`                 | `:GoAlt` (code ↔ test)             |
+| `,gl` / `,gd`         | lint / doc                         |
+| `,i` / `,s`           | hover (type/doc) / implements      |
 | `,ds` / `,dv` / `,dt` | definition in split / vsplit / tab |
-| `,e` | rename (LSP, global map) |
+| `,e`                  | rename (LSP, global map)           |
 
 go.nvim drives `gopls` (already on `$PATH` if you used vim-go — it installs to
 `~/go/bin`). The extra tools it shells out to (`gotests`, `iferr`, …) come from
@@ -175,13 +175,13 @@ with "not an editor command". `goimports` runs on save.
 
 Mostly faithful; the deliberate changes:
 
-| Change | Reason |
-|---|---|
-| `cindent` dropped | Treesitter handles indentation per-filetype |
-| `signcolumn=yes` added | keep git/diagnostic signs from shifting text |
-| runtime dirs under `~/.local/share/nvim` | Neovim's `stdpath('data')`, not `~/.vim` |
-| `viminfo` → `shada` | Neovim's default shada is sensible; not overridden |
-| statusline/`laststatus`/`ruler` unset | lualine owns the statusline |
+| Change                                   | Reason                                             |
+| ---------------------------------------- | -------------------------------------------------- |
+| `cindent` dropped                        | Treesitter handles indentation per-filetype        |
+| `signcolumn=yes` added                   | keep git/diagnostic signs from shifting text       |
+| runtime dirs under `~/.local/share/nvim` | Neovim's `stdpath('data')`, not `~/.vim`           |
+| `viminfo` → `shada`                      | Neovim's default shada is sensible; not overridden |
+| statusline/`laststatus`/`ruler` unset    | lualine owns the statusline                        |
 
 Everything else — `colorcolumn` 80+120 formula, `clipboard`, `undofile`,
 `textwidth=200` (80 for text), `ignorecase`+`smartcase`, `gdefault`,
@@ -191,13 +191,13 @@ trailing-whitespace highlight + strip-on-save for go/py/sh — is ported directl
 
 `init.lua`/`options.lua` create these on startup (Neovim won't):
 
-| Dir | Contents |
-|---|---|
-| `~/.local/share/nvim/undo` | persistent undo |
-| `~/.local/share/nvim/backup` | `backup` files |
-| `~/.local/share/nvim/swap` | swap files |
-| `~/.local/share/nvim/lazy` | lazy.nvim-managed plugins |
-| `~/.local/share/nvim/mason` | LSP servers / tools |
+| Dir                          | Contents                  |
+| ---------------------------- | ------------------------- |
+| `~/.local/share/nvim/undo`   | persistent undo           |
+| `~/.local/share/nvim/backup` | `backup` files            |
+| `~/.local/share/nvim/swap`   | swap files                |
+| `~/.local/share/nvim/lazy`   | lazy.nvim-managed plugins |
+| `~/.local/share/nvim/mason`  | LSP servers / tools       |
 
 `~/.config/nvim/lazy-lock.json` pins plugin commits — commit it after a
 `:Lazy sync` so installs are reproducible.

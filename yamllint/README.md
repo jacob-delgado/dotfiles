@@ -13,8 +13,8 @@ hand.
 
 ## Layout
 
-| File | Stows to |
-|---|---|
+| File                               | Stows to                    |
+| ---------------------------------- | --------------------------- |
 | `yamllint/.config/yamllint/config` | `~/.config/yamllint/config` |
 
 `yamllint` only reads this file when run without `-c <path>` and when
@@ -25,15 +25,15 @@ own.
 
 Starting from `extends: default`:
 
-| Rule | Change | Why |
-|---|---|---|
-| `line-length: 120 (warning)` | bump from 80, demote to warning | nobody wraps YAML at 80 |
-| `document-start` | disable | `---` is rarely useful in single-doc files |
-| `truthy.check-keys: false` | don't flag `on:` keys | GitHub Actions uses `on:` as a top-level key |
-| `comments.min-spaces-from-content: 1` | down from 2 | the default is overly strict |
-| `comments-indentation` | disable | mis-indented comments are common in real YAML and rarely matter |
-| `indentation.indent-sequences: consistent` | don't require nested under key | matches both common styles |
-| `braces` / `brackets` `max-spaces-inside: 1` | allow `{ k: v }` | flow style is fine |
+| Rule                                         | Change                          | Why                                                             |
+| -------------------------------------------- | ------------------------------- | --------------------------------------------------------------- |
+| `line-length: 120 (warning)`                 | bump from 80, demote to warning | nobody wraps YAML at 80                                         |
+| `document-start`                             | disable                         | `---` is rarely useful in single-doc files                      |
+| `truthy.check-keys: false`                   | don't flag `on:` keys           | GitHub Actions uses `on:` as a top-level key                    |
+| `comments.min-spaces-from-content: 1`        | down from 2                     | the default is overly strict                                    |
+| `comments-indentation`                       | disable                         | mis-indented comments are common in real YAML and rarely matter |
+| `indentation.indent-sequences: consistent`   | don't require nested under key  | matches both common styles                                      |
+| `braces` / `brackets` `max-spaces-inside: 1` | allow `{ k: v }`                | flow style is fine                                              |
 
 ## Per-project overrides
 

@@ -15,8 +15,8 @@ here.
 
 ## Layout
 
-| File | Stows to |
-|---|---|
+| File                             | Stows to                    |
+| -------------------------------- | --------------------------- |
 | `direnv/.config/direnv/direnvrc` | `~/.config/direnv/direnvrc` |
 
 ## What direnv is
@@ -28,14 +28,14 @@ containing `.envrc`, it loads that file as environment for the directory
 
 ## Helpers defined here
 
-| Helper | Usage in `.envrc` | What |
-|---|---|---|
-| `layout python_venv [python]` | `layout python_venv python3.12` | create/activate `./.venv/`; pin python binary |
-| `layout uv` | `layout uv` | activate `./.venv/` created by `uv venv` (faster pip-replacement) |
-| `use go <version>` | `use go 1.21` | use Homebrew's `go@1.21` (run `brew install go@1.21` first) |
-| `use node <version>` | `use node 20` | use Homebrew's `node@20` |
-| `op_env <item>` | `op_env "GitHub PAT"` | inject env vars from a 1Password item (needs `op` signed in) |
-| `use_flake` / `use_nix` | (provided by nix-direnv when sourced) | activate a nix flake / shell |
+| Helper                        | Usage in `.envrc`                     | What                                                              |
+| ----------------------------- | ------------------------------------- | ----------------------------------------------------------------- |
+| `layout python_venv [python]` | `layout python_venv python3.12`       | create/activate `./.venv/`; pin python binary                     |
+| `layout uv`                   | `layout uv`                           | activate `./.venv/` created by `uv venv` (faster pip-replacement) |
+| `use go <version>`            | `use go 1.21`                         | use Homebrew's `go@1.21` (run `brew install go@1.21` first)       |
+| `use node <version>`          | `use node 20`                         | use Homebrew's `node@20`                                          |
+| `op_env <item>`               | `op_env "GitHub PAT"`                 | inject env vars from a 1Password item (needs `op` signed in)      |
+| `use_flake` / `use_nix`       | (provided by nix-direnv when sourced) | activate a nix flake / shell                                      |
 
 ## Example .envrc files
 

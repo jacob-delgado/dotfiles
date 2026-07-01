@@ -15,8 +15,8 @@ new repos.
 
 ## Layout
 
-| File | Purpose |
-|---|---|
+| File                    | Purpose                               |
+| ----------------------- | ------------------------------------- |
 | `lefthook/lefthook.yml` | Go-dev baseline template (no symlink) |
 
 This package is **not** stowed — lefthook.yml is meant to live inside
@@ -54,24 +54,24 @@ Then `lefthook install` and additions stack on top of the baseline.
 
 **pre-commit** (parallel):
 
-| Hook | Glob | What |
-|---|---|---|
-| `gofmt` | `*.go` | fail if any file isn't gofmt'd |
-| `goimports` | `*.go` | fail if imports aren't sorted |
-| `golangci-lint` | `*.go` | run lint, only new findings since HEAD |
-| `govet` | `*.go` | `go vet ./...` |
-| `shellcheck` | `*.{sh,bash}` | lint staged shell |
-| `shfmt` | `*.{sh,bash}` | format-diff shell (2-space, switch-case indent) |
-| `yamllint` | `*.{yml,yaml}` | YAML lint |
-| `hadolint` | `Dockerfile*` | Dockerfile lint |
+| Hook            | Glob           | What                                            |
+| --------------- | -------------- | ----------------------------------------------- |
+| `gofmt`         | `*.go`         | fail if any file isn't gofmt'd                  |
+| `goimports`     | `*.go`         | fail if imports aren't sorted                   |
+| `golangci-lint` | `*.go`         | run lint, only new findings since HEAD          |
+| `govet`         | `*.go`         | `go vet ./...`                                  |
+| `shellcheck`    | `*.{sh,bash}`  | lint staged shell                               |
+| `shfmt`         | `*.{sh,bash}`  | format-diff shell (2-space, switch-case indent) |
+| `yamllint`      | `*.{yml,yaml}` | YAML lint                                       |
+| `hadolint`      | `Dockerfile*`  | Dockerfile lint                                 |
 
 **commit-msg**: reject empty subjects.
 
 **pre-push** (parallel):
 
-| Hook | Glob | What |
-|---|---|---|
-| `go-test` | `*.go` | `go test ./...` |
+| Hook       | Glob   | What             |
+| ---------- | ------ | ---------------- |
+| `go-test`  | `*.go` | `go test ./...`  |
 | `go-build` | `*.go` | `go build ./...` |
 
 All the linters / formatters are in the Brewfile.
