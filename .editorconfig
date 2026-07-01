@@ -1,0 +1,27 @@
+# Repo editorconfig — the conventions actually used here, enforced in CI and
+# lefthook by editorconfig-checker (over tracked files). Mirrors the global one
+# this repo ships (editorconfig/.editorconfig), which is the fallback for repos
+# without their own.
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Go and Makefiles are tab-indented by convention.
+[*.go]
+indent_style = tab
+
+[{Makefile,*.mk}]
+indent_style = tab
+
+# Markdown: trailing spaces are a hard line break, and mdformat indents
+# ordered-list continuations by 3 (not a multiple of 2) — so don't police
+# trailing whitespace or indent width here.
+[*.md]
+trim_trailing_whitespace = false
+indent_size = unset

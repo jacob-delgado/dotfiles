@@ -1,0 +1,7 @@
+{
+  "$comment": "editorconfig-checker config. Exclude vendored/generated files we don't hand-edit: the third-party vim colorschemes under vim/.vim/, and the p10k.zsh written by `p10k configure`.",
+  "Exclude": [
+    "^vim/\\.vim/",
+    "^p10k/\\.p10k\\.zsh$"
+  ]
+}
