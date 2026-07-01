@@ -1,27 +1,13 @@
 name: ci
 
-# Lint the repo's shell scripts (shellcheck + shfmt) and YAML (yamllint) using
-# the same configs the lefthook template + stowed rc files enforce locally.
+# Lint every kind of file in the repo with the same configs the lefthook hooks
+# and stowed rc files enforce locally. Scope is driven by `git ls-files`, so
+# gitignored junk (vim persistent-undo files that end in .sh/.md/.yaml) is never
+# linted.
 on:
   push:
     branches: [main]
-    paths:
-      - '**.sh'
-      - '**.bash'
-      - '**.yml'
-      - '**.yaml'
-      - 'shellcheck/.shellcheckrc'
-      - 'yamllint/.config/yamllint/config'
-      - '.github/workflows/ci.yml'
   pull_request:
-    paths:
-      - '**.sh'
-      - '**.bash'
-      - '**.yml'
-      - '**.yaml'
-      - 'shellcheck/.shellcheckrc'
-      - 'yamllint/.config/yamllint/config'
-      - '.github/workflows/ci.yml'
   workflow_dispatch:
 
 # Read-only: linting never needs to write to the repo.
@@ -34,24 +20,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # shellcheck + shfmt come from mise (aqua backend — pinned prebuilt
-      # binaries), the same tool manager the rest of the repo uses. Versions
-      # match what these scripts were verified against.
-      - name: Install shellcheck + shfmt
+      # Binary linters from mise (aqua backend — pinned prebuilt binaries), the
+      # same tool manager the rest of the repo uses. Versions match what the
+      # tree was verified against.
+      - name: Install binary linters (mise)
         uses: jdx/mise-action@v4
         with:
           mise_toml: |
             [tools]
             shellcheck = "0.11.0"
             shfmt = "3.13.1"
+            taplo = "0.10.0"
+            actionlint = "1.7.12"
+            "editorconfig-checker" = "3.8.0"
 
-      - name: Install yamllint
-        run: pipx install yamllint==1.38.0
+      # Python/Node linters that aren't binaries. pipx and node ship on the
+      # runner. mdformat needs its GFM + tables plugins injected into the same
+      # environment so it aligns tables (what satisfies markdownlint's MD060).
+      - name: Install yamllint, mdformat, markdownlint
+        run: |
+          pipx install yamllint==1.38.0
+          pipx install mdformat==0.7.22
+          pipx inject mdformat mdformat-gfm==1.0.0 mdformat-tables==1.0.0
+          npm install -g markdownlint-cli2@0.22.1
 
-      # Mirror lefthook.yml's shellcheck hook, using the repo's own
-      # shellcheck/.shellcheckrc (enable=all). Scope to tracked scripts via
-      # git ls-files so the gitignored vim-undo files that merely end in .sh
-      # are never picked up.
       - name: shellcheck
         run: |
           cp shellcheck/.shellcheckrc "$HOME/.shellcheckrc"
@@ -61,10 +53,31 @@ jobs:
         run: git ls-files '*.sh' '*.bash' | xargs -r shfmt -d -i 2 -ci
 
       # gh generates ~/.config/gh/config.yml with its own 4-space indent, so
-      # it's the one tracked YAML we don't own and don't lint; everything else
-      # is checked against the repo's yamllint config.
+      # it's the one tracked YAML we don't own and don't lint.
       - name: yamllint
         run: |
-          git ls-files '*.yml' '*.yaml' \
-            | grep -v '^gh/\.config/gh/config\.yml$' \
+          git ls-files '*.yml' '*.yaml' | grep -v '^gh/\.config/gh/config\.yml$' \
             | xargs -r yamllint -c yamllint/.config/yamllint/config
+
+      - name: actionlint
+        run: actionlint
+
+      - name: taplo (format + lint)
+        run: |
+          git ls-files '*.toml' | xargs -r taplo fmt --check
+          git ls-files '*.toml' | xargs -r taplo lint
+
+      # markdownlint-cli2 reads .markdownlint-cli2.jsonc (rules + globs/ignores).
+      - name: markdownlint
+        run: markdownlint-cli2
+
+      # mdformat is the Markdown formatter of record (reads .mdformat.toml); the
+      # src/*.md mdBook include-wrappers aren't authored prose.
+      - name: mdformat (check)
+        run: git ls-files '*.md' | grep -v '^src/' | xargs -r mdformat --check
+
+      # editorconfig-checker enforces .editorconfig. It reads
+      # .editorconfig-checker.json for the vendored/generated excludes; the grep
+      # keeps those out even when files are passed explicitly.
+      - name: editorconfig-checker
+        run: git ls-files | grep -vE '^(vim/\.vim/|p10k/\.p10k\.zsh$)' | xargs -r ec
