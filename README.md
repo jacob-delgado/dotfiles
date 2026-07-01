@@ -316,20 +316,36 @@ over SSH after cloning this repo to `~/.dotfiles`.
 ```sh
 git clone <this-repo> ~/dotfiles
 cd ~/dotfiles
-./bootstrap-macos.sh           # brew bundle + OMZ + plugins + stow
+./bootstrap-macos.sh   # brew bundle + stow (incl. mise) + mise lint tools + OMZ
 ```
 
-Homebrew stays the source of truth on macOS (`brew bundle` from the
-`Brewfile`). Idempotent; installing Homebrew itself on a bare machine may
-prompt for the Xcode Command Line Tools.
+Homebrew is the source of truth for the runtimes and CLIs (`brew bundle` from
+the `Brewfile`). The repo's lint tools — the ones [lefthook](lefthook/README.md)
+and CI run — are the exception: `bootstrap-macos.sh` stows `mise` and installs
+*just those* via mise, so they match CI and so `editorconfig-checker` provides
+the `ec` binary Homebrew's formula lacks (see [mise/README.md](mise/README.md)).
+Idempotent; installing Homebrew itself on a bare machine may prompt for the
+Xcode Command Line Tools.
+
+Two follow-ups the script prints as next steps:
+
+- `task mise` — installs `mdformat` (+ its `gfm`/`tables` plugins) via `pipx`.
+  It can't be a mise tool, so the step above skips it, but the Markdown
+  pre-commit needs it.
+- `lefthook install` *(optional)* — enables the git pre-commit hook that runs
+  the linters. Commit from an interactive shell so mise's tools are on `PATH`.
 
 ### macOS / manual
 
 ```sh
 git clone <this-repo> ~/dotfiles
 cd ~/dotfiles
-brew bundle                    # installs everything in Brewfile
-stow zsh vim tmux fzf          # symlink whichever packages you want
+brew bundle                    # runtimes, CLIs, casks
+stow zsh vim tmux fzf mise     # symlink whichever packages you want
+# Lint tools aren't in the Brewfile — install them via mise (matches CI):
+mise install actionlint editorconfig-checker lefthook shellcheck shfmt taplo \
+  npm:markdownlint-cli2 pipx:yamllint
+task mise                      # mdformat (+plugins) via pipx
 ```
 
 ### Oh My Zsh custom plugins
