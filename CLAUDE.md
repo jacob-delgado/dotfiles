@@ -94,7 +94,7 @@ gated, never assumed:
 - Binary presence: `command -v <tool> >/dev/null && …`
 - Path existence: `[[ -d /opt/homebrew/… ]] && …`
 - OS detection: `[[ "$OSTYPE" == darwin* ]]`
-- Brew prefix: use `$(brew --prefix)` (works on Linuxbrew at `/home/linuxbrew/.linuxbrew`)
+- Brew prefix: use `$(brew --prefix)` on macOS (Linux has no Homebrew — tools come from apt + mise)
 
 When adding a PATH entry, check the directory exists first — silent
 broken paths are easy to introduce and hard to spot.
@@ -103,9 +103,10 @@ broken paths are easy to introduce and hard to spot.
 
 - `Brewfile` is a **snapshot**, regenerated via `brew bundle dump --describe --force`. After installing new packages with `brew install`,
   regenerate so the snapshot stays current.
-- `bootstrap-debian.sh` runs `brew bundle` and tolerates failures (some
-  macOS-only casks like `claude-code` will error on Debian — `warn` and
-  continue).
+- The `Brewfile` is the **macOS** path only: `bootstrap-macos.sh` runs
+  `brew bundle`. On Linux there is no Homebrew — `bootstrap-debian.sh`
+  installs the base tools via apt and everything else via mise (see
+  `mise/README.md`).
 - Never add a tool to `Brewfile` by hand without installing it first —
   the file is meant to reflect what's actually installed.
 
