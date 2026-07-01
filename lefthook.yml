@@ -1,0 +1,44 @@
+# Lefthook config for THIS repo (the dotfiles repo itself). Mirrors
+# .github/workflows/ci.yml so a pre-commit catches what CI would, scoped to the
+# staged files. Enable with `lefthook install`.
+#
+# Not to be confused with lefthook/lefthook.yml — that's a separate, stowable
+# template for Go projects. This one is the dotfiles repo's own hooks.
+#
+# Tool sources: shellcheck, shfmt, taplo, actionlint, editorconfig-checker (ec)
+# come from mise/Homebrew; yamllint + mdformat (+mdformat-gfm/-tables) from
+# pipx; markdownlint-cli2 from npm. See the CI workflow for pinned versions.
+
+pre-commit:
+  parallel: true
+  commands:
+    shellcheck:
+      glob: "*.{sh,bash}"
+      run: shellcheck {staged_files}
+    shfmt:
+      glob: "*.{sh,bash}"
+      run: shfmt -d -i 2 -ci {staged_files}
+    yamllint:
+      glob: "*.{yml,yaml}"
+      exclude: 'gh/\.config/gh/config\.yml'
+      run: yamllint -c yamllint/.config/yamllint/config {staged_files}
+    actionlint:
+      glob: ".github/workflows/*.{yml,yaml}"
+      run: actionlint {staged_files}
+    taplo-fmt:
+      glob: "*.toml"
+      run: taplo fmt --check {staged_files}
+    taplo-lint:
+      glob: "*.toml"
+      run: taplo lint {staged_files}
+    markdownlint:
+      glob: "*.md"
+      exclude: 'src/.*'
+      run: markdownlint-cli2 {staged_files}
+    mdformat:
+      glob: "*.md"
+      exclude: 'src/.*'
+      run: mdformat --check {staged_files}
+    editorconfig-checker:
+      exclude: 'vim/\.vim/.*|p10k/\.p10k\.zsh'
+      run: ec {staged_files}
