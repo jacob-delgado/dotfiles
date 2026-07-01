@@ -18,7 +18,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       # Binary linters from mise (aqua backend — pinned prebuilt binaries), the
       # same tool manager the rest of the repo uses. Versions match what the
