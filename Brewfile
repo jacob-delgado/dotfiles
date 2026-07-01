@@ -108,6 +108,8 @@ brew "make"
 brew "mdbook"
 # Run a Kubernetes cluster locally
 brew "minikube"
+# Polyglot runtime manager (asdf rust clone)
+brew "mise"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Port scanning utility for large networks

@@ -73,6 +73,7 @@ Each is a stow package; see its README for what's non-default.
 | `hadolint/` | `~/.config/hadolint/` | [hadolint/README.md](hadolint/README.md) |
 | `lazygit/` | `~/.config/lazygit/` | [lazygit/README.md](lazygit/README.md) |
 | `lefthook/` | (template, not stowed) | [lefthook/README.md](lefthook/README.md) |
+| `mise/` | `~/.config/mise/config.toml` | [mise/README.md](mise/README.md) |
 | `nvim/` | `~/.config/nvim/` | [nvim/README.md](nvim/README.md) |
 | `p10k/` | `~/.p10k.zsh` | [p10k/README.md](p10k/README.md) |
 | `ripgrep/` | `~/.config/ripgrep/` | [ripgrep/README.md](ripgrep/README.md) |
