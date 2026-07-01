@@ -23,12 +23,12 @@ go = "latest"
 # the Homebrew set can drift without breaking either platform. fzf and direnv
 # are intentionally absent — the oh-my-zsh plugins load them before `mise
 # activate` runs, so they must come from apt (Linux) / brew (macOS) instead.
-atuin = "latest"    # shell history      (zsh: `atuin init`)
-bat = "latest"      # cat w/ highlighting (MANPAGER, fzf preview)
-delta = "latest"    # git-delta diff pager
-eza = "latest"      # modern ls          (zsh: ls/ll/la/lt)
-fd = "latest"       # find alternative   (fzf file source)
-ripgrep = "latest"  # rg
-task = "latest"     # go-task command runner (the bare `task`)
-yq = "latest"       # jq for YAML
-zoxide = "latest"   # smarter cd         (zsh: `zoxide init`)
+atuin = "latest"   # shell history      (zsh: `atuin init`)
+bat = "latest"     # cat w/ highlighting (MANPAGER, fzf preview)
+delta = "latest"   # git-delta diff pager
+eza = "latest"     # modern ls          (zsh: ls/ll/la/lt)
+fd = "latest"      # find alternative   (fzf file source)
+ripgrep = "latest" # rg
+task = "latest"    # go-task command runner (the bare `task`)
+yq = "latest"      # jq for YAML
+zoxide = "latest"  # smarter cd         (zsh: `zoxide init`)
