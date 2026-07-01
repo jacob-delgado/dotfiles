@@ -1,0 +1,16 @@
+---
+# Keep the CI GitHub Actions current. Dependabot opens a grouped weekly PR when
+# newer action versions are released (actions/checkout, jdx/mise-action,
+# peaceiris/actions-mdbook, the Pages actions, …).
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns:
+          - "*"
+    commit-message:
+      prefix: ci
