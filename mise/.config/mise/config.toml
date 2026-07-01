@@ -1,0 +1,34 @@
+# mise global config — https://mise.jdx.dev
+# Stowed to ~/.config/mise/config.toml (mise's global config path).
+#
+# Role differs by platform:
+#   * Linux (headless Debian VMs — the `devbox` Ansible flow): mise is the
+#     PRIMARY tool manager. `mise install` from $HOME materializes everything
+#     below; there is no Homebrew. See mise/README.md.
+#   * macOS: these same tools come from Homebrew (the Brewfile). mise still
+#     activates for per-project runtime pinning; `mise install` also works here.
+#
+# Bare names resolve through mise's registry (aqua/ubi/etc. backends) to
+# prebuilt release binaries — no compilation. Verify with `mise ls` /
+# `mise doctor`.
+
+[tools]
+# Language runtimes.
+node = "lts"
+go = "latest"
+# Debian ships python3 in the base image; uncomment to pin your own instead:
+# python = "3.13"
+
+# Modern CLIs. zsh/.zshrc wires each up only when it's on PATH, so this list and
+# the Homebrew set can drift without breaking either platform. fzf and direnv
+# are intentionally absent — the oh-my-zsh plugins load them before `mise
+# activate` runs, so they must come from apt (Linux) / brew (macOS) instead.
+atuin = "latest"    # shell history      (zsh: `atuin init`)
+bat = "latest"      # cat w/ highlighting (MANPAGER, fzf preview)
+delta = "latest"    # git-delta diff pager
+eza = "latest"      # modern ls          (zsh: ls/ll/la/lt)
+fd = "latest"       # find alternative   (fzf file source)
+ripgrep = "latest"  # rg
+task = "latest"     # go-task command runner (the bare `task`)
+yq = "latest"       # jq for YAML
+zoxide = "latest"   # smarter cd         (zsh: `zoxide init`)
