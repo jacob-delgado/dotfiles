@@ -104,10 +104,11 @@ broken paths are easy to introduce and hard to spot.
 
 - `Brewfile` is a **snapshot**, regenerated via `brew bundle dump --describe --force`. After installing new packages with `brew install`,
   regenerate so the snapshot stays current.
-- The `Brewfile` is the **macOS** path only: `bootstrap-macos.sh` runs
-  `brew bundle`. On Linux there is no Homebrew — `bootstrap-debian.sh`
-  installs the base tools via apt and everything else via mise (see
-  `mise/README.md`).
+- The `Brewfile` is the **macOS** path for runtimes/CLIs: `bootstrap-macos.sh`
+  runs `brew bundle`, then stows mise and installs just the repo's lint tools
+  via mise (so they match CI and provide the `ec` binary — see
+  `mise/README.md`). On Linux there is no Homebrew — `bootstrap-debian.sh`
+  installs the base tools via apt and everything else via mise.
 - Never add a tool to `Brewfile` by hand without installing it first —
   the file is meant to reflect what's actually installed.
 

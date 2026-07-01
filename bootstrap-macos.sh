@@ -14,11 +14,11 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DOTFILES_DIR="${DOTFILES_DIR:-${SCRIPT_DIR}}"
-# mise is intentionally omitted: on macOS the tools come from Homebrew, so the
-# global mise tool-list (mise/.config/mise/config.toml) is a Linux-only concern.
-# Per-project mise.toml pinning inside individual repos still works — those are
-# separate files, unaffected by not stowing the global one.
-STOW_PACKAGES=(atuin bat btop direnv editorconfig fzf gh git gitignore_global hadolint kitty lazygit nvim p10k ripgrep shellcheck task tig tmux vim yamllint zsh)
+# mise is stowed so its config is active. On macOS the runtimes + CLIs still come
+# from Homebrew; only the repo's lint tools are mise-installed (step 3b), so they
+# match CI and so editorconfig-checker's `ec` binary exists (Homebrew ships it as
+# `editorconfig-checker`). Per-project mise.toml pinning also keeps working.
+STOW_PACKAGES=(atuin bat btop direnv editorconfig fzf gh git gitignore_global hadolint kitty lazygit mise nvim p10k ripgrep shellcheck task tig tmux vim yamllint zsh)
 ZSH_CUSTOM="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}"
 
 log() { printf '\033[1;34m==>\033[0m %s\n' "$*"; }
@@ -87,6 +87,24 @@ for pkg in "${STOW_PACKAGES[@]}"; do
 done
 
 # ---------------------------------------------------------------------------
+# 3b. Repo lint tooling via mise (the lefthook / CI linters)
+# ---------------------------------------------------------------------------
+# Installed via mise (not Homebrew) so they match CI exactly and so the `ec`
+# binary exists — Homebrew's editorconfig-checker ships `editorconfig-checker`,
+# not `ec`. The runtimes/CLIs in the mise config stay on Homebrew; only these are
+# mise-installed. Keep this list in sync with the lint block in
+# mise/.config/mise/config.toml. mdformat is separate (pipx + plugins) — the
+# next-steps note points at `task mise` for it.
+if command -v mise >/dev/null 2>&1; then
+  log "Installing repo lint tools via mise"
+  MISE_YES=1 mise install actionlint editorconfig-checker lefthook shellcheck \
+    shfmt taplo npm:markdownlint-cli2 pipx:yamllint ||
+    warn "mise install for lint tools reported errors; check 'mise doctor'."
+else
+  warn "mise not on PATH; skipping lint tools (needed for the pre-commit hook)."
+fi
+
+# ---------------------------------------------------------------------------
 # 4. Oh My Zsh
 # ---------------------------------------------------------------------------
 # KEEP_ZSHRC=yes keeps the ~/.zshrc symlink stowed above (see the note there).
@@ -136,3 +154,4 @@ echo "Next steps (run from a fresh zsh):"
 echo "  atuin import auto         # backfill existing shell history into atuin"
 echo "  tldr --update             # populate the tealdeer cheat-sheet cache"
 echo "  vim +\"PlugInstall --sync\" +qall   # install vim plugins"
+echo "  task mise                 # mdformat (+plugins) for the markdown pre-commit"

@@ -12,6 +12,13 @@
 # prebuilt release binaries — no compilation. Verify with `mise ls` /
 # `mise doctor`.
 
+[settings]
+# On macOS the runtimes + CLIs below come from Homebrew (only the lint tools are
+# installed via mise there), so mise would flag the rest as "missing" on every
+# shell. Silence it — on Linux the whole list is installed, so nothing is truly
+# missing and this never hides a real problem.
+status.missing_tools = "never"
+
 [tools]
 # Language runtimes.
 node = "lts"
@@ -33,8 +40,18 @@ task = "latest"    # go-task command runner (the bare `task`)
 yq = "latest"      # jq for YAML
 zoxide = "latest"  # smarter cd         (zsh: `zoxide init`)
 
-# Repo lint/format tooling that gates commits (lefthook) and CI, kept current by
-# `mise upgrade`. npm-backed, so it rides on the `node` runtime above. mdformat
-# is NOT here: its gfm/tables plugins need `pipx inject`, which mise's pipx
-# backend can't express — see the repo Taskfile / lefthook for how it's run.
-"npm:markdownlint-cli2" = "latest"
+# Repo lint/format tooling that gates commits (lefthook) and CI. This is the set
+# .github/workflows/ci.yml installs via mise, so tracking it here keeps one place
+# to bump. Binary linters are aqua-backed; the last two need the node/python
+# runtimes. editorconfig-checker is deliberately from mise (its aqua build ships
+# the `ec` command lefthook/CI call — Homebrew's ships `editorconfig-checker`).
+# mdformat is NOT here: its gfm/tables plugins need `pipx inject`, which mise's
+# pipx backend can't express, so `task mise` install-or-upgrades it via pipx.
+actionlint = "latest"
+editorconfig-checker = "latest"
+lefthook = "latest"
+shellcheck = "latest"
+shfmt = "latest"
+taplo = "latest"
+"npm:markdownlint-cli2" = "latest" # markdown linter (needs the node runtime)
+"pipx:yamllint" = "latest"         # YAML linter (needs python)

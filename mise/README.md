@@ -12,9 +12,11 @@ per-project version pinning. This package stows one file:
 The global `[tools]` list is the **primary tool manager on Linux**. There is no
 Homebrew on the Debian VMs (see the repo `CLAUDE.md` and `bootstrap-debian.sh`),
 so `mise install` from `$HOME` is what actually installs `bat`, `eza`,
-`ripgrep`, `go-task`, the Node/Go runtimes, etc. On macOS the same tools come
-from the `Brewfile`; mise still activates for per-project runtime pinning, and
-`mise install` works there too — it just duplicates what brew already provides.
+`ripgrep`, `go-task`, the Node/Go runtimes, etc. On macOS the runtimes and CLIs
+still come from the `Brewfile`, but the repo's lint tools are installed via mise
+there too — `bootstrap-macos.sh` stows this package and `mise install`s just
+those (see the lint-tooling note below). The `[settings]` block silences mise's
+"missing tool" nag for the brew-provided entries on macOS.
 
 `zsh/.zshrc` runs `mise activate zsh` **before** the tool-integration blocks
 (zoxide, atuin, eza, `task`, …) so mise-managed binaries are on `PATH` when those
@@ -32,10 +34,15 @@ from the `Brewfile`; mise still activates for per-project runtime pinning, and
   during `source $ZSH/oh-my-zsh.sh`, which runs *before* `mise activate`. A
   mise-only `fzf`/`direnv` wouldn't be on `PATH` yet, so those two come from apt
   (Linux) / brew (macOS) instead.
-- **Repo lint tooling** — `markdownlint-cli2` (npm-backed) gates this repo's own
-  commits/CI, so it's managed here to stay current. `mdformat` is the exception:
-  its `gfm`/`tables` plugins need `pipx inject`, which mise's pipx backend can't
-  express, so `task mise` keeps it current via `pipx` instead.
+- **Repo lint tooling** — the linters `lefthook` and CI run live here so one
+  file tracks them and they match CI: `shellcheck`, `shfmt`, `taplo`,
+  `actionlint`, `editorconfig-checker`, `lefthook`, plus `npm:markdownlint-cli2`
+  (needs node) and `pipx:yamllint` (needs python). These come from mise on macOS
+  too — notably `editorconfig-checker`, whose aqua build ships the `ec` command
+  lefthook/CI call (Homebrew's ships `editorconfig-checker`, no `ec`). `mdformat`
+  is the one exception: its `gfm`/`tables` plugins need `pipx inject`, which
+  mise's pipx backend can't express, so `task mise` install-or-upgrades it via
+  `pipx`.
 
 ## How it's used
 
