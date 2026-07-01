@@ -311,6 +311,30 @@ manages the language runtimes and modern CLIs. The script is idempotent
 the headless [`devbox`](https://github.com/sound-barrier/devbox) VM flow runs
 over SSH after cloning this repo to `~/.dotfiles`.
 
+**Pushing dotfiles changes back from a dev VM.** The bootstrap routes GitHub
+*pushes* over SSH (fetch stays HTTPS) and pre-trusts GitHub's host key, so a
+dev VM can push commits back with **no key or token stored on it** — auth rides
+your forwarded SSH agent. Agent forwarding is a client-side setting the script
+can't do, so set the laptop side up once:
+
+- Confirm your GitHub key is in the **local** agent: `ssh-add -l` (add it with
+  `ssh-add ~/.ssh/id_ed25519` if it's missing).
+
+- Connect with agent forwarding: `ssh -A <vm>`, or make it the default in
+  `~/.ssh/config`:
+
+  ```text
+  Host devvm-*            # or the specific host/IP
+    ForwardAgent yes
+  ```
+
+- On the VM: `cd ~/.dotfiles && git commit -am "…" && git push`. The push
+  authenticates through the forwarded key; nothing lands on the VM.
+
+- **Security:** only forward your agent to hosts you trust — while you're
+  connected, a root user on the box can use the socket. Fine for your own dev
+  VMs; don't `-A` into shared machines.
+
 ### macOS
 
 ```sh

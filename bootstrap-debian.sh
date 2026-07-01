@@ -169,7 +169,37 @@ if [[ "${current_shell}" != "${zsh_path}" ]]; then
   sudo chsh -s "${zsh_path}" "${target_user}"
 fi
 
+# ---------------------------------------------------------------------------
+# 9. Git push access + lefthook (opt-in; no secrets stored on this machine)
+# ---------------------------------------------------------------------------
+# The headless devbox flow clones this repo over public HTTPS (read-only). To
+# push changes back from a VM, route GitHub *pushes* over SSH while leaving the
+# HTTPS fetch alone, and authenticate with a forwarded SSH agent at push time
+# (`ssh -A`) — so no key or token is ever written to this box. The rewrite lives
+# in ~/.gitconfig.local (the per-machine include), never the stowed ~/.gitconfig.
+log "Configuring git to push to GitHub over SSH (agent-forwarded)"
+git config --file "${HOME}/.gitconfig.local" \
+  url."git@github.com:".pushInsteadOf "https://github.com/"
+
+# Pre-trust GitHub's host key so the first agent-forwarded push doesn't hang on
+# an interactive prompt in the non-TTY provision run.
+if ! ssh-keygen -F github.com >/dev/null 2>&1; then
+  install -d -m 700 "${HOME}/.ssh"
+  ssh-keyscan -t ed25519 github.com >>"${HOME}/.ssh/known_hosts" 2>/dev/null || true
+fi
+
+# Wire this clone's lefthook hooks so commits are linted like CI. lefthook comes
+# from mise (section 7), but this non-interactive shell never ran `mise activate`,
+# so invoke it through `mise exec` rather than trusting it to be on PATH. mdformat,
+# used by the Markdown hook, is a pipx tool that `task mise` manages — run
+# `task mise` before committing .md changes.
+if command -v mise >/dev/null 2>&1 && [[ -d "${DOTFILES_DIR}/.git" ]]; then
+  log "Installing lefthook git hooks"
+  (cd "${DOTFILES_DIR}" && mise exec -- lefthook install) || warn "lefthook install failed."
+fi
+
 log "Done."
 echo
 echo "Next steps (run from a fresh zsh):"
 echo "  atuin import auto         # backfill existing shell history into atuin"
+echo "  # push dotfiles changes back (from your laptop): ssh -A <vm>, then git push"
