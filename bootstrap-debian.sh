@@ -52,6 +52,7 @@ sudo apt-get install -y \
   git \
   gnupg \
   jq \
+  pipx \
   procps \
   stow \
   tig \
