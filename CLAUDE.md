@@ -58,6 +58,7 @@ Non-stow files at the root:
 | --------------------- | ----------------------------------------------------- |
 | `Brewfile`            | `brew bundle` input — tap/formula/cask/go-module pins |
 | `bootstrap-debian.sh` | One-shot Debian/Ubuntu provisioning script            |
+| `Taskfile.yml`        | go-task targets — `task update` updates tools/plugins |
 | `README.md`           | Human-facing entry point                              |
 | `CLAUDE.md`           | This file                                             |
 
@@ -147,6 +148,7 @@ Before saying a change is complete, parse-check the affected file:
 | `*.sh`, `bootstrap-debian.sh` | `bash -n <file>` (and `shellcheck` if available) |
 | `.vimrc`                      | open in vim, no startup errors                   |
 | `.tmux.conf`                  | `tmux source-file <file>` in a live session      |
+| `Taskfile.yml`                | `task --list`, `yamllint Taskfile.yml`           |
 
 UI/visual changes (prompt, status bar, colors) need a real shell or pane to
 verify — say so explicitly if you can't.

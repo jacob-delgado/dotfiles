@@ -1,0 +1,54 @@
+# Maintenance tasks for this machine, run with go-task (the bare `task`).
+# go-task walks up to the nearest Taskfile, so `task <target>` works from
+# anywhere inside ~/dotfiles. Not stowed — this file only makes sense here.
+# See README.md "Updating".
+version: '3'
+
+tasks:
+  default:
+    desc: List the available tasks
+    cmds:
+      # Bare `task` on PATH is Taskwarrior here; TASK_EXE is the go-task binary.
+      - '{{.TASK_EXE}} --list'
+    silent: true
+
+  update:
+    desc: Update everything — mise tools, then vim and nvim plugins
+    cmds:
+      - task: mise
+      - task: vim
+      - task: nvim
+
+  mise:
+    desc: Upgrade mise-managed tools, plus pipx-managed mdformat and its plugins
+    cmds:
+      - mise upgrade
+      # markdownlint-cli2 rides along in `mise upgrade` (it's a mise tool), but
+      # mdformat can't (its gfm/tables plugins need `pipx inject`). Keep it
+      # current here: install-or-upgrade mdformat + plugins together.
+      - |
+        if command -v pipx >/dev/null 2>&1; then
+          if pipx list --short 2>/dev/null | grep -q '^mdformat '; then
+            pipx upgrade --include-injected mdformat
+          else
+            pipx install mdformat
+            pipx inject mdformat mdformat-gfm mdformat-tables
+          fi
+        else
+          echo "pipx not found; skipping mdformat (needed for the md pre-commit)"
+        fi
+
+  vim:
+    desc: Update vim-plug plugins (headless; needs a tmux pty)
+    cmds:
+      # vim-plug needs a real pty, so drive it inside a detached tmux session
+      # (same trick as CLAUDE.md's headless install), then wait for it to exit.
+      - |
+        command tmux new-session -d -s _plugupdate 'vim +"PlugUpdate --sync" +qall'
+        while command tmux has-session -t _plugupdate 2>/dev/null; do sleep 2; done
+
+  nvim:
+    desc: Update Neovim (lazy.nvim) plugins; rewrites lazy-lock.json
+    cmds:
+      - nvim --headless "+Lazy! sync" +qa
+      - 'echo "nvim: commit nvim/.config/nvim/lazy-lock.json if it changed"'

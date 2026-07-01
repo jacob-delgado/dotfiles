@@ -32,3 +32,9 @@ ripgrep = "latest" # rg
 task = "latest"    # go-task command runner (the bare `task`)
 yq = "latest"      # jq for YAML
 zoxide = "latest"  # smarter cd         (zsh: `zoxide init`)
+
+# Repo lint/format tooling that gates commits (lefthook) and CI, kept current by
+# `mise upgrade`. npm-backed, so it rides on the `node` runtime above. mdformat
+# is NOT here: its gfm/tables plugins need `pipx inject`, which mise's pipx
+# backend can't express — see the repo Taskfile / lefthook for how it's run.
+"npm:markdownlint-cli2" = "latest"

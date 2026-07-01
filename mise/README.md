@@ -32,15 +32,27 @@ from the `Brewfile`; mise still activates for per-project runtime pinning, and
   during `source $ZSH/oh-my-zsh.sh`, which runs *before* `mise activate`. A
   mise-only `fzf`/`direnv` wouldn't be on `PATH` yet, so those two come from apt
   (Linux) / brew (macOS) instead.
+- **Repo lint tooling** — `markdownlint-cli2` (npm-backed) gates this repo's own
+  commits/CI, so it's managed here to stay current. `mdformat` is the exception:
+  its `gfm`/`tables` plugins need `pipx inject`, which mise's pipx backend can't
+  express, so `task mise` keeps it current via `pipx` instead.
 
 ## How it's used
 
 ```sh
 mise install     # install everything in the global config (run from anywhere)
+mise upgrade     # upgrade installed tools to the latest matching the config
+mise outdated    # preview which tools have newer versions (nothing changes)
 mise ls          # show installed tools + versions
 mise doctor      # diagnose activation / shim problems
 mise use -g go@latest   # add/pin another global tool (edits this config)
 ```
+
+`mise install` only fetches what's missing; `mise upgrade` re-resolves the
+`latest`/`lts` pins and moves them forward. The repo root's `Taskfile.yml` has
+a `task mise` target that runs `mise upgrade` and also install-or-upgrades
+`mdformat` via `pipx` (see the bullet above); `task update` refreshes the vim
+and nvim plugins too.
 
 The headless `devbox` flow does this automatically: it installs `mise` from
 apt, and after the dotfiles are stowed it runs `mise install` in `$HOME` with

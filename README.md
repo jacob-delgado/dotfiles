@@ -21,6 +21,7 @@ README): <https://jacob-delgado.github.io/dotfiles/>.
   - [Debian / Ubuntu](#debian--ubuntu)
   - [macOS / manual](#macos--manual)
   - [Oh My Zsh custom plugins](#oh-my-zsh-custom-plugins)
+- [Updating](#updating)
 
 ## Apply pending changes
 
@@ -352,3 +353,26 @@ What they do:
   with preview. Tab → interactive list.
 - **you-should-use** — reminds you when you typed the long form of a
   command you've aliased.
+
+______________________________________________________________________
+
+## Updating
+
+Keep the toolchain current with [go-task](https://taskfile.dev) — the bare
+`task` command (see [task/README.md](task/README.md)) — from anywhere inside
+this repo:
+
+```sh
+task update      # everything: mise tools, then vim & nvim plugins
+task mise        # mise upgrade + pipx mdformat (markdown lint/format tooling)
+task vim         # just vim-plug: :PlugUpdate (headless, via tmux)
+task nvim        # just lazy.nvim: :Lazy sync (rewrites lazy-lock.json)
+```
+
+`task mise` runs `mise upgrade`, which moves the `latest`/`lts` pins forward —
+unlike `mise install`, which only fetches what's missing. It also refreshes the
+markdown tooling that gates commits: `markdownlint-cli2` (a mise tool) rides
+along in `mise upgrade`, while `mdformat` + its `gfm`/`tables` plugins are
+installed-or-upgraded via `pipx` (they can't live in mise). After `task nvim`,
+commit the regenerated `nvim/.config/nvim/lazy-lock.json` to pin the new
+plugin versions.
