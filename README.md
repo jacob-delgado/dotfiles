@@ -293,10 +293,26 @@ tldr git rebase
 ```sh
 git clone <this-repo> ~/dotfiles
 cd ~/dotfiles
-./bootstrap-debian.sh          # apt + Linuxbrew + OMZ + plugins + stow
+./bootstrap-debian.sh          # apt + mise + OMZ + plugins + stow
 ```
 
-Idempotent — safe to re-run.
+No Homebrew on Linux — apt covers the base system and [mise](mise/README.md)
+manages the language runtimes and modern CLIs. The script is idempotent
+(safe to re-run) and fully non-interactive, so the same entry point is what
+the headless [`devbox`](https://github.com/sound-barrier/devbox) VM flow runs
+over SSH after cloning this repo to `~/.dotfiles`.
+
+### macOS
+
+```sh
+git clone <this-repo> ~/dotfiles
+cd ~/dotfiles
+./bootstrap-macos.sh           # brew bundle + OMZ + plugins + stow
+```
+
+Homebrew stays the source of truth on macOS (`brew bundle` from the
+`Brewfile`). Idempotent; installing Homebrew itself on a bare machine may
+prompt for the Xcode Command Line Tools.
 
 ### macOS / manual
 
