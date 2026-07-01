@@ -16,12 +16,12 @@ installed via the kitty.sh installer, not Homebrew).
 
 ## Layout
 
-| File | Stows to |
-|---|---|
-| `kitty/.config/kitty/kitty.conf` | `~/.config/kitty/kitty.conf` |
+| File                               | Stows to                       |
+| ---------------------------------- | ------------------------------ |
+| `kitty/.config/kitty/kitty.conf`   | `~/.config/kitty/kitty.conf`   |
 | `kitty/.config/kitty/dracula.conf` | `~/.config/kitty/dracula.conf` |
-| `kitty/.config/kitty/diff.conf` | `~/.config/kitty/diff.conf` |
-| `kitty/.config/kitty/ssh.conf` | `~/.config/kitty/ssh.conf` |
+| `kitty/.config/kitty/diff.conf`    | `~/.config/kitty/diff.conf`    |
+| `kitty/.config/kitty/ssh.conf`     | `~/.config/kitty/ssh.conf`     |
 
 Reload after editing: `kitty @ load-config` (needs `allow_remote_control yes`),
 or `Cmd+Ctrl+,` (macOS) / `Ctrl+Shift+F5` (Linux).
@@ -35,38 +35,38 @@ handful of defaults. Sections:
 Font glyphs (install via the `font-jetbrains-mono-nerd-font` cask, or
 grab from nerdfonts.com).
 
-**Quality of life**
+### Quality of life
 
-| Setting | Why |
-|---|---|
-| `enable_audio_bell no` / `visual_bell_duration 0` | Silence the bell entirely |
-| `confirm_os_window_close 0` | Don't prompt when closing a window with a running process |
-| `scrollback_lines 10000` | Bigger in-memory scrollback |
-| `scrollback_pager_history_size 100` | 100 MB disk-backed scrollback for the pager kitten |
-| `repaint_delay 8` / `input_delay 2` / `sync_to_monitor yes` | Snappier rendering on Apple Silicon |
+| Setting                                                     | Why                                                       |
+| ----------------------------------------------------------- | --------------------------------------------------------- |
+| `enable_audio_bell no` / `visual_bell_duration 0`           | Silence the bell entirely                                 |
+| `confirm_os_window_close 0`                                 | Don't prompt when closing a window with a running process |
+| `scrollback_lines 10000`                                    | Bigger in-memory scrollback                               |
+| `scrollback_pager_history_size 100`                         | 100 MB disk-backed scrollback for the pager kitten        |
+| `repaint_delay 8` / `input_delay 2` / `sync_to_monitor yes` | Snappier rendering on Apple Silicon                       |
 
-**macOS**
+### macOS
 
-| Setting | Why |
-|---|---|
-| `macos_option_as_alt left` | Left-Option behaves as Alt so ⌥←/⌥→ word-jump works in shells |
-| `macos_titlebar_color background` | Title bar adopts the bg color (no white strip) |
-| `macos_quit_when_last_window_closed yes` | Quitting the last window quits the app |
+| Setting                                  | Why                                                           |
+| ---------------------------------------- | ------------------------------------------------------------- |
+| `macos_option_as_alt left`               | Left-Option behaves as Alt so ⌥←/⌥→ word-jump works in shells |
+| `macos_titlebar_color background`        | Title bar adopts the bg color (no white strip)                |
+| `macos_quit_when_last_window_closed yes` | Quitting the last window quits the app                        |
 
-**Remote control + shell integration**
+### Remote control + shell integration
 
-| Setting | Why |
-|---|---|
-| `allow_remote_control yes` | Unlocks `kitty @ ls`, `kitty @ set-tab-title`, the ssh kitten, etc. |
-| `listen_on unix:/tmp/kitty-{kitty_pid}` | Per-process control socket |
-| `shell_integration enabled` | Click-to-move cursor, prompt marking, jump-by-prompt, etc. |
+| Setting                                 | Why                                                                 |
+| --------------------------------------- | ------------------------------------------------------------------- |
+| `allow_remote_control yes`              | Unlocks `kitty @ ls`, `kitty @ set-tab-title`, the ssh kitten, etc. |
+| `listen_on unix:/tmp/kitty-{kitty_pid}` | Per-process control socket                                          |
+| `shell_integration enabled`             | Click-to-move cursor, prompt marking, jump-by-prompt, etc.          |
 
-**Visual**
+### Visual
 
-| Setting | Why |
-|---|---|
-| `window_padding_width 6` | Subtle gutter between text and window edge |
-| `tab_bar_edge top` | Tabs on top, away from prompt output |
+| Setting                                                   | Why                                                               |
+| --------------------------------------------------------- | ----------------------------------------------------------------- |
+| `window_padding_width 6`                                  | Subtle gutter between text and window edge                        |
+| `tab_bar_edge top`                                        | Tabs on top, away from prompt output                              |
 | `tab_bar_style powerline` + `tab_powerline_style slanted` | Curved powerline separators (uses JetBrainsMono Nerd Font glyphs) |
 
 ## Windows, tabs & layouts
@@ -81,31 +81,31 @@ and `C-a …` drives tmux; they stack happily.
 Keys below are macOS (the daily driver). On Linux `cmd` is inert and kitty's
 `ctrl+shift` defaults apply — see the [kitty docs](https://sw.kovidgoyal.net/kitty/overview/).
 
-**Built-in defaults**
+### Built-in defaults
 
-| Action | Key |
-|---|---|
-| New tab | `⌘T` |
-| Next / prev tab | `⌘]` / `⌘[` (or `⌃Tab` / `⇧⌃Tab`) |
-| Go to tab 1–10 | `⌘1` … `⌘9`, `⌘0` |
-| Close tab | `ctrl+shift+q` |
-| New OS window | `⌘N` |
-| Next / prev split | `ctrl+shift+]` / `ctrl+shift+[` |
-| Close split | `⌘W` |
-| Next layout | `ctrl+shift+l` |
-| Fullscreen toggle | `⌘↩` |
+| Action            | Key                               |
+| ----------------- | --------------------------------- |
+| New tab           | `⌘T`                              |
+| Next / prev tab   | `⌘]` / `⌘[` (or `⌃Tab` / `⇧⌃Tab`) |
+| Go to tab 1–10    | `⌘1` … `⌘9`, `⌘0`                 |
+| Close tab         | `ctrl+shift+q`                    |
+| New OS window     | `⌘N`                              |
+| Next / prev split | `ctrl+shift+]` / `ctrl+shift+[`   |
+| Close split       | `⌘W`                              |
+| Next layout       | `ctrl+shift+l`                    |
+| Fullscreen toggle | `⌘↩`                              |
 
 **Custom maps (this config)** — added to `kitty.conf`, macOS only. They
 repurpose the default `⌘D`/`⌘⇧D` (new window) into iTerm-style directional
 splits:
 
-| Key | Action | vim / tmux analog |
-|---|---|---|
-| `⌘D` / `⌘⇧D` | split right / down (`launch --location=vsplit`/`hsplit`) | tmux `prefix |` / `-` |
-| `⌘⌃H` `⌘⌃J` `⌘⌃K` `⌘⌃L` | focus split left / down / up / right | vim `ctrl-w hjkl`, tmux `prefix hjkl` |
-| `⌘⌃⇧H` `⌘⌃⇧J` `⌘⌃⇧K` `⌘⌃⇧L` | move / swap split | vim `ctrl-w HJKL` |
-| `⌘⌃Z` | zoom the active split (toggle stack) | tmux `prefix z` |
-| `⌘R` | resize mode → then arrows or `hjkl`, `Enter`/`Esc` | tmux `prefix HJKL` |
+| Key                         | Action                                                   | vim / tmux analog                     |
+| --------------------------- | -------------------------------------------------------- | ------------------------------------- |
+| `⌘D` / `⌘⇧D`                | split right / down (`launch --location=vsplit`/`hsplit`) | tmux \`prefix                         |
+| `⌘⌃H` `⌘⌃J` `⌘⌃K` `⌘⌃L`     | focus split left / down / up / right                     | vim `ctrl-w hjkl`, tmux `prefix hjkl` |
+| `⌘⌃⇧H` `⌘⌃⇧J` `⌘⌃⇧K` `⌘⌃⇧L` | move / swap split                                        | vim `ctrl-w HJKL`                     |
+| `⌘⌃Z`                       | zoom the active split (toggle stack)                     | tmux `prefix z`                       |
+| `⌘R`                        | resize mode → then arrows or `hjkl`, `Enter`/`Esc`       | tmux `prefix HJKL`                    |
 
 (In `kitty.conf` the focus/move directions are `left/right/top/bottom` —
 kitty does not accept `up`/`down`.) These are safe alongside tmux because `cmd`
@@ -146,7 +146,7 @@ The shipped starter enables remote shell integration and copies a few
 dependency-free configs (`.vimrc`, `.editorconfig`, `.gitconfig`), with a
 commented per-host block for heavier setups (nvim/zsh/tmux):
 
-```
+```text
 hostname *
 shell_integration enabled
 copy .vimrc
@@ -170,7 +170,7 @@ keystrokes during the bootstrap handshake can be dropped.
 - Mark colors (`kitty`'s scrollback marks feature)
 
 Matches the rest of the dotfiles' Dracula-ish palette
-([[../tig/README.md]], [[../lazygit/README.md]]).
+(\[[../tig/README.md]\], \[[../lazygit/README.md]\]).
 
 ## Diff colors
 

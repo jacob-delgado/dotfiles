@@ -12,13 +12,13 @@ memory / network monitor.
 
 ## Layout
 
-| File | Stows to |
-|---|---|
+| File                          | Stows to                   |
+| ----------------------------- | -------------------------- |
 | `btop/.config/btop/btop.conf` | `~/.config/btop/btop.conf` |
 
 ## Settings
 
-```
+```ini
 color_theme      = "dracula"   # matches git/, lazygit/, overall palette
 theme_background = False        # transparent — inherit terminal bg
 truecolor        = True         # 24-bit color (enabled by tmux too)

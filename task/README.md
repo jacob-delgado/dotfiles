@@ -19,10 +19,10 @@ has **no config file of its own** — it reads everything from Taskwarrior's
 
 ## Layout
 
-| File | Stows to |
-|---|---|
-| `task/.config/task/taskrc` | `~/.config/task/taskrc` |
-| `task/.config/task/dracula.theme` | `~/.config/task/dracula.theme` |
+| File                               | Stows to                        |
+| ---------------------------------- | ------------------------------- |
+| `task/.config/task/taskrc`         | `~/.config/task/taskrc`         |
+| `task/.config/task/dracula.theme`  | `~/.config/task/dracula.theme`  |
 | `task/.config/task/shortcuts/*.sh` | `~/.config/task/shortcuts/*.sh` |
 
 Task data (the TaskChampion SQLite DB) lives at `~/.local/share/task` via
@@ -61,15 +61,15 @@ Taskwarrior colours can't take hex directly (only names / `colorN` / `rgbRGB` /
 
 Set in `taskrc`:
 
-| Setting | Value | Why |
-|---|---|---|
-| `data.location` | `~/.local/share/task` | XDG, consistent with the repo |
-| `news.version` | `3.4.2` | skip the interactive "task news" prompt on first run |
-| `weekstart` | `monday` | week starts Monday in reports/calendar |
-| `due` | `4` | colour tasks as "due" within 4 days (default is 7) |
-| `nag` | *(empty)* | silence the "you have more urgent tasks" scold |
-| `confirmation` | `on` | still prompt before bulk/destructive edits |
-| `dateformat*` | `Y-M-D` | ISO-8601 dates on input, reports, info, annotations |
+| Setting         | Value                 | Why                                                  |
+| --------------- | --------------------- | ---------------------------------------------------- |
+| `data.location` | `~/.local/share/task` | XDG, consistent with the repo                        |
+| `news.version`  | `3.4.2`               | skip the interactive "task news" prompt on first run |
+| `weekstart`     | `monday`              | week starts Monday in reports/calendar               |
+| `due`           | `4`                   | colour tasks as "due" within 4 days (default is 7)   |
+| `nag`           | *(empty)*             | silence the "you have more urgent tasks" scold       |
+| `confirmation`  | `on`                  | still prompt before bulk/destructive edits           |
+| `dateformat*`   | `Y-M-D`               | ISO-8601 dates on input, reports, info, annotations  |
 
 ## taskwarrior-tui settings
 
@@ -96,11 +96,11 @@ Press `1`–`3` in the TUI to run a one-key action on the selected (or
 multi-marked) task(s). Each is a small script in `shortcuts/`, invoked with the
 task UUID(s) as arguments (`rc.confirmation=off` etc. so it's a single keypress):
 
-| Key | Script | Action |
-|---|---|---|
+| Key | Script      | Action                                |
+| --- | ----------- | ------------------------------------- |
 | `1` | `snooze.sh` | `wait:tomorrow` — hide until tomorrow |
-| `2` | `today.sh` | `due:today` — pull into today |
-| `3` | `bump.sh` | `priority:H +next` — escalate |
+| `2` | `today.sh`  | `due:today` — pull into today         |
+| `3` | `bump.sh`   | `priority:H +next` — escalate         |
 
 Add more by dropping an executable in `shortcuts/` and pointing
 `uda.taskwarrior-tui.shortcuts.N` at it (keys `1`–`9`). `~` is expanded; the
@@ -136,8 +136,7 @@ to `task`) — otherwise `task <TAB>` would fire Taskwarrior's helpers
 (`task _zshids`, …) against go-task and error.
 
 The OMZ `taskwarrior` plugin is also dropped from the plugin list: its stale
-2022 `_task` errors on current zsh (`_task_attributes:zregexparse: invalid
-regex : local`, from an uninitialized `word` array), and we don't want
+2022 `_task` errors on current zsh (`_task_attributes:zregexparse: invalid regex : local`, from an uninitialized `word` array), and we don't want
 Taskwarrior CLI completion bound to `task` anyway.
 
 > **Note:** the alias only affects this interactive shell. taskwarrior-tui is a

@@ -25,41 +25,41 @@ For example, `zsh/.zshrc` is symlinked to `~/.zshrc` by running
 
 Current packages:
 
-| Subdir | Symlinks |
-|---|---|
-| `atuin/` | `~/.config/atuin/config.toml` |
-| `bat/` | `~/.config/bat/` |
-| `btop/` | `~/.config/btop/` |
-| `direnv/` | `~/.config/direnv/` |
-| `editorconfig/` | `~/.editorconfig` |
-| `fzf/` | `~/.fzf.zsh` |
-| `gh/` | `~/.config/gh/config.yml` (hosts.yml stays untracked) |
-| `git/` | `~/.gitconfig` |
-| `gitignore_global/` | `~/.gitignore_global` |
-| `hadolint/` | `~/.config/hadolint/` |
-| `kitty/` | `~/.config/kitty/` |
-| `lazygit/` | `~/.config/lazygit/` |
-| `lefthook/` | (not stowed; template only) |
-| `mise/` | `~/.config/mise/config.toml` |
-| `nvim/` | `~/.config/nvim/` |
-| `p10k/` | `~/.p10k.zsh` |
-| `ripgrep/` | `~/.config/ripgrep/` |
-| `shellcheck/` | `~/.shellcheckrc` |
-| `task/` | `~/.config/task/` |
-| `tig/` | `~/.tigrc` |
-| `tmux/` | `~/.tmux.conf` |
-| `vim/` | `~/.vimrc`, `~/.vim/` |
-| `yamllint/` | `~/.config/yamllint/` |
-| `zsh/` | `~/.zshrc` |
+| Subdir              | Symlinks                                              |
+| ------------------- | ----------------------------------------------------- |
+| `atuin/`            | `~/.config/atuin/config.toml`                         |
+| `bat/`              | `~/.config/bat/`                                      |
+| `btop/`             | `~/.config/btop/`                                     |
+| `direnv/`           | `~/.config/direnv/`                                   |
+| `editorconfig/`     | `~/.editorconfig`                                     |
+| `fzf/`              | `~/.fzf.zsh`                                          |
+| `gh/`               | `~/.config/gh/config.yml` (hosts.yml stays untracked) |
+| `git/`              | `~/.gitconfig`                                        |
+| `gitignore_global/` | `~/.gitignore_global`                                 |
+| `hadolint/`         | `~/.config/hadolint/`                                 |
+| `kitty/`            | `~/.config/kitty/`                                    |
+| `lazygit/`          | `~/.config/lazygit/`                                  |
+| `lefthook/`         | (not stowed; template only)                           |
+| `mise/`             | `~/.config/mise/config.toml`                          |
+| `nvim/`             | `~/.config/nvim/`                                     |
+| `p10k/`             | `~/.p10k.zsh`                                         |
+| `ripgrep/`          | `~/.config/ripgrep/`                                  |
+| `shellcheck/`       | `~/.shellcheckrc`                                     |
+| `task/`             | `~/.config/task/`                                     |
+| `tig/`              | `~/.tigrc`                                            |
+| `tmux/`             | `~/.tmux.conf`                                        |
+| `vim/`              | `~/.vimrc`, `~/.vim/`                                 |
+| `yamllint/`         | `~/.config/yamllint/`                                 |
+| `zsh/`              | `~/.zshrc`                                            |
 
 Non-stow files at the root:
 
-| File | Purpose |
-|---|---|
-| `Brewfile` | `brew bundle` input — tap/formula/cask/go-module pins |
-| `bootstrap-debian.sh` | One-shot Debian/Ubuntu provisioning script |
-| `README.md` | Human-facing entry point |
-| `CLAUDE.md` | This file |
+| File                  | Purpose                                               |
+| --------------------- | ----------------------------------------------------- |
+| `Brewfile`            | `brew bundle` input — tap/formula/cask/go-module pins |
+| `bootstrap-debian.sh` | One-shot Debian/Ubuntu provisioning script            |
+| `README.md`           | Human-facing entry point                              |
+| `CLAUDE.md`           | This file                                             |
 
 ## Editing files
 
@@ -101,8 +101,7 @@ broken paths are easy to introduce and hard to spot.
 
 ## Brewfile and bootstrap
 
-- `Brewfile` is a **snapshot**, regenerated via `brew bundle dump
-  --describe --force`. After installing new packages with `brew install`,
+- `Brewfile` is a **snapshot**, regenerated via `brew bundle dump --describe --force`. After installing new packages with `brew install`,
   regenerate so the snapshot stays current.
 - `bootstrap-debian.sh` runs `brew bundle` and tolerates failures (some
   macOS-only casks like `claude-code` will error on Debian — `warn` and
@@ -112,11 +111,11 @@ broken paths are easy to introduce and hard to spot.
 
 ## Plugin managers
 
-| Tool | Plugin manager | Plugin dir |
-|---|---|---|
-| zsh | Oh My Zsh + git-cloned custom plugins | `~/.oh-my-zsh/custom/plugins/` |
-| tmux | TPM (Tmux Plugin Manager) | `~/.tmux/plugins/` |
-| vim | vim-plug | `~/.vim/plugged/` |
+| Tool | Plugin manager                        | Plugin dir                     |
+| ---- | ------------------------------------- | ------------------------------ |
+| zsh  | Oh My Zsh + git-cloned custom plugins | `~/.oh-my-zsh/custom/plugins/` |
+| tmux | TPM (Tmux Plugin Manager)             | `~/.tmux/plugins/`             |
+| vim  | vim-plug                              | `~/.vim/plugged/`              |
 
 Headless plugin install commands for non-interactive use:
 
@@ -141,12 +140,12 @@ shells.
 
 Before saying a change is complete, parse-check the affected file:
 
-| File type | Check |
-|---|---|
-| `*.zsh`, `.zshrc` | `zsh -n <file>` |
+| File type                     | Check                                            |
+| ----------------------------- | ------------------------------------------------ |
+| `*.zsh`, `.zshrc`             | `zsh -n <file>`                                  |
 | `*.sh`, `bootstrap-debian.sh` | `bash -n <file>` (and `shellcheck` if available) |
-| `.vimrc` | open in vim, no startup errors |
-| `.tmux.conf` | `tmux source-file <file>` in a live session |
+| `.vimrc`                      | open in vim, no startup errors                   |
+| `.tmux.conf`                  | `tmux source-file <file>` in a live session      |
 
 UI/visual changes (prompt, status bar, colors) need a real shell or pane to
 verify — say so explicitly if you can't.

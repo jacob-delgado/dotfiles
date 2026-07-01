@@ -16,8 +16,8 @@ Stow package for `~/.gitconfig`.
 
 ## Layout
 
-| File | Stows to |
-|---|---|
+| File             | Stows to       |
+| ---------------- | -------------- |
 | `git/.gitconfig` | `~/.gitconfig` |
 
 ## Local / private overrides
@@ -75,33 +75,33 @@ should be (`rerere`, histogram diff, move-block detection).
 
 ## Aliases
 
-| Alias | Expands to | Use |
-|---|---|---|
-| `git st` | `status -sb` | short status with branch line |
-| `git co` | `checkout` | |
-| `git br` | `branch` | |
-| `git cm` | `commit` | |
-| `git ca` | `commit --amend` | |
-| `git cane` | `commit --amend --no-edit` | amend without re-editing the message |
-| `git lg` | pretty-graph log | one-line graph with colors and `ago`-style dates |
-| `git last` | `log -1 HEAD --stat` | what did the last commit touch? |
-| `git staged` | `diff --cached` | review what's about to be committed |
-| `git unstage` | `reset HEAD --` | undo `git add` |
-| `git undo` | `reset --soft HEAD^` | un-commit (keeping changes) |
-| `git wip` | `add -A && commit -m 'WIP'` | snapshot to step away |
-| `git prune-branches` | delete every merged branch (except current / main / master) | safe local cleanup |
-| `git cp` | `cherry-pick` | |
-| `git sw` / `git swc` | `switch` / `switch -c` | modern branch switch / create |
-| `git cob` | `checkout -b` | create + switch (older style) |
-| `git aa` / `git ap` | `add -A` / `add -p` | stage all / interactively by hunk |
-| `git fa` | `fetch --all --prune` | refresh all remotes, drop stale branches |
-| `git pf` | `push --force-with-lease` | safe force-push (won't clobber others' work) |
-| `git rbi` | `rebase -i --autosquash` | interactive rebase, auto-orders fixups |
-| `git rbc` / `git rba` | `rebase --continue` / `--abort` | |
-| `git fixup` | `commit --fixup <sha>` | marks a fixup commit for `rbi` to squash |
-| `git recent` | last 10 branches by commit date | |
-| `git root` | `rev-parse --show-toplevel` | print the repo root |
-| `git aliases` | list every configured alias | |
+| Alias                 | Expands to                                                  | Use                                              |
+| --------------------- | ----------------------------------------------------------- | ------------------------------------------------ |
+| `git st`              | `status -sb`                                                | short status with branch line                    |
+| `git co`              | `checkout`                                                  |                                                  |
+| `git br`              | `branch`                                                    |                                                  |
+| `git cm`              | `commit`                                                    |                                                  |
+| `git ca`              | `commit --amend`                                            |                                                  |
+| `git cane`            | `commit --amend --no-edit`                                  | amend without re-editing the message             |
+| `git lg`              | pretty-graph log                                            | one-line graph with colors and `ago`-style dates |
+| `git last`            | `log -1 HEAD --stat`                                        | what did the last commit touch?                  |
+| `git staged`          | `diff --cached`                                             | review what's about to be committed              |
+| `git unstage`         | `reset HEAD --`                                             | undo `git add`                                   |
+| `git undo`            | `reset --soft HEAD^`                                        | un-commit (keeping changes)                      |
+| `git wip`             | `add -A && commit -m 'WIP'`                                 | snapshot to step away                            |
+| `git prune-branches`  | delete every merged branch (except current / main / master) | safe local cleanup                               |
+| `git cp`              | `cherry-pick`                                               |                                                  |
+| `git sw` / `git swc`  | `switch` / `switch -c`                                      | modern branch switch / create                    |
+| `git cob`             | `checkout -b`                                               | create + switch (older style)                    |
+| `git aa` / `git ap`   | `add -A` / `add -p`                                         | stage all / interactively by hunk                |
+| `git fa`              | `fetch --all --prune`                                       | refresh all remotes, drop stale branches         |
+| `git pf`              | `push --force-with-lease`                                   | safe force-push (won't clobber others' work)     |
+| `git rbi`             | `rebase -i --autosquash`                                    | interactive rebase, auto-orders fixups           |
+| `git rbc` / `git rba` | `rebase --continue` / `--abort`                             |                                                  |
+| `git fixup`           | `commit --fixup <sha>`                                      | marks a fixup commit for `rbi` to squash         |
+| `git recent`          | last 10 branches by commit date                             |                                                  |
+| `git root`            | `rev-parse --show-toplevel`                                 | print the repo root                              |
+| `git aliases`         | list every configured alias                                 |                                                  |
 
 ## Dracula color scheme
 
@@ -122,11 +122,11 @@ Lets you `git clone dracula://vim` instead of typing the full URL.
 
 Installed via Brewfile, no extra config required:
 
-| Tool | Use |
-|---|---|
-| `git-delta` | pager (wired in above) |
-| `git-absorb` | `git absorb` — auto-creates `fixup!` commits targeting the right earlier commit based on what lines your unstaged changes touch. Pair with `git rebase -i --autosquash` (which `[rebase] autosquash = true` runs by default). |
-| `git-branchless` | adds porcelain inspired by Mercurial/Sapling: `git smartlog`, `git move`, `git restack`, `git undo` (cross-operation undo). Power-user; read `git help branchless` first. |
+| Tool             | Use                                                                                                                                                                                                                           |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `git-delta`      | pager (wired in above)                                                                                                                                                                                                        |
+| `git-absorb`     | `git absorb` — auto-creates `fixup!` commits targeting the right earlier commit based on what lines your unstaged changes touch. Pair with `git rebase -i --autosquash` (which `[rebase] autosquash = true` runs by default). |
+| `git-branchless` | adds porcelain inspired by Mercurial/Sapling: `git smartlog`, `git move`, `git restack`, `git undo` (cross-operation undo). Power-user; read `git help branchless` first.                                                     |
 
 ## Fresh-machine setup
 

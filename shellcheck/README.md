@@ -13,13 +13,13 @@ hand.
 
 ## Layout
 
-| File | Stows to |
-|---|---|
+| File                       | Stows to          |
+| -------------------------- | ----------------- |
 | `shellcheck/.shellcheckrc` | `~/.shellcheckrc` |
 
 ## What's enabled / disabled
 
-```
+```ini
 enable=all
 shell=bash
 external-sources=true

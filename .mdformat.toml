@@ -1,0 +1,6 @@
+# mdformat settings — https://mdformat.readthedocs.io
+# Used by CI, lefthook, and local `mdformat` runs alike. Plugins: mdformat-gfm
+# (GitHub-flavored tables/strikethrough/autolinks) and mdformat-tables (pipe
+# alignment, which is what satisfies markdownlint's MD060).
+wrap = "keep" # never reflow prose — only normalize syntax and align tables
+number = true # keep ordered lists consecutively numbered (1. 2. 3.), not 1. 1.

@@ -14,8 +14,8 @@ context, and optional E2E-encrypted sync.
 
 ## Layout
 
-| File | Stows to |
-|---|---|
+| File                              | Stows to                      |
+| --------------------------------- | ----------------------------- |
 | `atuin/.config/atuin/config.toml` | `~/.config/atuin/config.toml` |
 
 ## Active settings

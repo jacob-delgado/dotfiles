@@ -12,8 +12,8 @@ Stow package for `~/.config/lazygit/config.yml`.
 
 ## Layout
 
-| File | Stows to |
-|---|---|
+| File                                 | Stows to                       |
+| ------------------------------------ | ------------------------------ |
 | `lazygit/.config/lazygit/config.yml` | `~/.config/lazygit/config.yml` |
 
 Find the live config dir on any machine with `lazygit --config-dir`.
@@ -23,15 +23,15 @@ Find the live config dir on any machine with `lazygit --config-dir`.
 The official [Dracula](https://github.com/dracula/lazygit) theme (copied
 verbatim from upstream), matching `git/.gitconfig`:
 
-| Element | Color |
-|---|---|
-| activeBorderColor | `#FF79C6` bold (pink) |
-| inactiveBorderColor | `#BD93F9` (purple) |
-| searchingActiveBorderColor | `#8BE9FD` bold (cyan) |
-| selectedLineBgColor | `#6272A4` (comment) |
-| optionsTextColor | `#6272A4` (comment) |
-| unstagedChangesColor | `#FF5555` (red) |
-| defaultFgColor | `#F8F8F2` (foreground) |
+| Element                    | Color                  |
+| -------------------------- | ---------------------- |
+| activeBorderColor          | `#FF79C6` bold (pink)  |
+| inactiveBorderColor        | `#BD93F9` (purple)     |
+| searchingActiveBorderColor | `#8BE9FD` bold (cyan)  |
+| selectedLineBgColor        | `#6272A4` (comment)    |
+| optionsTextColor           | `#6272A4` (comment)    |
+| unstagedChangesColor       | `#FF5555` (red)        |
+| defaultFgColor             | `#F8F8F2` (foreground) |
 
 Plus cherry-pick / marked-base-commit colors — see the file for the full
 upstream block.
@@ -61,13 +61,13 @@ read settings from `git/.gitconfig`'s `[delta]` block.
 
 ## gh integration (custom commands)
 
-| Key | Context | Action |
-|---|---|---|
-| `O` | global | `gh pr view --web` — open this branch's PR in browser |
-| `C` | global | `gh pr create --fill --web` — create PR for current branch |
-| `V` | commits | `gh pr view --web {SHA}` — open PR for selected commit |
-| `L` | global | `gh pr list --author "@me"` — list my PRs (terminal output) |
-| `X` | global | `gh poi` — prune branches whose PRs are merged (terminal output) |
+| Key | Context | Action                                                           |
+| --- | ------- | ---------------------------------------------------------------- |
+| `O` | global  | `gh pr view --web` — open this branch's PR in browser            |
+| `C` | global  | `gh pr create --fill --web` — create PR for current branch       |
+| `V` | commits | `gh pr view --web {SHA}` — open PR for selected commit           |
+| `L` | global  | `gh pr list --author "@me"` — list my PRs (terminal output)      |
+| `X` | global  | `gh poi` — prune branches whose PRs are merged (terminal output) |
 
 `{{.SelectedLocalCommit.Sha}}` is lazygit's template syntax for the
 selected entry in the commits panel.

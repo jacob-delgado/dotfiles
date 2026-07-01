@@ -13,13 +13,13 @@ the read/navigate companion to lazygit's interactive UI.
 
 ## Layout
 
-| File | Stows to |
-|---|---|
+| File         | Stows to   |
+| ------------ | ---------- |
 | `tig/.tigrc` | `~/.tigrc` |
 
 ## Display options
 
-```
+```text
 set git-colors    = no                 # don't double-style on top of git's color.* output
 set diff-options  = -m --first-parent  # render merges as patches; follow first parent only
 set show-changes  = yes                # staged/unstaged appear as faux commits in main view
@@ -39,29 +39,29 @@ Each terminal's Dracula theme maps the ANSI palette consistently
 renders right on macOS iTerm/Terminal.app and Linux URxvt/Wezterm
 without per-platform tweaks.
 
-| Element | Color |
-|---|---|
-| Selected line (cursor) | bold magenta (pink) |
-| Search results | black on yellow |
-| Line numbers | blue (comment-purple), subtle |
-| Active pane title | bold magenta on black |
-| Inactive pane title | blue on black |
-| diff +/- bodies | green / red |
-| diff +/- highlight | inverse green / red |
-| Commit headers | bold yellow |
-| Index lines | cyan |
-| Hunk markers | magenta |
-| Author column | cyan |
-| Date column | blue (comment-purple) |
-| HEAD marker | bold magenta |
-| Tags | bold yellow |
-| Remote refs | green |
-| Trailers (`Reported-by:`, `Signed-off-by:`) | green |
+| Element                                     | Color                         |
+| ------------------------------------------- | ----------------------------- |
+| Selected line (cursor)                      | bold magenta (pink)           |
+| Search results                              | black on yellow               |
+| Line numbers                                | blue (comment-purple), subtle |
+| Active pane title                           | bold magenta on black         |
+| Inactive pane title                         | blue on black                 |
+| diff +/- bodies                             | green / red                   |
+| diff +/- highlight                          | inverse green / red           |
+| Commit headers                              | bold yellow                   |
+| Index lines                                 | cyan                          |
+| Hunk markers                                | magenta                       |
+| Author column                               | cyan                          |
+| Date column                                 | blue (comment-purple)         |
+| HEAD marker                                 | bold magenta                  |
+| Tags                                        | bold yellow                   |
+| Remote refs                                 | green                         |
+| Trailers (`Reported-by:`, `Signed-off-by:`) | green                         |
 
 ## Key bindings
 
-| Key | Action |
-|---|---|
+| Key | Action                                                                                                  |
+| --- | ------------------------------------------------------------------------------------------------------- |
 | `Y` | Copy the selected commit SHA to the system clipboard (pbcopy / xclip / wl-copy, whichever is available) |
 
 All of tig's built-in bindings (`Enter` view commit, `R` refresh, `q`

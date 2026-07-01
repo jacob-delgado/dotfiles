@@ -1,0 +1,16 @@
+{
+  // markdownlint-cli2 config for this repo (used by CI, lefthook, and local
+  // `markdownlint-cli2` / `--fix` runs alike).
+  "config": {
+    "default": true,
+    // Line length is governed by .editorconfig (max_line_length = off for
+    // Markdown): the READMEs are full of tables, URLs and code samples that
+    // don't hard-wrap sensibly. Every other default rule stays on.
+    "MD013": false
+  },
+  "globs": ["**/*.md"],
+  // src/*.md are one-line mdBook {{#include}} wrappers, not authored prose;
+  // book/ is the generated site; vim/.vim/ holds vim runtime/undo files (some
+  // named *.md); node_modules/ never exists here but is cheap insurance.
+  "ignores": ["src/**", "book/**", "vim/.vim/**", "node_modules/**"]
+}

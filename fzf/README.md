@@ -56,11 +56,11 @@ Guarded so machines without `fd` still get a working fzf.
 
 OMZ's `fzf` plugin binds:
 
-| Keys | Action | Options set here |
-|---|---|---|
-| `Ctrl+T` | insert a selected file path into the command line | `FZF_CTRL_T_OPTS` — bat preview, falling back to cat |
-| `Ctrl+R` | history search | `FZF_CTRL_R_OPTS` — 3-line wrapped preview pane |
-| `Alt+C` | cd to a selected directory | `FZF_ALT_C_COMMAND` — fd-based directory walker (above) |
+| Keys     | Action                                            | Options set here                                        |
+| -------- | ------------------------------------------------- | ------------------------------------------------------- |
+| `Ctrl+T` | insert a selected file path into the command line | `FZF_CTRL_T_OPTS` — bat preview, falling back to cat    |
+| `Ctrl+R` | history search                                    | `FZF_CTRL_R_OPTS` — 3-line wrapped preview pane         |
+| `Alt+C`  | cd to a selected directory                        | `FZF_ALT_C_COMMAND` — fd-based directory walker (above) |
 
 ```sh
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers --line-range :500 {} 2>/dev/null || cat {}'"
