@@ -98,14 +98,24 @@ export PATH=$PATH:/usr/local/go/bin
 command -v ruby >/dev/null && export GEM_HOME=$(ruby -e 'puts Gem.user_dir')
 
 # Prefer GNU tools over the BSD versions on macOS (installed via Homebrew).
-if [[ "$OSTYPE" == darwin* ]]; then
+# $(brew --prefix) rather than a hardcoded /opt/homebrew so this also works on
+# Intel Macs (/usr/local); the whole block is macOS-only and skipped on Linux.
+if [[ "$OSTYPE" == darwin* ]] && command -v brew >/dev/null; then
+  brew_prefix="$(brew --prefix)"
   for gnu_tool in binutils coreutils findutils gnu-sed gnu-tar gnu-which grep; do
-    gnu_bin="/opt/homebrew/opt/$gnu_tool/libexec/gnubin"
-    [[ "$gnu_tool" == "binutils" ]] && gnu_bin="/opt/homebrew/opt/$gnu_tool/bin"
+    gnu_bin="$brew_prefix/opt/$gnu_tool/libexec/gnubin"
+    [[ "$gnu_tool" == "binutils" ]] && gnu_bin="$brew_prefix/opt/$gnu_tool/bin"
     [[ -d "$gnu_bin" ]] && export PATH="$gnu_bin:$PATH"
   done
-  unset gnu_tool gnu_bin
+  unset gnu_tool gnu_bin brew_prefix
 fi
+
+# mise: activate early (https://mise.jdx.dev) so mise-managed tools — bat, eza,
+# zoxide, atuin, go-task, the language runtimes — are on PATH by the time the
+# `command -v` integration blocks below run. On the Debian VMs mise is the only
+# source of those tools; on macOS Homebrew already put them on PATH and mise
+# still activates here to honor per-project runtime pins (a repo's mise.toml).
+command -v mise >/dev/null 2>&1 && eval "$(mise activate zsh)"
 
 # History
 export HISTFILE="$HOME/.zsh_history"
@@ -237,7 +247,7 @@ command -v taskwarrior-tui >/dev/null 2>&1 && alias tt='taskwarrior-tui'
 # taskwarrior-tui (a separate process that does its own $PATH lookup for `task`)
 # still finds Taskwarrior and keeps working. go-task itself walks up parent dirs
 # to the nearest Taskfile, so `task <target>` works anywhere in a project tree.
-# (`mise activate`, below, also pins go-task per-project via a repo's mise.toml,
+# (`mise activate`, above, also pins go-task per-project via a repo's mise.toml,
 # but this alias is expanded before any PATH/mise lookup so it wins everywhere.)
 #
 # Completion: Taskwarrior also ships a `_task` (linked in Homebrew's
@@ -255,11 +265,6 @@ if [[ -x "${GOBIN:-$HOME/go/bin}/task" ]]; then
   [[ -s "$_gotask_comp" ]] && source "$_gotask_comp"
   unset _gotask_comp
 fi
-
-# mise: per-directory tool versions (https://mise.jdx.dev). Activating it makes
-# project-pinned tools win on PATH — e.g. inside a repo whose mise.toml pins
-# go-task, the bare `task` command resolves to go-task instead of Taskwarrior.
-command -v mise >/dev/null 2>&1 && eval "$(mise activate zsh)"
 
 for zsh_syntax_highlighting in \
   /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
