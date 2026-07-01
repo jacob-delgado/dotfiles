@@ -50,6 +50,7 @@ sudo apt-get install -y \
   file \
   fzf \
   git \
+  gnupg \
   jq \
   procps \
   stow \
@@ -80,8 +81,39 @@ fi
 command -v mise >/dev/null 2>&1 || warn "mise is not on PATH; the tool-install step below will be skipped."
 
 # ---------------------------------------------------------------------------
-# 3. Oh My Zsh
+# 3. Stow the dotfile packages
 # ---------------------------------------------------------------------------
+# Stow BEFORE installing oh-my-zsh so ~/.zshrc is our symlink first: the OMZ
+# installer's KEEP_ZSHRC=yes only preserves an *existing* .zshrc, and on a fresh
+# box it would otherwise drop its own template there and collide with `stow zsh`.
+log "Stowing dotfiles from ${DOTFILES_DIR}"
+cd "${DOTFILES_DIR}"
+for pkg in "${STOW_PACKAGES[@]}"; do
+  [[ -d "${pkg}" ]] || {
+    warn "Skipping ${pkg} (directory not in repo)"
+    continue
+  }
+  # Detect non-symlink collisions in $HOME and bail loudly so we don't blow
+  # away anyone's real files. `stow` folds a single-package subtree into one
+  # dir symlink (e.g. ~/.config/atuin -> repo), so files under it look like
+  # plain files while already being ours; `-ef` (same inode) tells an
+  # already-stowed file from a genuine foreign one, keeping re-runs idempotent.
+  # shellcheck disable=SC2312  # find can't meaningfully fail on an in-repo dir
+  while IFS= read -r -d '' f; do
+    rel="${f#"${pkg}"/}"
+    target="${HOME}/${rel}"
+    if [[ -e "${target}" && ! -L "${target}" && ! "${target}" -ef "${f}" ]]; then
+      err "Refusing to stow ${pkg}: ${target} exists as a regular file. Move or delete it first."
+    fi
+  done < <(find "${pkg}" -mindepth 1 -type f -print0)
+  log "  stow -R ${pkg}"
+  stow -R "${pkg}"
+done
+
+# ---------------------------------------------------------------------------
+# 4. Oh My Zsh
+# ---------------------------------------------------------------------------
+# KEEP_ZSHRC=yes keeps the ~/.zshrc symlink stowed above (see the note there).
 if [[ ! -d "${HOME}/.oh-my-zsh" ]]; then
   log "Installing oh-my-zsh"
   omz_installer="$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -89,7 +121,7 @@ if [[ ! -d "${HOME}/.oh-my-zsh" ]]; then
 fi
 
 # ---------------------------------------------------------------------------
-# 4. powerlevel10k theme
+# 5. powerlevel10k theme
 # ---------------------------------------------------------------------------
 P10K_DIR="${ZSH_CUSTOM}/themes/powerlevel10k"
 if [[ ! -d "${P10K_DIR}" ]]; then
@@ -98,7 +130,7 @@ if [[ ! -d "${P10K_DIR}" ]]; then
 fi
 
 # ---------------------------------------------------------------------------
-# 5. OMZ custom plugins (the ones .zshrc conditionally loads)
+# 6. OMZ custom plugins (the ones .zshrc conditionally loads)
 # ---------------------------------------------------------------------------
 install_plugin() {
   local name="$1" url="$2" dest="${ZSH_CUSTOM}/plugins/$1"
@@ -110,30 +142,6 @@ install_plugin() {
 install_plugin zsh-autosuggestions https://github.com/zsh-users/zsh-autosuggestions
 install_plugin fzf-tab https://github.com/Aloxaf/fzf-tab
 install_plugin you-should-use https://github.com/MichaelAquilina/zsh-you-should-use
-
-# ---------------------------------------------------------------------------
-# 6. Stow the dotfile packages
-# ---------------------------------------------------------------------------
-log "Stowing dotfiles from ${DOTFILES_DIR}"
-cd "${DOTFILES_DIR}"
-for pkg in "${STOW_PACKAGES[@]}"; do
-  [[ -d "${pkg}" ]] || {
-    warn "Skipping ${pkg} (directory not in repo)"
-    continue
-  }
-  # Detect non-symlink collisions in $HOME and bail loudly so we don't blow
-  # away anyone's real files.
-  # shellcheck disable=SC2312  # find can't meaningfully fail on an in-repo dir
-  while IFS= read -r -d '' f; do
-    rel="${f#"${pkg}"/}"
-    target="${HOME}/${rel}"
-    if [[ -e "${target}" && ! -L "${target}" ]]; then
-      err "Refusing to stow ${pkg}: ${target} exists as a regular file. Move or delete it first."
-    fi
-  done < <(find "${pkg}" -mindepth 1 -type f -print0)
-  log "  stow -R ${pkg}"
-  stow -R "${pkg}"
-done
 
 # ---------------------------------------------------------------------------
 # 7. mise-managed tools (runtimes + modern CLIs)
