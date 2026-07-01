@@ -1,0 +1,70 @@
+name: ci
+
+# Lint the repo's shell scripts (shellcheck + shfmt) and YAML (yamllint) using
+# the same configs the lefthook template + stowed rc files enforce locally.
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**.sh'
+      - '**.bash'
+      - '**.yml'
+      - '**.yaml'
+      - 'shellcheck/.shellcheckrc'
+      - 'yamllint/.config/yamllint/config'
+      - '.github/workflows/ci.yml'
+  pull_request:
+    paths:
+      - '**.sh'
+      - '**.bash'
+      - '**.yml'
+      - '**.yaml'
+      - 'shellcheck/.shellcheckrc'
+      - 'yamllint/.config/yamllint/config'
+      - '.github/workflows/ci.yml'
+  workflow_dispatch:
+
+# Read-only: linting never needs to write to the repo.
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # shellcheck + shfmt come from mise (aqua backend — pinned prebuilt
+      # binaries), the same tool manager the rest of the repo uses. Versions
+      # match what these scripts were verified against.
+      - name: Install shellcheck + shfmt
+        uses: jdx/mise-action@v4
+        with:
+          mise_toml: |
+            [tools]
+            shellcheck = "0.11.0"
+            shfmt = "3.13.1"
+
+      - name: Install yamllint
+        run: pipx install yamllint==1.38.0
+
+      # Mirror lefthook.yml's shellcheck hook, using the repo's own
+      # shellcheck/.shellcheckrc (enable=all). Scope to tracked scripts via
+      # git ls-files so the gitignored vim-undo files that merely end in .sh
+      # are never picked up.
+      - name: shellcheck
+        run: |
+          cp shellcheck/.shellcheckrc "$HOME/.shellcheckrc"
+          git ls-files '*.sh' '*.bash' | xargs -r shellcheck
+
+      - name: shfmt
+        run: git ls-files '*.sh' '*.bash' | xargs -r shfmt -d -i 2 -ci
+
+      # gh generates ~/.config/gh/config.yml with its own 4-space indent, so
+      # it's the one tracked YAML we don't own and don't lint; everything else
+      # is checked against the repo's yamllint config.
+      - name: yamllint
+        run: |
+          git ls-files '*.yml' '*.yaml' \
+            | grep -v '^gh/\.config/gh/config\.yml$' \
+            | xargs -r yamllint -c yamllint/.config/yamllint/config
