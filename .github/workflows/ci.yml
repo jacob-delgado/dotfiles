@@ -24,7 +24,7 @@ jobs:
       # same tool manager the rest of the repo uses. Versions match what the
       # tree was verified against.
       - name: Install binary linters (mise)
-        uses: jdx/mise-action@v4
+        uses: jdx/mise-action@v5
         with:
           mise_toml: |
             [tools]
